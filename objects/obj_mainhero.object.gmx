@@ -30,6 +30,8 @@ grav = 0.5;
 vert_speed = 0;
 move_speed = 5;
 jump_speed = 10;
+
+jumped = false;
 </string>
           </argument>
         </arguments>
@@ -52,7 +54,14 @@ jump_speed = 10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>key_jump = keyboard_check(ord("W"));
+            <string>show_debug_message(hero_state);
+if(place_free(x, y + 1) and hero_state != "jump"){
+    y += jump_speed;
+    if(!place_free(x, y + 1)){
+        hero_state = "idle";
+    }
+}
+
 
 if (hero_state == "idle")
 {
@@ -93,7 +102,36 @@ if (hero_state == "right")
     }
 }
 
-if (vert_speed &lt; 14) 
+if(hero_state == "jump"){
+    if (vert_speed &lt; 14) 
+        vert_speed += grav;
+    
+    image_speed = 0.3;
+    sprite_index = spr_hero_jump;
+    
+    if(image_index &gt;= 4 and place_free(x, y + 1))
+        image_index = 4;
+    if(image_index &gt; 4 and image_index &lt; 5 and !place_free(x, y + 1)){
+        image_index = 5;
+        jumped = false;
+    }
+    if(image_index &gt;= 5.7)
+        hero_state = "idle";
+    
+    if(!place_free(x, y + 1)){
+        if(!jumped)
+            vert_speed = 0;
+        else
+            vert_speed = -jump_speed;
+    }
+
+    if(place_free(x, y + 1))
+        audio_stop_sound(walk_sound);
+
+    y += vert_speed;
+}
+
+/*if (vert_speed &lt; 14) 
 {
     vert_speed += grav;
 }
@@ -108,7 +146,7 @@ if (!place_meeting(x, y + 1, obj_ground))
     audio_stop_sound(walk_sound);
 }
 
-y += vert_speed;
+y += vert_speed;*/
 </string>
           </argument>
         </arguments>
@@ -131,7 +169,8 @@ y += vert_speed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hero_state = "right";
+            <string>if(!place_free(x, y + 1))
+    hero_state = "right";
 </string>
           </argument>
         </arguments>
@@ -154,7 +193,68 @@ y += vert_speed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hero_state = "left";
+            <string>if(!place_free(x, y + 1))
+    hero_state = "left";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="87">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(!place_free(x, y + 1)){
+    hero_state = "jump";
+    vert_speed = -jump_speed;
+    jumped = true;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(hero_state != "jump"){
+    runicBullet = instance_create(x, y, rune1bullet);
+    runicBullet.speed = 15;
+    if(image_xscale &gt; 0)
+        runicBullet.direction = 180;
+    else
+        runicBullet.direction = 0;
+    runicBullet.xCreate = x;
+    runicBullet.yCreate = y;
+}
 </string>
           </argument>
         </arguments>
@@ -177,7 +277,8 @@ y += vert_speed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hero_state = "idle";
+            <string>if(!place_free(x, y + 1))
+    hero_state = "idle";
 </string>
           </argument>
         </arguments>
@@ -200,7 +301,8 @@ y += vert_speed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hero_state = "idle";
+            <string>if(!place_free(x, y + 1))
+    hero_state = "idle";
 </string>
           </argument>
         </arguments>
