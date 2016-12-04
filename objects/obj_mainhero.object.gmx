@@ -251,20 +251,23 @@ if (hero_state == "jump")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (hero_state != "jump")
+            <string>if (hero_state == "idle")
 {
-    runicBullet = instance_create(x + 12, y - 8, obj_rune_1);
-    runicBullet.speed = 18;
     if (image_xscale &gt; 0)
     {
+        runicBullet = instance_create(x - 50, y - 20, obj_rune_1);
         runicBullet.direction = 180;
+        runicBullet.xCreate = x;
+        runicBullet.yCreate = y;
     }
     else
     {
+        runicBullet = instance_create(x + 50, y - 20, obj_rune_1);
         runicBullet.direction = 0;
-    }        
-    runicBullet.xCreate = x;
-    runicBullet.yCreate = y;
+        runicBullet.xCreate = x;
+        runicBullet.yCreate = y;
+    }
+    runicBullet.speed = 18;        
 }
 </string>
           </argument>

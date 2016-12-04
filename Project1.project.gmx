@@ -16,6 +16,7 @@
     <sprites name="main_menu">
       <sprite>sprites\spr_river</sprite>
       <sprite>sprites\spr_clear</sprite>
+      <sprite>sprites\spr_fire</sprite>
       <sprite>sprites\spr_birds</sprite>
     </sprites>
     <sprites name="main_hero">
@@ -58,6 +59,7 @@
     <objects name="main_menu">
       <object>objects\obj_menu</object>
       <object>objects\obj_menu_music</object>
+      <object>objects\obj_fire</object>
       <object>objects\obj_river</object>
       <object>objects\obj_birds</object>
     </objects>
