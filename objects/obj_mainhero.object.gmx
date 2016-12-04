@@ -56,7 +56,7 @@ jumped = false;
             <kind>1</kind>
             <string>show_debug_message(hero_state);
 
-if (place_free(x, y + 1) and hero_state != "jump")
+if (place_free(x, y + 1) and hero_state != "jump" and hero_state != "shoot")
 {
     y += jump_speed;
     if (!place_free(x, y + 1))
@@ -69,6 +69,16 @@ if (hero_state == "idle")
 {
     image_speed = 0.04;
     sprite_index = spr_hero_idle;
+}
+
+if (hero_state == "shoot")
+{
+    image_speed = 0.25;
+    sprite_index = spr_shooter_1;
+    if (image_index &gt; image_number - 0.4)
+    {
+        hero_state = "idle";
+    }
 }
 
 if (hero_state == "left")
@@ -251,7 +261,7 @@ if (hero_state == "jump")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (hero_state == "idle")
+            <string>if (hero_state == "idle" or hero_state == "shoot")
 {
     if (image_xscale &gt; 0)
     {
@@ -266,7 +276,9 @@ if (hero_state == "jump")
         runicBullet.direction = 0;
         runicBullet.xCreate = x;
         runicBullet.yCreate = y;
+        sprite_index = spr_shooter_1;
     }
+    hero_state = "shoot";
     runicBullet.speed = 18;        
 }
 </string>
