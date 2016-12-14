@@ -35,6 +35,7 @@
       <sprite>sprites\spr_lamp</sprite>
       <sprite>sprites\spr_vsadnik</sprite>
       <sprite>sprites\spr_bridge</sprite>
+      <sprite>sprites\spr_noise</sprite>
       <sprite>sprites\spr_glory_edge</sprite>
     </sprites>
   </sprites>
@@ -62,6 +63,7 @@
       <object>objects\obj_parallax</object>
       <object>objects\obj_light</object>
       <object>objects\obj_fade_effect</object>
+      <object>objects\obj_noise</object>
     </objects>
     <objects name="last_and_always">
       <object>objects\obj_mainhero</object>
