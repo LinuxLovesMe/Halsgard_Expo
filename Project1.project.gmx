@@ -11,6 +11,7 @@
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_ground</sprite>
+    <sprite>sprites\spr_light</sprite>
     <sprites name="main_menu">
       <sprite>sprites\spr_river</sprite>
       <sprite>sprites\spr_clear</sprite>
@@ -57,16 +58,19 @@
       <object>objects\obj_river</object>
       <object>objects\obj_birds</object>
     </objects>
+    <objects name="effects">
+      <object>objects\obj_parallax</object>
+      <object>objects\obj_light</object>
+      <object>objects\obj_fade_effect</object>
+    </objects>
     <objects name="last_and_always">
       <object>objects\obj_mainhero</object>
+      <object>objects\obj_ground</object>
       <objects name="hero_weapons">
         <object>objects\obj_rune_1</object>
         <object>objects\obj_rune_2</object>
         <object>objects\obj_bullet</object>
       </objects>
-      <object>objects\obj_ground</object>
-      <object>objects\obj_parallax</object>
-      <object>objects\obj_fade_effect</object>
     </objects>
     <objects name="street_level">
       <object>objects\obj_rain</object>
