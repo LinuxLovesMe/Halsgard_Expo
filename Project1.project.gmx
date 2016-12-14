@@ -7,12 +7,10 @@
   <sounds name="sound">
     <sound>sound\menu_music</sound>
     <sound>sound\rain_sound</sound>
-    <sound>sound\dron_ambient</sound>
-    <sound>sound\ambient_street</sound>
     <sound>sound\walk_sound</sound>
-    <sound>sound\sound_take_drug</sound>
   </sounds>
   <sprites name="sprites">
+    <sprite>sprites\spr_ground</sprite>
     <sprites name="main_menu">
       <sprite>sprites\spr_river</sprite>
       <sprite>sprites\spr_clear</sprite>
@@ -30,20 +28,18 @@
       <sprite>sprites\spr_rune_1</sprite>
       <sprite>sprites\spr_rune_2</sprite>
     </sprites>
-    <sprites name="start_cutscene">
-      <sprite>sprites\spr_old_man</sprite>
-      <sprite>sprites\spr_drugs</sprite>
-      <sprite>sprites\spr_kranwerk</sprite>
-      <sprite>sprites\spr_cutscene_tree</sprite>
-      <sprite>sprites\spr_drugs_no</sprite>
+    <sprites name="street_level">
+      <sprite>sprites\spr_platform</sprite>
+      <sprite>sprites\spr_tree_street</sprite>
+      <sprite>sprites\spr_lamp</sprite>
+      <sprite>sprites\spr_vsadnik</sprite>
+      <sprite>sprites\spr_bridge</sprite>
+      <sprite>sprites\spr_glory_edge</sprite>
     </sprites>
-    <sprite>sprites\spr_ground</sprite>
-    <sprite>sprites\spr_white_stripe</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
-    <background>background\city_back_dark</background>
-    <background>background\city_back_light</background>
+    <background>background\street_level_back</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -54,10 +50,6 @@
     <font>fonts\Kramola</font>
   </fonts>
   <objects name="objects">
-    <objects name="pause_menu">
-      <object>objects\obj_pause</object>
-      <object>objects\obj_white_stripe</object>
-    </objects>
     <objects name="main_menu">
       <object>objects\obj_menu</object>
       <object>objects\obj_menu_music</object>
@@ -73,25 +65,23 @@
         <object>objects\obj_bullet</object>
       </objects>
       <object>objects\obj_ground</object>
+      <object>objects\obj_parallax</object>
       <object>objects\obj_fade_effect</object>
     </objects>
-    <objects name="level_street">
-      <objects name="start_cutscene">
-        <object>objects\obj_cutscene_0</object>
-        <object>objects\obj_oldman</object>
-        <object>objects\obj_cutscene_music</object>
-        <object>objects\obj_kranwerk</object>
-        <object>objects\obj_cutscene_tree</object>
-      </objects>
+    <objects name="street_level">
       <object>objects\obj_rain</object>
       <object>objects\obj_rain_music</object>
+      <object>objects\obj_platform</object>
+      <object>objects\obj_bridge</object>
+      <object>objects\obj_tree_street</object>
+      <object>objects\obj_vsadnik</object>
+      <object>objects\obj_lamp</object>
+      <object>objects\obj_zaborchik</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_1</room>
     <room>rooms\room_2</room>
-    <room>rooms\room_4</room>
-    <room>rooms\room_5</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

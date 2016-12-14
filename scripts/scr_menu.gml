@@ -2,7 +2,7 @@ switch (curr_pos)
 {
     case 0:
     {
-        room_goto(room_5);
+        room_goto(room_2);
         break;
     }
         
