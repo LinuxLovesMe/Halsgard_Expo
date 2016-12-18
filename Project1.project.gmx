@@ -83,6 +83,9 @@
       <object>objects\obj_vsadnik</object>
       <object>objects\obj_lamp</object>
       <object>objects\obj_zaborchik</object>
+      <object>objects\obj_slow_platform</object>
+      <object>objects\obj_fast_platform</object>
+      <object>objects\obj_perm_platform</object>
     </objects>
   </objects>
   <rooms name="rooms">
