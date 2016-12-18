@@ -16,8 +16,8 @@
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1936</w>
-    <h>1056</h>
+    <w>952</w>
+    <h>600</h>
     <showGrid>0</showGrid>
     <showObjects>-1</showObjects>
     <showTiles>-1</showTiles>
@@ -27,8 +27,8 @@
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
     <page>0</page>
-    <xoffset>-268</xoffset>
-    <yoffset>-205</yoffset>
+    <xoffset>4808</xoffset>
+    <yoffset>2284</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -357,6 +357,13 @@
     <instance objName="obj_perm_platform" x="2832" y="1378" name="inst_CCA89796" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="3372220415" rotation="0"/>
     <instance objName="obj_slow_platform" x="3232" y="1360" name="inst_3013AFA4" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="3372220415" rotation="0"/>
     <instance objName="obj_slow_platform" x="3636" y="1374" name="inst_6D5A3059" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="3372220415" rotation="0"/>
+    <instance objName="obj_stone_controller" x="304" y="336" name="inst_85EE416C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_point" x="720" y="802" name="inst_C433B3F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_point" x="1664" y="802" name="inst_228C8B7A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_point" x="768" y="1154" name="inst_9A479EE6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_point" x="3024" y="786" name="inst_318FFEED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_point" x="3392" y="786" name="inst_43E98CCB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_point" x="3728" y="786" name="inst_2FD65644" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

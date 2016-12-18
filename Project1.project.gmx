@@ -38,6 +38,8 @@
       <sprite>sprites\spr_noise</sprite>
       <sprite>sprites\spr_glory_edge</sprite>
     </sprites>
+    <sprite>sprites\spr_stone_1</sprite>
+    <sprite>sprites\spr_stone_2</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
@@ -73,15 +75,20 @@
         <object>objects\obj_rune_2</object>
         <object>objects\obj_bullet</object>
       </objects>
+      <object>objects\obj_stone_1</object>
+      <object>objects\obj_stone_2</object>
     </objects>
     <objects name="street_level">
-      <object>objects\obj_rain</object>
       <object>objects\obj_rain_music</object>
-      <object>objects\obj_platform</object>
       <object>objects\obj_bridge</object>
+      <object>objects\obj_rain</object>
+      <object>objects\obj_platform</object>
       <object>objects\obj_tree_street</object>
       <object>objects\obj_vsadnik</object>
+      <object>objects\obj_stone_point</object>
+      <object>objects\obj_stone_controller</object>
       <object>objects\obj_lamp</object>
+      <object>objects\obj_scene_controller</object>
       <object>objects\obj_zaborchik</object>
       <object>objects\obj_slow_platform</object>
       <object>objects\obj_fast_platform</object>
