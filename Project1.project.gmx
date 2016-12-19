@@ -22,8 +22,6 @@
       <sprite>sprites\spr_hero_walk</sprite>
       <sprite>sprites\spr_hero_idle</sprite>
       <sprite>sprites\spr_hero_jump</sprite>
-      <sprite>sprites\spr_shooter_1</sprite>
-      <sprite>sprites\spr_shooter_2</sprite>
     </sprites>
     <sprites name="weapons">
       <sprite>sprites\spr_rune_1</sprite>
@@ -36,6 +34,7 @@
       <sprite>sprites\spr_vsadnik</sprite>
       <sprite>sprites\spr_bridge</sprite>
       <sprite>sprites\spr_noise</sprite>
+      <sprite>sprites\spr_gnezdo</sprite>
       <sprite>sprites\spr_glory_edge</sprite>
     </sprites>
     <sprite>sprites\spr_stone_1</sprite>
@@ -81,6 +80,7 @@
     <objects name="street_level">
       <object>objects\obj_rain_music</object>
       <object>objects\obj_bridge</object>
+      <object>objects\obj_gnezdo</object>
       <object>objects\obj_rain</object>
       <object>objects\obj_platform</object>
       <object>objects\obj_tree_street</object>

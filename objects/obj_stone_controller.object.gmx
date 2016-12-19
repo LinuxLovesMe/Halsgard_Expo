@@ -72,7 +72,7 @@ with (obj_stone_point)
             {
                 temp = ds_stack_pop(global.stack);
                 temp.x = points[rand].x;
-                temp.y = points[rand].y;
+                temp.y = points[rand].y - 2;
                 points[rand].objectOn = temp;
             }
         }        
