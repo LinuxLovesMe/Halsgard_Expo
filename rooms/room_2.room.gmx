@@ -16,7 +16,7 @@
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1016</w>
+    <w>992</w>
     <h>600</h>
     <showGrid>0</showGrid>
     <showObjects>-1</showObjects>
@@ -26,9 +26,9 @@
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
-    <page>3</page>
-    <xoffset>-286</xoffset>
-    <yoffset>-242</yoffset>
+    <page>0</page>
+    <xoffset>-32</xoffset>
+    <yoffset>807</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="-1" foreground="0" name="background_razlom" x="0" y="0" htiled="-1" vtiled="-1" hspeed="4" vspeed="0" stretch="0"/>
@@ -365,6 +365,8 @@
     <instance objName="obj_perm_platform" x="3408" y="1152" name="inst_20678ACA" locked="0" code="" scaleX="-0.600000023841858" scaleY="0.600000023841858" colour="3539992575" rotation="0"/>
     <instance objName="obj_fast_platform" x="2784" y="608" name="inst_C5DC13C7" locked="0" code="" scaleX="-0.600000023841858" scaleY="0.600000023841858" colour="3707764735" rotation="0"/>
     <instance objName="obj_gnezdo" x="2606" y="435" name="inst_F22FBD60" locked="0" code="" scaleX="0.253086417913437" scaleY="0.188976377248764" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_1" x="672" y="1936" name="inst_7C0919A5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_2" x="1056" y="1936" name="inst_70BBE7FA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -24,6 +24,11 @@
       <sprite>sprites\spr_hero_jump</sprite>
       <sprite>sprites\spr_hero_melee</sprite>
     </sprites>
+    <sprites name="monsters">
+      <sprite>sprites\spr_draugr_walk</sprite>
+      <sprite>sprites\spr_punk_walk</sprite>
+      <sprite>sprites\spr_draugr_rising</sprite>
+    </sprites>
     <sprites name="weapons">
       <sprite>sprites\spr_rune_1</sprite>
       <sprite>sprites\spr_rune_2</sprite>
@@ -70,6 +75,8 @@
       <object>objects\obj_light</object>
       <object>objects\obj_fade_effect</object>
       <object>objects\obj_noise</object>
+      <object>objects\obj_rain</object>
+      <object>objects\obj_rain_music</object>
     </objects>
     <objects name="last_and_always">
       <object>objects\obj_mainhero</object>
@@ -81,14 +88,15 @@
       </objects>
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
+      <object>objects\obj_enemy_1</object>
+      <object>objects\obj_enemy_2</object>
+      <object>objects\obj_enemy_parent</object>
     </objects>
     <objects name="street_level">
-      <object>objects\obj_rain_music</object>
+      <object>objects\obj_tree_street</object>
+      <object>objects\obj_platform</object>
       <object>objects\obj_bridge</object>
       <object>objects\obj_gnezdo</object>
-      <object>objects\obj_rain</object>
-      <object>objects\obj_platform</object>
-      <object>objects\obj_tree_street</object>
       <object>objects\obj_vsadnik</object>
       <object>objects\obj_stone_point</object>
       <object>objects\obj_stone_controller</object>
