@@ -44,6 +44,9 @@
   <backgrounds name="background">
     <background>background\menu_back</background>
     <background>background\street_level_back</background>
+    <background>background\level_0101</background>
+    <background>background\level_0102</background>
+    <background>background\background_razlom</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
