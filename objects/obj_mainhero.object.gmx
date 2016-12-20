@@ -36,6 +36,13 @@ jumped = false;
 
 platformCondition = false;
 
+enum weapons
+{
+    weapon_0, weapon_1, weapon_2
+};
+
+weapon = weapons.weapon_0;
+
 color_warning = c_orange;
 color_danger = make_color_hsv(0, 250, 180);
 </string>

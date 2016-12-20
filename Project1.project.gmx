@@ -29,6 +29,13 @@
       <sprite>sprites\spr_punk_walk</sprite>
       <sprite>sprites\spr_draugr_rising</sprite>
     </sprites>
+    <sprites name="destr_effect">
+      <sprite>sprites\spr_dest_01</sprite>
+      <sprite>sprites\spr_dest_02</sprite>
+      <sprite>sprites\spr_dest_03</sprite>
+      <sprite>sprites\spr_dest_04</sprite>
+      <sprite>sprites\spr_dest_05</sprite>
+    </sprites>
     <sprites name="weapons">
       <sprite>sprites\spr_rune_1</sprite>
       <sprite>sprites\spr_rune_2</sprite>
@@ -57,6 +64,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_menu.gml</script>
+    <script>scripts\scr_destruction.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\Runic</font>
@@ -71,6 +79,13 @@
       <object>objects\obj_birds</object>
     </objects>
     <objects name="effects">
+      <objects name="destr_effect">
+        <object>objects\obj_dest_01</object>
+        <object>objects\obj_dest_02</object>
+        <object>objects\obj_dest_03</object>
+        <object>objects\obj_dest_04</object>
+        <object>objects\obj_dest_05</object>
+      </objects>
       <object>objects\obj_parallax</object>
       <object>objects\obj_light</object>
       <object>objects\obj_fade_effect</object>
