@@ -3,6 +3,25 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles">
+    <datafile>
+      <name>TextPrologue.txt</name>
+      <exists>-1</exists>
+      <size>1855</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>TextPrologue.txt</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\menu_music</sound>
@@ -22,7 +41,7 @@
       <sprite>sprites\spr_hero_walk</sprite>
       <sprite>sprites\spr_hero_idle</sprite>
       <sprite>sprites\spr_hero_jump</sprite>
-      <sprite>sprites\spr_hero_melee</sprite>
+      <sprite>sprites\spr_hero_damage</sprite>
     </sprites>
     <sprites name="monsters">
       <sprite>sprites\spr_draugr_walk</sprite>
@@ -53,12 +72,12 @@
     <sprite>sprites\spr_medical</sprite>
     <sprite>sprites\spr_stone_1</sprite>
     <sprite>sprites\spr_stone_2</sprite>
+    <sprite>sprites\spr_information</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
     <background>background\street_level_back</background>
-    <background>background\level_0101</background>
-    <background>background\level_0102</background>
+    <background>background\street_level_pain</background>
     <background>background\background_razlom</background>
   </backgrounds>
   <paths name="paths"/>
@@ -66,6 +85,9 @@
     <script>scripts\scr_menu.gml</script>
     <script>scripts\scr_destruction.gml</script>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shader_lerp.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\Runic</font>
     <font>fonts\Kramola</font>
@@ -96,6 +118,10 @@
     <objects name="last_and_always">
       <object>objects\obj_mainhero</object>
       <object>objects\obj_ground</object>
+      <objects name="ui_elements">
+        <object>objects\obj_information</object>
+        <object>objects\obj_textcontrol</object>
+      </objects>
       <objects name="hero_weapons">
         <object>objects\obj_rune_1</object>
         <object>objects\obj_rune_2</object>
@@ -103,19 +129,21 @@
       </objects>
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
+      <object>objects\obj_medical</object>
       <object>objects\obj_enemy_1</object>
       <object>objects\obj_enemy_2</object>
       <object>objects\obj_enemy_parent</object>
+      <object>objects\obj_enemy_spawner</object>
     </objects>
     <objects name="street_level">
       <object>objects\obj_tree_street</object>
       <object>objects\obj_platform</object>
       <object>objects\obj_bridge</object>
-      <object>objects\obj_gnezdo</object>
-      <object>objects\obj_vsadnik</object>
       <object>objects\obj_stone_point</object>
       <object>objects\obj_stone_controller</object>
+      <object>objects\obj_gnezdo</object>
       <object>objects\obj_lamp</object>
+      <object>objects\obj_vsadnik</object>
       <object>objects\obj_scene_controller</object>
       <object>objects\obj_zaborchik</object>
       <object>objects\obj_slow_platform</object>

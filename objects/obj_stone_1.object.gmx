@@ -50,7 +50,8 @@
             <kind>1</kind>
             <string>if (keyboard_check(vk_shift))
 {
-    obj_mainhero.weapon = weapons.weapon_1;
+    obj_mainhero.maxenergy = 10;
+    obj_mainhero.weapon = weapons.weapon_fire;
     remove = true;
     scr_destruction();
 }
