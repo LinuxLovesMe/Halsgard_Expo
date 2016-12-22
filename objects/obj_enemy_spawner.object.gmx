@@ -56,7 +56,7 @@ wait2 = false;
           <argument>
             <kind>1</kind>
             <string>///Punk Create
-instance_create(choose(0, room_width), room_height - 2 * obj_ground.sprite_height, obj_enemy_2);
+instance_create(choose(0, room_width), room_height - 2 * obj_ground.sprite_height, obj_enemy_punk);
 wait2 = false;
 </string>
           </argument>
@@ -81,7 +81,7 @@ wait2 = false;
           <argument>
             <kind>1</kind>
             <string>///Draugr Create
-instance_create(irandom_range(100, room_width - 100), room_height - 2 * obj_ground.sprite_height, obj_enemy_1);
+instance_create(irandom_range(100, room_width - 100), room_height - 2 * obj_ground.sprite_height, obj_enemy_draugr);
 wait1 = false;
 </string>
           </argument>
@@ -105,13 +105,13 @@ wait1 = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_number(obj_enemy_1) &lt; draugr_limit and !wait1)
+            <string>if (instance_number(obj_enemy_draugr) &lt; draugr_limit and !wait1)
 {
     alarm[0] = irandom_range(1, 5) * room_speed;
     wait1 = true;
 }
 
-if (instance_number(obj_enemy_2) &lt; punk_limit and !wait2)
+if (instance_number(obj_enemy_punk) &lt; punk_limit and !wait2)
 {
     alarm[1] = irandom_range(1, 5) * room_speed;
     wait2 = true;

@@ -168,7 +168,7 @@ if (hero_state == "right")
 
 if (hero_state == "jump")
 {
-    if (vert_speed &lt; 14)
+    if (vert_speed &lt; 18)
     {
         vert_speed += grav;
     }
@@ -209,7 +209,14 @@ if (hero_state == "jump")
         audio_stop_sound(walk_sound);
     }
 
-    y += vert_speed;
+    if (y + vert_speed &lt; 1936)
+    {
+        y += vert_speed;
+    }
+    else
+    {
+        y += 1936 - y;
+    }
 }
 
 if (hero_state == "half_damaged")

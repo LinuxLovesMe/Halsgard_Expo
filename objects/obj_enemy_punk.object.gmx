@@ -94,11 +94,11 @@ if (state == "walk")
     {
         if (x &gt; obj_mainhero.x)
         {
-            hspeed = -2;
+            hspeed = -4.2;
         }
         else
         {
-            hspeed = 2;
+            hspeed = 4.2;
         }
     }
     else
@@ -128,7 +128,8 @@ if (state == "walk")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>maxhealth --;
+            <string>with (other) instance_destroy();
+maxhealth --;
 if (maxhealth == 0) instance_destroy();
 </string>
           </argument>

@@ -25,12 +25,47 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>maxhealth = 2;
+            <string>walk_speed = 3;
+maxhealth = 2;
+attack_chance = 0.6;
+attack_speed = 100;
 
 near = false;
 sprite_index = spr_draugr_rising;
 state = "rise";
 image_speed = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!obj_mainhero.jumped)
+{
+    var chance = irandom(9) + 1;
+    if (chance &lt;= attack_chance * 10)
+    {
+        obj_mainhero.maxhealth--;
+    }
+}
+image_speed = 0.2;
+sprite_index = spr_draugr_punch;
 </string>
           </argument>
         </arguments>
@@ -95,7 +130,7 @@ if (state == "walk")
         }
     }
     
-    if (abs(x - obj_mainhero.x) &lt; abs(sprite_width))
+    if (distance_to_object(obj_mainhero) &lt; 3)
     {
         near = true;
     }
@@ -110,16 +145,17 @@ if (state == "walk")
         {
             if (x &gt; obj_mainhero.x)
             {
-                hspeed = -2;
+                hspeed = -walk_speed;
             }
             else
             {
-                hspeed = 2;
+                hspeed = walk_speed;
             }
         }
         else
         {
             hspeed = 0;
+            alarm[0] = attack_speed;
         }
     }
     else
@@ -149,7 +185,8 @@ if (state == "walk")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>maxhealth --;
+            <string>with (other) instance_destroy();
+maxhealth --;
 if (maxhealth == 0) instance_destroy();
 </string>
           </argument>
