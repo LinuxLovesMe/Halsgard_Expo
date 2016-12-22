@@ -73,6 +73,7 @@ file = file_text_open_read("TextPrologue.txt");
 else
 {
     file_text_close(file);
+    global.greatInfo = "";
 }
 </string>
           </argument>
@@ -101,14 +102,14 @@ else
 if (global.greatInfo = "")
 {
     draw_text_colour(view_xview[0] + 10,
-        view_yview[0] + view_hview[0] - obj_information.sprite_height + 10,
+        view_yview[0] + view_hview[0] - obj_information.sprite_height + 16,
         global.promptText,
         c_white, c_white, c_white, c_white, 1);
 }
 else
 {
     draw_text_colour(view_xview[0] + 10,
-        view_yview[0] + view_hview[0] - obj_information.sprite_height + 10,
+        view_yview[0] + view_hview[0] - obj_information.sprite_height + 16,
         global.greatInfo,
         c_white, c_white, c_white, c_white, 1);
 }

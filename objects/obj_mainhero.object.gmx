@@ -32,7 +32,7 @@ move_speed = 5;
 jump_speed = 15;
 
 jumped = false;
-platformCondition = false;
+onPlatform = false;
 
 maxenergy = 10;
 medical = 0;
@@ -50,6 +50,11 @@ color_danger = make_color_hsv(0, 250, 180);
 
 lerp_value = 0;
 colour_to_find = shader_get_uniform(shader_lerp, "f_Colour1");
+
+promptObjectsCheck = false;
+objectToCheckText[0] = obj_stone_1;
+objectToCheckText[1] = obj_stone_2;
+objectToCheckText[2] = obj_medical;
 </string>
           </argument>
         </arguments>
@@ -99,9 +104,9 @@ hero_state = "falling";
             <kind>1</kind>
             <string>show_debug_message(hero_state);
 
-platformCondition = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
+onPlatform = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
 
-if (position_meeting(x, y + 1, obj_platform) and (!platformCondition))
+if (position_meeting(x, y + 1, obj_platform) and (!onPlatform))
 {    
     if (hero_state != "jump")
     {
@@ -109,7 +114,7 @@ if (position_meeting(x, y + 1, obj_platform) and (!platformCondition))
     }
 }
 
-if (((!place_free(x, y + 1)) or platformCondition) and hero_state == "falling")
+if (((!place_free(x, y + 1)) or onPlatform) and hero_state == "falling")
 {    
     hero_state = "idle";
 }
@@ -138,7 +143,7 @@ if (hero_state == "idle")
 if (hero_state == "left")
 {
     image_speed = 0.2;
-    if(!place_free(x, y + 1) or platformCondition) 
+    if(!place_free(x, y + 1) or onPlatform) 
     {
         sprite_index = spr_hero_walk;
     }
@@ -151,7 +156,7 @@ if (hero_state == "left")
 if (hero_state == "right")
 {
     image_speed = 0.2;
-    if(!place_free(x, y + 1) or platformCondition) 
+    if(!place_free(x, y + 1) or onPlatform) 
     {
         sprite_index = spr_hero_walk;
     }
@@ -171,12 +176,12 @@ if (hero_state == "jump")
     image_speed = 0.3;
     sprite_index = spr_hero_jump;
     
-    if (image_index &gt;= 4 and !(!place_free(x, y + 1) or platformCondition))
+    if (image_index &gt;= 4 and !(!place_free(x, y + 1) or onPlatform))
     {
         image_index = 4;
     }
     
-    if (image_index &gt; 4 and image_index &lt; 5 and (!place_free(x, y + 1) or platformCondition))
+    if (image_index &gt; 4 and image_index &lt; 5 and (!place_free(x, y + 1) or onPlatform))
     {
         image_index = 5;
         jumped = false;
@@ -187,7 +192,7 @@ if (hero_state == "jump")
         hero_state = "idle";
     }
     
-    if (!place_free(x, y + 1) or platformCondition)
+    if (!place_free(x, y + 1) or onPlatform)
     {
         if (!jumped)
         {
@@ -199,7 +204,7 @@ if (hero_state == "jump")
         }
     }
 
-    if (place_free(x, y + 1) and !platformCondition)
+    if (place_free(x, y + 1) and !onPlatform)
     {
         audio_stop_sound(walk_sound);
     }
@@ -235,6 +240,17 @@ else
     }
     background_index[1] = street_level_pain;
 }
+
+for (k = 0; k &lt; 3; k++)
+{
+    promptObjectsCheck = distance_to_object(objectToCheckText[k]) &lt; 3;
+    if (promptObjectsCheck) break;
+}
+
+if (!promptObjectsCheck)
+{   
+    global.promptText = "";
+}
 </string>
           </argument>
         </arguments>
@@ -261,7 +277,7 @@ else
 
 if (x &lt; room_width - 56 &amp;&amp; !button_check)
 {
-    if (!place_free(x, y + 1) or platformCondition)
+    if (!place_free(x, y + 1) or onPlatform)
     {
         if (hero_state != "jump")
         {
@@ -318,7 +334,7 @@ else
 
 if (x &gt; 56 &amp;&amp; !button_check)
 {
-    if (!place_free(x, y + 1) or platformCondition)
+    if (!place_free(x, y + 1) or onPlatform)
     {
         if (hero_state != "jump")
         {
@@ -375,7 +391,7 @@ else
 
 if (x &lt; room_width - 56 &amp;&amp; !button_check)
 {
-    if (!place_free(x, y + 1) or platformCondition)
+    if (!place_free(x, y + 1) or onPlatform)
     {
         if (hero_state != "jump")
         {
@@ -432,7 +448,7 @@ else
 
 if (x &gt; 56 &amp;&amp; !button_check)
 {
-    if (!place_free(x, y + 1) or platformCondition)
+    if (!place_free(x, y + 1) or onPlatform)
     {
         if (hero_state != "jump")
         {
@@ -578,7 +594,7 @@ shader_reset();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
+            <string>if (!place_free(x, y + 1) or onPlatform)
 {
     hero_state = "jump";
     vert_speed = -jump_speed;
@@ -606,7 +622,7 @@ shader_reset();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
+            <string>if (!place_free(x, y + 1) or onPlatform)
 {
     hero_state = "jump";
     vert_speed = -jump_speed;
@@ -661,7 +677,7 @@ shader_reset();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
+            <string>if (!place_free(x, y + 1) or onPlatform)
 {
     hero_state = "idle";
 }
@@ -694,7 +710,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
+            <string>if (!place_free(x, y + 1) or onPlatform)
 {
     hero_state = "idle";
 }
@@ -727,7 +743,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
+            <string>if (!place_free(x, y + 1) or onPlatform)
 {
     hero_state = "idle";
 }
@@ -760,7 +776,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
+            <string>if (!place_free(x, y + 1) or onPlatform)
 {
     hero_state = "idle";
 }

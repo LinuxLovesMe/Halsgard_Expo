@@ -25,10 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_shift))
+            <string>global.promptText = "Для того чтобы забрать руну исцеления нажми [Shift]";
+if (keyboard_check(vk_shift))
 {
     obj_mainhero.medical ++;
     instance_destroy();
+    global.promptText = "";
 }
 </string>
           </argument>

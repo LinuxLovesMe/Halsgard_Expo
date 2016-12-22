@@ -48,11 +48,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_shift))
+            <string>global.promptText = "Для получения магической энергии нажми [Shift]";
+if (keyboard_check(vk_shift))
 {
     obj_mainhero.maxenergy = 10;
     obj_mainhero.weapon = weapons.weapon_fire;
     remove = true;
+    global.promptText = "";
     scr_destruction();
 }
 </string>
