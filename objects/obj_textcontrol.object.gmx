@@ -33,6 +33,7 @@ speechPortrait = spr_ground;
 global.promptText = "";
 global.greatInfo = "";
 
+sprite_temp = spr_ground;
 instance_create(view_xview[0], view_yview[0] + view_hview[0] - 64, obj_information);
 
 alarm[0] = 1;
@@ -102,6 +103,11 @@ file = file_text_open_read("TextPrologue.txt");
             <kind>1</kind>
             <string>if (!file_text_eof(file))
 {
+    instance_activate_all();
+    if (!directSpeech and (obj_mainhero.hero_state == "left" or obj_mainhero.hero_state == "right"))
+    {
+        obj_mainhero.hero_state = "falling";
+    }
     string_full = file_text_readln(file);
     subString = "";
     var pre_num = real(string_digits(string_full));
@@ -121,6 +127,17 @@ file = file_text_open_read("TextPrologue.txt");
         }
         else
         {
+            if (!directSpeech)
+            {
+                if (draw_getpixel(0, 0) != c_black)
+                {
+                    screen_save_part(working_directory + "pause_screen.png", 0, 0, 
+                        window_get_width(), window_get_height() - 64);
+                    sprite_temp = sprite_add("pause_screen.png", 0, false, false, 0, 0);
+                }
+                instance_deactivate_all(true);
+                instance_activate_object(obj_information);
+            }
             alarm[1] = 1;
         }
     }
@@ -129,6 +146,7 @@ else
 {
     global.greatInfo = "";
     file_text_close(file);
+    sprite_delete(sprite_temp);
 }
 </string>
           </argument>
@@ -198,14 +216,19 @@ else
             view_yview[0] + view_hview[0] - obj_information.sprite_height + 32);
             
         draw_text_colour(view_xview[0] + 74,
-            view_yview[0] + view_hview[0] - obj_information.sprite_height + 16,
+            view_yview[0] + view_hview[0] - obj_information.sprite_height + 18,
             global.greatInfo,
             c_white, c_white, c_white, c_white, 1);
     }
     else
     {
+        draw_sprite(sprite_temp, 0, view_xview[0], view_yview[0]);
+        draw_set_blend_mode(bm_subtract);
+        draw_sprite(spr_pause_vignette, 0, view_xview[0], view_yview[0]);
+        draw_set_blend_mode(bm_normal);
+        
         draw_text_colour(view_xview[0] + 16,
-            view_yview[0] + view_hview[0] - obj_information.sprite_height + 16,
+            view_yview[0] + view_hview[0] - obj_information.sprite_height + 18,
             global.greatInfo,
             c_white, c_white, c_white, c_white, 1);
     }

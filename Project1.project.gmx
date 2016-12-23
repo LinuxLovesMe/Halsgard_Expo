@@ -27,6 +27,7 @@
     <sound>sound\menu_music</sound>
     <sound>sound\rain_sound</sound>
     <sound>sound\walk_sound</sound>
+    <sound>sound\room2_music</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_ground</sprite>
@@ -73,8 +74,9 @@
     </sprites>
     <sprites name="ui_elements">
       <sprite>sprites\spr_information</sprite>
-      <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_soviet_head</sprite>
+      <sprite>sprites\spr_cursor</sprite>
+      <sprite>sprites\spr_pause_vignette</sprite>
     </sprites>
     <sprites name="always_items">
       <sprite>sprites\spr_medical</sprite>
