@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hero_state = "falling";
+            <string>///Initializing basic parametres
+
+hero_state = "falling";
 grav = 0.5;
 vert_speed = 0;
 move_speed = 5;
@@ -77,7 +79,9 @@ objectToCheckText[2] = obj_medical;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>lerp_value = 1;
+            <string>///Lerp-effect while damaged
+
+lerp_value = 1;
 maxhealth --;
 hero_state = "falling";
 </string>
@@ -102,22 +106,66 @@ hero_state = "falling";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>show_debug_message(hero_state);
+            <string>///Position on ground
 
 onPlatform = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
+onGround = onPlatform or !place_free(x, y + 1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Idle
+
+if (hero_state == "idle")
+{
+    image_speed = 0.04;
+    sprite_index = spr_hero_idle;
+}
 
 if (position_meeting(x, y + 1, obj_platform) and (!onPlatform))
 {    
     if (hero_state != "jump")
     {
-        hero_state = "falling";
+        hero_state = "falling"; //Falling when platform has disapeared
     }
 }
-
-if (((!place_free(x, y + 1)) or onPlatform) and hero_state == "falling")
-{    
-    hero_state = "idle";
-}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Falling
 
 if (hero_state == "falling")
 {
@@ -134,16 +182,36 @@ if (hero_state == "falling")
     image_index = 4;
 }
 
-if (hero_state == "idle")
-{
-    image_speed = 0.04;
-    sprite_index = spr_hero_idle;
+if (onGround and hero_state == "falling")
+{    
+    hero_state = "idle";
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Left
 
 if (hero_state == "left")
 {
     image_speed = 0.2;
-    if(!place_free(x, y + 1) or onPlatform) 
+    if (onGround) 
     {
         sprite_index = spr_hero_walk;
     }
@@ -153,10 +221,46 @@ if (hero_state == "left")
     }
 }
 
+if (keyboard_check_released(ord("A")) xor keyboard_check_released(vk_left))
+{
+    if (onGround)
+    {
+        hero_state = "idle";
+    }
+    else
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "falling";
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Right
+
 if (hero_state == "right")
 {
     image_speed = 0.2;
-    if(!place_free(x, y + 1) or onPlatform) 
+    if (onGround) 
     {
         sprite_index = spr_hero_walk;
     }
@@ -165,25 +269,61 @@ if (hero_state == "right")
         audio_play_sound(walk_sound, 10, false);
     }
 }
+
+if (keyboard_check_released(ord("D")) xor keyboard_check_released(vk_right))
+{
+    if (onGround)
+    {
+        hero_state = "idle";
+    }
+    else
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "falling";
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Jump
 
 if (hero_state == "jump")
 {
     if (vert_speed &lt; 18)
     {
-        vert_speed += grav;
+        vert_speed += grav; //Gravity falling
     }
     
     image_speed = 0.3;
     sprite_index = spr_hero_jump;
     
-    if (image_index &gt;= 4 and !(!place_free(x, y + 1) or onPlatform))
+    if (image_index &gt;= 4 and !onGround)
     {
-        image_index = 4;
+        image_index = 4; //Image_index for falling movement
     }
     
-    if (image_index &gt; 4 and image_index &lt; 5 and (!place_free(x, y + 1) or onPlatform))
+    if (image_index &gt; 4 and image_index &lt; 5 and onGround)
     {
-        image_index = 5;
+        image_index = 5; //Turn main_hero to idle animation
         jumped = false;
     }
     
@@ -192,7 +332,7 @@ if (hero_state == "jump")
         hero_state = "idle";
     }
     
-    if (!place_free(x, y + 1) or onPlatform)
+    if (onGround)
     {
         if (!jumped)
         {
@@ -203,8 +343,7 @@ if (hero_state == "jump")
             vert_speed = -jump_speed;
         }
     }
-
-    if (place_free(x, y + 1) and !onPlatform)
+    else
     {
         audio_stop_sound(walk_sound);
     }
@@ -218,15 +357,151 @@ if (hero_state == "jump")
         y += 1936 - y;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Hero jump via keyboard keys
+
+if (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up))
+{
+    if (onGround)
+    {
+        hero_state = "jump";
+        vert_speed = -jump_speed;
+        jumped = true;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Left and Right movements via keyboard keys
+
+if ((x &gt; 56) and (keyboard_check(ord("A")) xor keyboard_check(vk_left)))
+{
+    if (onGround)
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "left";
+        }
+        else
+        {
+            if (hero_state != "jump")
+            {
+                hero_state = "falling";
+            }
+        }        
+    }
+    else
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "falling";
+        }
+    }
+    x -= move_speed;
+    image_xscale = 1;
+}
+
+else
+{
+    if ((x &lt; room_width - 56) and (keyboard_check(ord("D")) xor keyboard_check(vk_right)))
+    {
+        if (onGround)
+        {
+            if (hero_state != "jump")
+            {
+                hero_state = "right";
+            }
+            else
+            {
+                if (hero_state != "jump")
+                {
+                    hero_state = "falling";
+                }
+            }        
+        }
+        else
+        {
+            if (hero_state != "jump")
+            {
+                hero_state = "falling";
+            }
+        }
+        x += move_speed;
+        image_xscale = -1;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Aid has damaged
 
 if (hero_state == "half_damaged")
 {
-    if (alarm[0] == -1) alarm[0] = 5;
+    if (alarm[0] == -1) 
+    {
+        alarm[0] = 5; //Lerp-effect shader
+    }
 }
 
 if (hero_state == "full_damaged")
 {
-    if (alarm[0] == -1) alarm[0] = 5;
+    if (alarm[0] == -1)
+    {
+        alarm[0] = 5; //Lerp-effect shader
+    }
     image_speed = 0.4;
     sprite_index = spr_hero_damage;    
 }
@@ -245,10 +520,39 @@ else
     {
         image_blend = color_danger;
     }
-    background_index[1] = street_level_pain;
 }
 
-for (k = 0; k &lt; 3; k++)
+if (keyboard_check_released(ord("H"))) //Healing main_hero manually
+{
+    if (medical &gt; 1)
+    {
+        medical --;
+        maxhealth = 4;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check: Are any promptText objects near main_hero?
+
+for (k = 0; k &lt; array_length_1d(objectToCheckText); k++)
 {
     promptObjectsCheck = distance_to_object(objectToCheckText[k]) &lt; 3;
     if (promptObjectsCheck) break;
@@ -257,234 +561,6 @@ for (k = 0; k &lt; 3; k++)
 if (!promptObjectsCheck)
 {   
     global.promptText = "";
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>button_check = keyboard_check(vk_left) or keyboard_check(ord('A')) or keyboard_check(vk_right);
-
-if (x &lt; room_width - 56 &amp;&amp; !button_check)
-{
-    if (!place_free(x, y + 1) or onPlatform)
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "right";
-        }
-        else
-        {
-            if (hero_state != "jump")
-            {
-                hero_state = "falling";
-            }
-        }
-    }
-    else
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "falling";
-        }
-    }
-    x += move_speed;
-    image_xscale = -0.6;
-}
-else
-{
-    if (hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>button_check = keyboard_check(vk_left) or keyboard_check(ord('D')) or keyboard_check(vk_right);
-
-if (x &gt; 56 &amp;&amp; !button_check)
-{
-    if (!place_free(x, y + 1) or onPlatform)
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "left";
-        }
-        else
-        {
-            if (hero_state != "jump")
-            {
-                hero_state = "falling";
-            }
-        }        
-    }
-    else
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "falling";
-        }
-    }
-    x -= move_speed;
-    image_xscale = 0.6;
-}
-else
-{
-    if (hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>button_check = keyboard_check(ord('A')) or keyboard_check(ord('D')) or keyboard_check(vk_left);
-
-if (x &lt; room_width - 56 &amp;&amp; !button_check)
-{
-    if (!place_free(x, y + 1) or onPlatform)
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "right";
-        }
-        else
-        {
-            if (hero_state != "jump")
-            {
-                hero_state = "falling";
-            }
-        }
-    }
-    else
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "falling";
-        }
-    }
-    x += move_speed;
-    image_xscale = -0.6;
-}
-else
-{
-    if (hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>button_check = keyboard_check(ord('A')) or keyboard_check(ord('D')) or keyboard_check(vk_right);
-
-if (x &gt; 56 &amp;&amp; !button_check)
-{
-    if (!place_free(x, y + 1) or onPlatform)
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "left";
-        }
-        else
-        {
-            if (hero_state != "jump")
-            {
-                hero_state = "falling";
-            }
-        }        
-    }
-    else
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "falling";
-        }
-    }
-    x -= move_speed;
-    image_xscale = 0.6;
-}
-else
-{
-    if (hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
 }
 </string>
           </argument>
@@ -508,7 +584,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (hero_state == "idle" &amp;&amp; weapon != weapons.weapon_none)
+            <string>///Weapons' behaviour
+
+if (hero_state == "idle" &amp;&amp; weapon != weapons.weapon_none)
 {
     if (image_xscale &gt; 0)
     {
@@ -568,7 +646,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (shader_is_compiled(shader_lerp))
+            <string>///Draw lerp-effect shader on main_hero
+
+if (shader_is_compiled(shader_lerp))
 {
     shader_set(shader_lerp);
     if (lerp_value &gt; 0)
@@ -579,221 +659,6 @@ else
 }
 draw_self();
 shader_reset();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="87">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or onPlatform)
-{
-    hero_state = "jump";
-    vert_speed = -jump_speed;
-    jumped = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="38">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or onPlatform)
-{
-    hero_state = "jump";
-    vert_speed = -jump_speed;
-    jumped = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="72">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (medical &gt; 1)
-{
-    medical --;
-    maxhealth = 4;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or onPlatform)
-{
-    hero_state = "idle";
-}
-else
-{
-    if(hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or onPlatform)
-{
-    hero_state = "idle";
-}
-else
-{
-    if(hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or onPlatform)
-{
-    hero_state = "idle";
-}
-else
-{
-    if(hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or onPlatform)
-{
-    hero_state = "idle";
-}
-else
-{
-    if(hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
 </string>
           </argument>
         </arguments>
