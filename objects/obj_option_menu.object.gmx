@@ -44,15 +44,15 @@ option_y = y + 80;
 range = ui_range_create(option_x + string_width(string(option[1])) + 80, option_y + space + 4, 400, ui_default);
 ui_range_set_limit(range, 0, 10);
 ui_range_set_max(range, 10);
-ui_range_set_value(range, global.volume);
+ui_range_set_value(range, ds_map_find_value(global.options, "volume"));
 
 checkbox1 = ui_checkbox_create(option_x + string_width(string(option[0])) + 80, option_y + 2, 54, "");
 checkbox2 = ui_checkbox_create(option_x + string_width(string(option[3])) + 120, option_y + space * 3, 54, "");
 checkbox3 = ui_checkbox_create(option_x + string_width(string(option[4])) + 80, option_y + space * 4, 54, "");
 
-if (global.history_mode) ui_set_checked(checkbox2, true) else ui_set_checked(checkbox2, false);
-if (global.fullscreen) ui_set_checked(checkbox1, true) else ui_set_checked(checkbox1, false);
-if (global.survival_mode) ui_set_checked(checkbox3, true) else ui_set_checked(checkbox3, false);
+if (ds_map_find_value(global.options, "history_mode")) ui_set_checked(checkbox2, true) else ui_set_checked(checkbox2, false);
+if (ds_map_find_value(global.options, "fullscreen")) ui_set_checked(checkbox1, true) else ui_set_checked(checkbox1, false);
+if (ds_map_find_value(global.options, "survival_mode")) ui_set_checked(checkbox3, true) else ui_set_checked(checkbox3, false);
 </string>
           </argument>
         </arguments>
@@ -75,20 +75,20 @@ if (global.survival_mode) ui_set_checked(checkbox3, true) else ui_set_checked(ch
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.fullscreen = ui_get_checked(checkbox1);
-global.volume = ui_range_get_value(range);
-global.history_mode = ui_get_checked(checkbox2);
-global.survival_mode = ui_get_checked(checkbox3);
+            <string>ds_map_replace(global.options, "fullscreen", ui_get_checked(checkbox1));
+ds_map_replace(global.options, "volume", ui_range_get_value(range));
+ds_map_replace(global.options, "history_mode", ui_get_checked(checkbox2));
+ds_map_replace(global.options, "survival_mode", ui_get_checked(checkbox3));
 
 var file; 
 file = file_text_open_write("Options.franbow");
-file_text_write_string(file, "fullscreen = " + string(global.fullscreen));
+file_text_write_string(file, "fullscreen = " + string(ds_map_find_value(global.options, "fullscreen")));
 file_text_writeln(file);
-file_text_write_string(file, "volume = " + string(global.volume));
+file_text_write_string(file, "volume = " + string(ds_map_find_value(global.options, "volume")));
 file_text_writeln(file);
-file_text_write_string(file, "history_mode = " + string(global.history_mode));
+file_text_write_string(file, "history_mode = " + string(ds_map_find_value(global.options, "history_mode")));
 file_text_writeln(file);
-file_text_write_string(file, "survival_mode = " + string(global.survival_mode));
+file_text_write_string(file, "survival_mode = " + string(ds_map_find_value(global.options, "survival_mode")));
 file_text_writeln(file);
 file_text_writeln(file);
 file_text_write_string(file, "Please, don't change this file by hands! Thx :)");
@@ -138,22 +138,25 @@ if (ui_get_focus(checkbox2) or ui_get_focus(checkbox3))
     if (ui_get_focus(checkbox3)) ui_set_checked(checkbox3, true);
 }
 
-if (ui_get_enable(range)) global.volume = ui_range_get_value(range);
+if (ui_get_enable(range))
+{
+    ds_map_replace(global.options, "volume", ui_range_get_value(range));
+}
 
 if (ui_get_checked(checkbox1))
 {
-    if (!global.fullscreen)
+    if (!ds_map_find_value(global.options, "fullscreen"))
     {
         window_set_fullscreen(true);
-        global.fullscreen = 1;
+        ds_map_replace(global.options, "fullscreen", 1);
     }
 }
 else
 {
-    if (global.fullscreen)
+    if (ds_map_find_value(global.options, "fullscreen"))
     {
         set_window_size();
-        global.fullscreen = 0;
+        ds_map_replace(global.options, "fullscreen", 0);
     }
 }
 </string>
@@ -184,6 +187,7 @@ draw_self();
 
 myColor = make_color_rgb(226, 226, 226);
 draw_set_font(Runic);
+deepRed = make_color_rgb(140, 0, 0);
 draw_set_color(myColor);
 
 var opt;
@@ -193,16 +197,16 @@ for (opt = 0; opt &lt; array_length_1d(option); opt++)
 }
 
 ui_set_foreground_colour(range, myColor);
-ui_set_background_colour(range, ui_blue);
+ui_set_background_colour(range, deepRed);
 
 ui_set_foreground_colour(checkbox1, myColor);
-ui_set_background_colour(checkbox1, ui_blue);
+ui_set_background_colour(checkbox1, deepRed);
 
 ui_set_foreground_colour(checkbox2, myColor);
-ui_set_background_colour(checkbox2, ui_blue);
+ui_set_background_colour(checkbox2, deepRed);
 
 ui_set_foreground_colour(checkbox3, myColor);
-ui_set_background_colour(checkbox3, ui_blue);
+ui_set_background_colour(checkbox3, deepRed);
 
 ui_draw_all();
 
