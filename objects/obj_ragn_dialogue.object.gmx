@@ -28,11 +28,6 @@
             <string>xx = x - sprite_width / 2; //start x-point of dialogue sprite
 yy = y - sprite_height / 2; //start y-point of dialogue sprite
 
-input_text = ui_textbox_create(xx + 364, yy + 640, 1000, ui_default, "Введите ответ:");
-
-ui_set_background_colour(input_text, ui_blue_grey);
-ui_set_foreground_colour(input_text, ui_blue_grey);
-
 file = file_text_open_read("ragn_text_1.txt");
 info = 0;
 
@@ -58,11 +53,14 @@ while(!file_text_eof(file))
         }
     }
 }
+
 file_text_close(file);
 
 pointer = 0;
 string_w = sprite_width - 400;
 separator = 42;
+
+replica = 1;
 </string>
           </argument>
         </arguments>
@@ -85,7 +83,7 @@ separator = 42;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check_released(vk_enter))
+            <string>/*if (keyboard_check_released(vk_enter))
 {
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
@@ -118,7 +116,7 @@ separator = 42;
             }
         }
     }
-}
+}*/
 </string>
           </argument>
         </arguments>
@@ -144,7 +142,6 @@ separator = 42;
             <string>draw_sprite(spr_blur_ragn, 0, 0, 0);
 draw_self();
 myColor = make_color_rgb(226, 226, 226);
-ui_draw_all();
 
 draw_sprite(spr_icon_aid, 0, xx + 180, yy + 520);
 draw_set_font(Kramola);
@@ -174,8 +171,13 @@ for (k = 0; k &lt; array_length_1d(text); k++)
     text[k] = string_replace_all(text[k], num, "");
 }
 
-draw_text_ext_transformed_colour(xx + 364, yy + 40, text[0], separator, string_w, 1, 1, 0, 
+if (replica)
+{
+    draw_text_ext_transformed_colour(xx + 364, yy + 40, text[0], separator, string_w, 1, 1, 0, 
                                                     myColor, myColor, myColor, myColor, 1);
+}
+else{
+
 offset = 454;
 
 for (k = 1; k &lt; array_length_2d(info, pointer); k++)
@@ -183,6 +185,7 @@ for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     draw_text_ext_transformed_colour(xx + 364, yy + offset, text[k], separator, string_w, 1, 1, 0, 
                                                             myColor, myColor, myColor, myColor, 1);    
     offset += separator + separator * floor(string_width(info[pointer, k]) / string_w);
+}
 }
 </string>
           </argument>

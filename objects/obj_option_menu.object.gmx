@@ -186,7 +186,7 @@ else
 draw_self();
 
 myColor = make_color_rgb(226, 226, 226);
-draw_set_font(Runic);
+draw_set_font(Runic_46);
 deepRed = make_color_rgb(140, 0, 0);
 draw_set_color(myColor);
 

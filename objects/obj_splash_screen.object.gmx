@@ -214,7 +214,7 @@ font_y = 0;
 
 alarm[0] = room_speed * 1;
 alarm[1] = room_speed * 2 + 10;
-alarm[2] = room_speed * 2 + 40;
+alarm[2] = room_speed * 3 + 40;
 
 video_state = 0;
 </string>
@@ -352,9 +352,10 @@ switch (video_state)
             <kind>1</kind>
             <string>///Draw sprites on splash screen
 
-draw_sprite(spr_phone_01, 1, ph1_x, ph1_y);
-draw_sprite(spr_phone_02, 1, ph2_x, ph2_y);
-draw_sprite(spr_splash_font, 1, font_x, font_y);
+draw_sprite(spr_no_logo, 0, 0, 0);
+draw_sprite(spr_phone_01, 0, ph1_x, ph1_y);
+draw_sprite(spr_phone_02, 0, ph2_x, ph2_y);
+draw_sprite(spr_splash_font, 0, font_x, font_y);
 </string>
           </argument>
         </arguments>

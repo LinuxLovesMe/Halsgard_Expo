@@ -130,7 +130,7 @@ if (push and !instance_exists(obj_option_menu))
           <argument>
             <kind>1</kind>
             <string>draw_set_color(c_white);
-draw_set_font(Runic);
+draw_set_font(Runic_46);
 
 var m;
 for (m = 0; m &lt; array_length_1d(menu); m++)
