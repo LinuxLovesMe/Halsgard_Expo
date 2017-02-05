@@ -115,7 +115,7 @@ if (final_1 == 1)
 {
     with (obj_dialogue_1) instance_destroy();
     final_1 = 0;
-    alarm[1] = room_speed * 2;
+    alarm[1] = 45;
 }
 
 if (final_2 == 1)

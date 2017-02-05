@@ -604,7 +604,7 @@ if (h = true and trig3 == 1)
 if (rounds == cards_number)
 {
     draw_set_colour(c_white);
-    draw_set_font(Kramola);
+    draw_set_font(Runic_46);
     if (!obj_ragn_control.stop_game)
     {
         if (total_score &gt; 0) draw_text(800, 100, "Победа Эйда!");
@@ -615,7 +615,7 @@ if (rounds == cards_number)
 
 if (alarm[0] == -1 and battle_text)
 {
-    draw_set_font(Kramola_Battle);
+    draw_set_font(Runic_46);
     draw_text(700, 100, "РАУНД " + string(obj_ragn_control.battle_number));
 }
 </string>

@@ -153,7 +153,7 @@ image_alpha -= 0.05;
 
 if (obj_wall.result and alarm [1] == -1)
 {
-    alarm[1] = 144;
+    alarm[1] = 168;
 }
 </string>
           </argument>
@@ -195,7 +195,7 @@ draw_sprite_ext(spr_cafell, 15, x + 630, y + 630, 1, 1, 0, c_white, image_alpha)
 
 if (obj_wall.result)
 {
-    draw_sprite(spr_cafell, 5, x + 210, y + 210); //change to Aid face square
+    draw_sprite(spr_hero_face, 0, x + 210, y + 210); //change to Aid face square
 }
 </string>
           </argument>
