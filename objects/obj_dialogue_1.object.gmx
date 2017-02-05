@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>x = room_width / 2;
 y = room_height / 2;
-instance_create(x, y, obj_dialogue_icon);
+instance_create(x, y, obj_dial_icon_1);
 instance_create(x, y, obj_dialogue_snow);
 
 //read name of sobesednik from first string of text file
@@ -68,9 +68,10 @@ while(!file_text_eof(file))
 file_text_close(file);
 
 pointer = 0;
-string_w = sprite_width - 440;
-separator = 54;
 replica = 1;
+separator_r = 48;
+separator_a = 54;
+string_w = sprite_width - 450;
 </string>
           </argument>
         </arguments>
@@ -97,8 +98,8 @@ replica = 1;
 {
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
-        if ((point_in_rectangle(mouse_x, mouse_y, xx + 36, yy + 320 + separator * (k - 1) + 10, 
-            xx - 20 + string_width(info[pointer, k]), yy + 320 + separator * (k) - 10)) and mouse_check_button_released(mb_left)) 
+        if ((point_in_rectangle(mouse_x, mouse_y, xx + 36, yy + 320 + separator_a * (k - 1) + 10, 
+            xx - 20 + string_width(info[pointer, k]), yy + 320 + separator_a * (k) - 10)) and mouse_check_button_released(mb_left)) 
         {
             pointer_t = real(string_digits(info[pointer, k]));
             break;
@@ -108,13 +109,22 @@ replica = 1;
 
     if (pointer_t != 0)
     {
-        //switch case 8, 13 ...
-        replica = 1;
-        pointer = pointer_t - 1;
+        switch (pointer_t)
+        {
+            case 8:
+                obj_ragn_control.final_1 = 1;
+            break;
+            
+            case 13:
+                obj_ragn_control.final_2 = 1;
+            break;
+            
+            default:
+                replica = 1;
+                pointer = pointer_t - 1;
+        }
     }
 }
-
-//debug_message(pointer_t);
 </string>
           </argument>
         </arguments>
@@ -137,20 +147,9 @@ replica = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_sprite(spr_blur_ragn, 0, 0, 0);
-draw_self();
-
-//draw_sprite(spr_icon_aid, 0, xx + 180, yy + 520);
+            <string>draw_self();
+myColor = make_colour_rgb(120, 168, 194);
 draw_set_font(Underdog_20);
-/*draw_text_colour(xx + 158, yy + 618, "Эйд", myColor, myColor, myColor, myColor, 1);
-
-draw_sprite(spr_icon_oldman, 0, xx + 180, yy + 108);
-draw_text_colour(xx + 118, yy + 200, "Советник", myColor, myColor, myColor, myColor, 1);
-
-draw_set_font(Eufloria);
-draw_text_colour(xx + 40, yy + 264, "Осталось АР: *,*", c_white, c_white, c_white, c_white, 1);
-draw_text_colour(xx + 40, yy + 304, "Отношение: *,*", c_white, c_white, c_white, c_white, 1);
-draw_text_colour(xx + 40, yy + 344, "Принадлежность: *,*", c_white, c_white, c_white, c_white, 1);*/
 
 text = 0; text[0] = info[pointer, 0];
 
@@ -170,15 +169,16 @@ for (k = 0; k &lt; array_length_1d(text); k++)
 
 if (replica)
 {
-    draw_text_ext_transformed_colour(xx + 36, yy + 320, text[0], separator, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+    draw_text_ext_transformed_colour(xx + 36, yy + 320, text[0], separator_r, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
 }
 else
 {
-    offset = 320;    
+    offset = 320;
+       
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
-        draw_text_ext_transformed_colour(xx + 36, yy + offset, text[k], separator, string_w, 1, 1, 0, ui_blue_grey, ui_blue_grey, ui_blue_grey, ui_blue_grey, 1);
-        offset += separator;
+        draw_text_ext_transformed_colour(xx + 36, yy + offset, text[k], separator_a, string_w, 1, 1, 0, myColor, myColor, myColor, myColor, 1);
+        offset += separator_a;
     }
 }
 </string>

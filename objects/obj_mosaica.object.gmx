@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-40</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,16 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(0, 0, obj_wall);
-instance_create(0, 0, obj_cursor);
+            <string>x3 = x + 420; y3 = y + 210;
+x7 = x + 420; y7 = y + 420;
+x10 = x + 210; y10 = y + 210;
+x11 = x + 210; y11 = y + 630;
+x14 = x + 420; y14 = y + 630;
+x15 = x + 210; y15 = y + 420;
 
-dialogue_start = 0;
-final_1 = 0;
-final_2 = 0;
-chaos_choice = 0;
-stop_game = 0;
-battle_number = 1;
-total_score = 0;
+alarm[0] = 30; iteration = 0;
 </string>
           </argument>
         </arguments>
@@ -57,7 +55,8 @@ total_score = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(0, 0, obj_final_control);
+            <string>image_alpha = 1;
+obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
         </arguments>
@@ -80,7 +79,8 @@ total_score = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(room_width / 2, room_height / 2, obj_paper_1);
+            <string>iteration++;
+image_alpha -= 0.05;
 </string>
           </argument>
         </arguments>
@@ -103,34 +103,57 @@ total_score = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (dialogue_start)
+            <string>if (alarm[0] == -1)
 {
-    dialogue_start = 0;
-    alarm[0] = 24;
-    with (obj_mosaica) instance_destroy();
-    with (obj_wall) instance_destroy();
+    switch (iteration)
+    {
+        case 1:
+            x3 = x + 420; y3 = y + 0;
+            alarm[0] = 30;
+        break;
+    
+        case 2:
+            x7 = x + 420; y7 = y + 210;
+            alarm[0] = 30;
+        break;
+        
+        case 3:
+            x15 = x + 420; y15 = y + 420;
+            alarm[0] = 30;
+        break;
+        
+        case 4:
+            x11 = x + 210; y11 = y + 420;
+            alarm[0] = 30;
+        break;
+        
+        case 5:
+            x14 = x + 210; y14 = y + 630;
+            alarm[0] = 30;
+        break;
+        
+        case 6:
+            x15 = x + 420; y15 = y + 630;
+            alarm[0] = 30;
+        break;
+        
+        case 7:
+            x11 = x + 420; y11 = y + 420;
+            alarm[0] = 30;
+        break;
+        
+        case 8:
+            x10 = x + 210; y10 = y + 420;
+            alarm[0] = 45;
+        break;
+        
+        default: obj_wall.result = 1;
+    }
 }
 
-if (final_1 == 1)
+if (obj_wall.result and alarm [1] == -1)
 {
-    with (obj_dialogue_1) instance_destroy();
-    final_1 = 0;
-    alarm[1] = room_speed * 2;
-}
-
-if (final_2 == 1)
-{
-    with (obj_dialogue_1) instance_destroy();
-    final_2 = 0;
-    instance_create(0, 0, obj_cardgame_control);
-}
-
-if (stop_game and battle_number &lt; 8)
-{
-    with (obj_cardgame_control) instance_destroy();
-    instance_create(0, 0, obj_cardgame_control);
-    stop_game = 0;
-    battle_number++;
+    alarm[1] = 144;
 }
 </string>
           </argument>
@@ -154,10 +177,25 @@ if (stop_game and battle_number &lt; 8)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (stop_game and battle_number == 8)
+            <string>draw_sprite_ext(spr_cafell, 0, x + 0, y + 0, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 1, x + 210, y + 0, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 2, x3, y3, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 3, x + 630, y + 0, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 4, x + 0, y + 210, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 6, x7, y7, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 7, x + 630, y + 210, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 8, x + 0, y + 420, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 9, x10, y10, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 10, x11, y11, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 11, x + 630, y + 420, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 12, x + 0, y + 630, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 13, x14, y14, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 14, x15, y15, 1, 1, 0, c_white, image_alpha);
+draw_sprite_ext(spr_cafell, 15, x + 630, y + 630, 1, 1, 0, c_white, image_alpha);
+
+if (obj_wall.result)
 {
-    draw_set_font(Runic_46);
-    draw_text(400, 100, string(total_score));
+    draw_sprite(spr_cafell, 5, x + 210, y + 210); //change to Aid face square
 }
 </string>
           </argument>

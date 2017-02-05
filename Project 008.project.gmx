@@ -67,6 +67,10 @@
         <sprite>sprites\spr_dialogue_4</sprite>
         <sprite>sprites\spr_dialogue_5</sprite>
       </sprites>
+      <sprite>sprites\spr_cafell</sprite>
+      <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spr_wall_font</sprite>
+      <sprite>sprites\spr_paper_1</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -105,7 +109,6 @@
       <object>objects\obj_ragn_control</object>
       <object>objects\obj_ground</object>
       <object>objects\obj_information_1</object>
-      <object>objects\obj_ragn_dialogue</object>
       <object>objects\obj_final_part</object>
       <object>objects\obj_final_control</object>
       <objects name="cardboard_game">
@@ -114,18 +117,22 @@
         <object>objects\obj_oldman_card</object>
         <object>objects\obj_cardgame_control</object>
       </objects>
-      <object>objects\obj_dialogue</object>
-      <object>objects\obj_dialogue_icon</object>
+      <object>objects\obj_dialogue_1</object>
+      <object>objects\obj_dial_icon_1</object>
       <object>objects\obj_dialogue_snow</object>
       <object>objects\obj_dialogue_fog</object>
       <object>objects\obj_dialogue_rain</object>
+      <object>objects\obj_ragn_dialogue_cccp</object>
+      <object>objects\obj_wall</object>
+      <object>objects\obj_paper_1</object>
+      <object>objects\obj_mosaica</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
     <room>rooms\main_menu</room>
-    <room>rooms\room3</room>
     <room>rooms\ragnarok_game</room>
+    <room>rooms\room3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
