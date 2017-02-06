@@ -87,6 +87,7 @@ if (click and point_distance(x, y, point_x[0], point_y[0]) == 0)
 {
     global.played_card_player = id;
     click = false;
+    rotate = true;
 }
 </string>
           </argument>

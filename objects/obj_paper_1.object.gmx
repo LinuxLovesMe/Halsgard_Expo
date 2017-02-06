@@ -25,14 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; room_width; i += 32)
-{
-    instance_create(i, room_height - 32, obj_ground);
-    instance_create(i, room_height - 64, obj_ground);
-}
-
-instance_destroy();
-instance_create(room_width / 2, (room_height - 64) / 2, obj_dialogue_1);
+            <string>instance_destroy();
+instance_create(room_width / 2, room_height / 2, obj_dialogue_1);
 </string>
           </argument>
         </arguments>
@@ -55,14 +49,8 @@ instance_create(room_width / 2, (room_height - 64) / 2, obj_dialogue_1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; room_width; i += 32)
-{
-    instance_create(i, room_height - 32, obj_ground);
-    instance_create(i, room_height - 64, obj_ground);
-}
-
-instance_destroy();
-instance_create(room_width / 2, (room_height - 64) / 2, obj_dialogue_1);
+            <string>instance_destroy();
+instance_create(room_width / 2, room_height / 2, obj_dialogue_1);
 </string>
           </argument>
         </arguments>

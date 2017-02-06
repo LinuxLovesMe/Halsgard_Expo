@@ -68,10 +68,10 @@ card_speed = 20;
           <argument>
             <kind>1</kind>
             <string>///Card rotation 
+
 if (angle &lt; 180 and rotate) 
 {
-    if (angle + 8 &lt; 180) angle += 8;
-    else angle = 180;
+    if (angle + 8 &lt; 180) angle += 8; else angle = 180;
 }
 </string>
           </argument>
@@ -98,6 +98,7 @@ if (angle &lt; 180 and rotate)
 if (moved and point_distance(x, y, point_x[0], point_y[0]) &gt; card_speed)
 {
     move_towards_point(point_x[0], point_y[0], card_speed);
+    
     if (point_distance(x, y, point_x[0], point_y[0]) &lt; card_speed * 3)
     {
         moved = false;

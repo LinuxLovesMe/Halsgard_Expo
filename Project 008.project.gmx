@@ -24,12 +24,15 @@
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\HanifFlatUI</extension>
+    <extension index="1">extensions\PostFx Bundle 1</extension>
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_game_final</sound>
     <sound>sound\snd_menu_music</sound>
   </sounds>
   <sprites name="sprites">
+    <sprite>sprites\spr_ground</sprite>
+    <sprite>sprites\spr_information</sprite>
     <sprites name="splash_screen">
       <sprite>sprites\spr_phone_01</sprite>
       <sprite>sprites\spr_clear</sprite>
@@ -51,6 +54,7 @@
         <sprite>sprites\spr_wall</sprite>
         <sprite>sprites\spr_wall_font</sprite>
         <sprite>sprites\spr_paper_1</sprite>
+        <sprite>sprites\spr_paper_2</sprite>
         <sprite>sprites\spr_hero_face</sprite>
       </sprites>
       <sprites name="card_game">
@@ -61,38 +65,46 @@
         <sprite>sprites\spr_gamecard_good</sprite>
       </sprites>
       <sprites name="ragnarok_dialogue">
-        <sprite>sprites\spr_ground</sprite>
         <sprite>sprites\spr_final_sprite</sprite>
         <sprite>sprites\spr_final_font</sprite>
-        <sprite>sprites\spr_information</sprite>
         <sprite>sprites\spr_dialogue_1</sprite>
         <sprite>sprites\spr_dialogue_2</sprite>
         <sprite>sprites\spr_dialogue_3</sprite>
         <sprite>sprites\spr_dialogue_4</sprite>
         <sprite>sprites\spr_dialogue_5</sprite>
+        <sprite>sprites\spr_face_aid</sprite>
+        <sprite>sprites\spr_face_oldman</sprite>
       </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\back_main_menu</background>
+    <background>background\back_scratches</background>
+    <background>background\back_vhs_vignette</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_destruction.gml</script>
     <script>scripts\scr_menu.gml</script>
     <script>scripts\draw_text_outline.gml</script>
+    <script>scripts\draw_old_movie.gml</script>
     <script>scripts\debug_message.gml</script>
     <script>scripts\set_window_size.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_lerp.shader</shader>
+    <shader type="GLSLES">shaders\shader_old_movie.shader</shader>
   </shaders>
   <fonts name="fonts">
-    <font>fonts\Runic_46</font>
     <font>fonts\Underdog_20</font>
+    <font>fonts\Runic_46</font>
+    <font>fonts\Runic_68</font>
+    <font>fonts\Underdog_30</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_splash_screen</object>
+    <object>objects\obj_final_part</object>
+    <object>objects\obj_final_control</object>
     <objects name="main_menu">
       <objects name="asset_objects">
         <object>objects\obj_fire_12</object>
@@ -106,15 +118,15 @@
       <object>objects\obj_snow_control</object>
     </objects>
     <objects name="ragnarok_game">
+      <object>objects\obj_fade_effect</object>
       <object>objects\obj_ragn_control</object>
       <objects name="intro_zeber">
         <object>objects\obj_mosaica</object>
         <object>objects\obj_wall</object>
         <object>objects\obj_paper_1</object>
+        <object>objects\obj_paper_2</object>
       </objects>
       <objects name="ragnarok_dialogue">
-        <object>objects\obj_information_1</object>
-        <object>objects\obj_ground</object>
         <object>objects\obj_dial_icon_1</object>
         <object>objects\obj_dialogue_1</object>
         <object>objects\obj_dialogue_rain</object>
@@ -127,8 +139,6 @@
         <object>objects\obj_oldman_card</object>
         <object>objects\obj_cardgame_control</object>
       </objects>
-      <object>objects\obj_final_part</object>
-      <object>objects\obj_final_control</object>
     </objects>
   </objects>
   <rooms name="rooms">

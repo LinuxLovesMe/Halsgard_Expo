@@ -30,12 +30,6 @@ y = room_height / 2;
 instance_create(x, y, obj_dial_icon_1);
 instance_create(x, y, obj_dialogue_snow);
 
-//read name of sobesednik from first string of text file
-//setuf face of sobesednik to icon
-//if map_find_value(map2, Sobesednik_name) &gt; 5 then inst.create (d_rain)
-//if ... &lt; 5 and &gt; -5 then ...
-//if &lt; -5 then ...
-
 xx = x - sprite_width / 2; //start x-point of dialogue sprite
 yy = y - sprite_height / 2; //start y-point of dialogue sprite
 
@@ -68,6 +62,7 @@ while(!file_text_eof(file))
 file_text_close(file);
 
 pointer = 0;
+pointer_t = 0;
 replica = 1;
 separator_r = 48;
 separator_a = 54;
@@ -135,11 +130,11 @@ with (obj_dialogue_snow) instance_destroy();
     {
         switch (pointer_t)
         {
-            case 8:
+            case 7:
                 obj_ragn_control.final_1 = 1;
             break;
             
-            case 14:
+            case 8:
                 obj_ragn_control.final_2 = 1;
             break;
             

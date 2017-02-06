@@ -8,7 +8,7 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="6" enumb="4">
+    <event eventtype="6" enumb="7">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,7 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_dialogue_1.replica = 0;
+            <string>if (obj_dialogue_1.replica == 1)
+{
+    obj_dialogue_1.replica = 0;
+}
+else
+{
+    obj_dialogue_1.replica = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -48,21 +55,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_sprite(spr_blur_ragn, 0, 0, 0);
-draw_self();
+            <string>draw_self();
 myColor = make_colour_rgb(120, 168, 194);
-//draw_sprite(spr_icon_aid, 0, xx + 180, yy + 520);
-
-draw_set_font(Underdog_20);
-/*draw_text_colour(xx + 158, yy + 618, "Эйд", myColor, myColor, myColor, myColor, 1);
-
-draw_sprite(spr_icon_oldman, 0, xx + 180, yy + 108);
-draw_text_colour(xx + 118, yy + 200, "Советник", myColor, myColor, myColor, myColor, 1);
-
-draw_set_font(Eufloria);
-draw_text_colour(xx + 40, yy + 264, "Осталось АР: *,*", c_white, c_white, c_white, c_white, 1);
-draw_text_colour(xx + 40, yy + 304, "Отношение: *,*", c_white, c_white, c_white, c_white, 1);
-draw_text_colour(xx + 40, yy + 344, "Принадлежность: *,*", c_white, c_white, c_white, c_white, 1);*/
+if (obj_dialogue_1.replica)
+{
+    draw_sprite(spr_face_oldman, 0, 1360, 538);
+    draw_set_colour(c_white);
+    draw_set_font(Underdog_30);
+    draw_text(1286, 664, "Советник");
+}
+else
+{
+    draw_sprite(spr_face_aid, 0, 1360, 538);
+    draw_set_colour(myColor);
+    draw_set_font(Underdog_30);
+    draw_text(1264, 664, "Эйд (AP: *,*)");
+}
 </string>
           </argument>
         </arguments>
