@@ -50,12 +50,13 @@
     </sprites>
     <sprites name="ragnarok_game">
       <sprites name="intro_zeber">
-        <sprite>sprites\spr_cafell</sprite>
-        <sprite>sprites\spr_wall</sprite>
-        <sprite>sprites\spr_wall_font</sprite>
+        <sprite>sprites\spr_hero_face</sprite>
         <sprite>sprites\spr_paper_1</sprite>
         <sprite>sprites\spr_paper_2</sprite>
-        <sprite>sprites\spr_hero_face</sprite>
+        <sprite>sprites\spr_wall</sprite>
+        <sprite>sprites\spr_wall_font</sprite>
+        <sprite>sprites\spr_cafell</sprite>
+        <sprite>sprites\spr_border_mosaic</sprite>
       </sprites>
       <sprites name="card_game">
         <sprite>sprites\spr_card_beside</sprite>
@@ -119,7 +120,8 @@
     </objects>
     <objects name="ragnarok_game">
       <object>objects\obj_fade_effect</object>
-      <object>objects\obj_ragn_control</object>
+      <object>objects\obj_ragn_control_1</object>
+      <object>objects\obj_ragn_control_2</object>
       <objects name="intro_zeber">
         <object>objects\obj_mosaica</object>
         <object>objects\obj_wall</object>
@@ -144,7 +146,8 @@
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
     <room>rooms\main_menu</room>
-    <room>rooms\ragnarok_game</room>
+    <room>rooms\ragnarok_intro</room>
+    <room>rooms\ragnarok_cards</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

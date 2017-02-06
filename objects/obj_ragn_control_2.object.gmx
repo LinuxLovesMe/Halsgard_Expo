@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-40</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,38 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 54; iteration = 0;
+            <string>///Ragnarok level control - 2/2 part
 
-x3 = x + 420; y3 = y + 210;
-x7 = x + 420; y7 = y + 420;
-x10 = x + 210; y10 = y + 210;
-x11 = x + 210; y11 = y + 630;
-x14 = x + 420; y14 = y + 630;
-x15 = x + 210; y15 = y + 420;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>image_alpha = 1;
-obj_ragn_control_1.dialogue_start = 1;
+total_score = 0;
+stop_game = 0;
+battle_number = 1;
+fx_effect = 0;
+choose_effect = choose(1, 2);
+con = 200;
+card_rating = 50;
+
+instance_create(0, 0, obj_cursor);
+instance_create(room_width / 2, room_height / 2, obj_paper_2);
 </string>
           </argument>
         </arguments>
@@ -79,8 +59,10 @@ obj_ragn_control_1.dialogue_start = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>iteration++;
-image_alpha -= 0.05;
+            <string>battle_number++;
+fx_effect = 0;
+choose_effect = 0;
+//instance_create(room_width / 2, room_height / 2, obj_dialogue_2);
 </string>
           </argument>
         </arguments>
@@ -103,57 +85,53 @@ image_alpha -= 0.05;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (alarm[0] == -1)
+            <string>if (card_rating != 0 and card_rating!= 100)
 {
-    switch (iteration)
-    {
-        case 1:
-            x3 = x + 420; y3 = y + 0;
-            alarm[0] = 30;
-        break;
-    
-        case 2:
-            x7 = x + 420; y7 = y + 210;
-            alarm[0] = 30;
-        break;
-        
-        case 3:
-            x15 = x + 420; y15 = y + 420;
-            alarm[0] = 30;
-        break;
-        
-        case 4:
-            x11 = x + 210; y11 = y + 420;
-            alarm[0] = 30;
-        break;
-        
-        case 5:
-            x14 = x + 210; y14 = y + 630;
-            alarm[0] = 30;
-        break;
-        
-        case 6:
-            x15 = x + 420; y15 = y + 630;
-            alarm[0] = 30;
-        break;
-        
-        case 7:
-            x11 = x + 420; y11 = y + 420;
-            alarm[0] = 30;
-        break;
-        
-        case 8:
-            x10 = x + 210; y10 = y + 420;
-            alarm[0] = 45;
-        break;
-        
-        default: obj_wall.result = 1;
-    }
+    card_rating = 50 + 10 * total_score;
 }
 
-if (obj_wall.result and alarm [1] == -1)
+if (battle_number &gt;= 6)
 {
-    alarm[1] = 180;
+    fx_effect = choose_effect;
+}
+
+if (stop_game and battle_number &lt; 8)
+{
+    with (obj_cardgame_control) instance_destroy();
+    instance_create(0, 0, obj_cardgame_control);
+    stop_game = 0;
+    battle_number++;
+}
+
+if (stop_game and battle_number == 8)
+{
+    if (alarm[0] == -1) alarm[0] = room_speed * 4;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (fx_effect != 2)
+{
+    draw_old_movie(fx_effect);
 }
 </string>
           </argument>
@@ -177,28 +155,11 @@ if (obj_wall.result and alarm [1] == -1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(spr_cafell, 0, x + 0, y + 0, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 1, x + 210, y + 0, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 2, x3, y3, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 3, x + 630, y + 0, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 4, x + 0, y + 210, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 6, x7, y7, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 7, x + 630, y + 210, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 8, x + 0, y + 420, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 9, x10, y10, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 10, x11, y11, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 11, x + 630, y + 420, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 12, x + 0, y + 630, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 13, x14, y14, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 14, x15, y15, 1, 1, 0, c_white, image_alpha);
-draw_sprite_ext(spr_cafell, 15, x + 630, y + 630, 1, 1, 0, c_white, image_alpha);
-
-if (obj_wall.result)
+            <string>if (stop_game and battle_number == 8)
 {
-    draw_sprite(spr_hero_face, 0, x + 210, y + 210); //change to Aid face square
+    draw_set_font(Runic_68);
+    draw_text(400, 100, string(total_score));
 }
-
-draw_sprite(spr_border_mosaic, 0, x - 10, y - 10);
 </string>
           </argument>
         </arguments>

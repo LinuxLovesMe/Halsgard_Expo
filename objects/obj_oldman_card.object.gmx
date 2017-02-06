@@ -77,13 +77,13 @@ if (point_distance(x, y, point_x[0], point_y[0]) == 0)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (obj_ragn_control.chaos_choice)
+if (ds_map_find_value(global.choices, "chaos_choice"))
 {
-    draw_sprite_ext(spr_gamecard_good, value, 0, 0, scale, scale, 0, c_white, 1);
+    draw_sprite_ext(spr_gamecard_good, value, 0, 0, scale, scale, 0, c_white, image_alpha);
 }
 else
 {
-    draw_sprite_ext(spr_gamecard_hell, value, 0, 0, scale, scale, 0, c_white, 1);
+    draw_sprite_ext(spr_gamecard_hell, value, 0, 0, scale, scale, 0, c_white, image_alpha);
 }
 d3d_transform_set_identity();
 </string>

@@ -45,12 +45,50 @@ moved = false;
 clickable = false;
 
 card_speed = 20;
+
+loser_sprite = false;
+dissapeared = false;
+winner_sprite = false;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Move card to point
+
+if (moved and point_distance(x, y, point_x[0], point_y[0]) &gt; card_speed)
+{
+    move_towards_point(point_x[0], point_y[0], card_speed);
+    
+    if (point_distance(x, y, point_x[0], point_y[0]) &lt; card_speed * 3)
+    {
+        moved = false;
+        speed = 0;
+        x = point_x[0];
+        y = point_y[0];
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -93,19 +131,11 @@ if (angle &lt; 180 and rotate)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Move card to point
+            <string>///Dissapear card from table
 
-if (moved and point_distance(x, y, point_x[0], point_y[0]) &gt; card_speed)
+if (dissapeared and image_alpha &gt; 0)
 {
-    move_towards_point(point_x[0], point_y[0], card_speed);
-    
-    if (point_distance(x, y, point_x[0], point_y[0]) &lt; card_speed * 3)
-    {
-        moved = false;
-        speed = 0;
-        x = point_x[0];
-        y = point_y[0];
-    }
+    image_alpha -= 0.04;
 }
 </string>
           </argument>

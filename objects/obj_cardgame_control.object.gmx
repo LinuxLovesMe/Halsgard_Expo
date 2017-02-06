@@ -57,7 +57,7 @@ for (i = 0; i &lt; cards_number; i++)
     ds_list_add(player_cards, temp);
     v = ds_list_find_value(player_cards, ds_list_size(player_cards) - 1);
     v.value = choose(cards.archer, cards.warrior, cards.mage);
-    if (obj_ragn_control.fx_effect == 2) 
+    if (obj_ragn_control_2.fx_effect == 2) 
     {
         v.angle = 0;
     }
@@ -109,8 +109,8 @@ trig = 0; trig2 = 0; trig3 = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (total_score &gt;= 0) obj_ragn_control.total_score += 1;
-else obj_ragn_control.total_score -= 1;
+            <string>if (total_score &gt;= 0) obj_ragn_control_2.total_score += 1;
+else obj_ragn_control_2.total_score -= 1;
 
 with (obj_aid_card)
 {
@@ -146,7 +146,7 @@ ds_list_destroy(player_cards);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_ragn_control.stop_game = 1;
+            <string>obj_ragn_control_2.stop_game = 1;
 </string>
           </argument>
         </arguments>
@@ -220,13 +220,8 @@ ds_list_destroy(player_cards);
             <kind>1</kind>
             <string>///Card dissapears out of screen
 
-global.played_card_oldman.moved = true;
-global.played_card_oldman.point_x[0] = global.played_card_oldman.x;
-global.played_card_oldman.point_y[0] = room_height + obj_card_parent.sprite_height * 2;
-
-global.played_card_player.moved = true;
-global.played_card_player.point_x[0] = global.played_card_player.x;
-global.played_card_player.point_y[0] = room_height + obj_card_parent.sprite_height * 2;
+global.played_card_oldman.dissapeared = true;
+global.played_card_player.dissapeared = true;
 
 global.played_card_oldman = 0;
 global.played_card_player = 0;
@@ -351,7 +346,7 @@ if (global.played_card_oldman != 0 and global.played_card_player != 0 and game_r
     if (winner == -1) winner = 2; // 0 is None, 1 is Aid, 2 is Oldman
         
     game_round = false;
-    alarm[1] = room_speed * 3;
+    alarm[1] = room_speed * 2;
     rounds++;    
 }
 
@@ -612,7 +607,7 @@ if (rounds == cards_number)
 {
     draw_set_colour(c_white);
     draw_set_font(Runic_46);
-    if (!obj_ragn_control.stop_game)
+    if (!obj_ragn_control_2.stop_game)
     {
         if (total_score &gt; 0) draw_text(800, 120, "Победа Эйда");
         else if(total_score &lt; 0) draw_text(800, 120, "Победа Советника");
@@ -623,14 +618,14 @@ else
 {
     draw_set_colour(c_white);
     draw_set_font(Runic_46);
-    draw_text(40, 34, "Рейтинг: " + string(obj_ragn_control.card_rating));
-    draw_text(40, 90, "На кону: " + string(obj_ragn_control.con) + " ХВ");
+    draw_text(40, 34, "Рейтинг: " + string(obj_ragn_control_2.card_rating));
+    draw_text(40, 90, "На кону: " + string(obj_ragn_control_2.con) + " ХВ");
 }
 if (alarm[0] == -1 and battle_text)
 {
     draw_set_colour(c_white);
     draw_set_font(Runic_68);
-    draw_text(820, 120, "Раунд " + string(obj_ragn_control.battle_number));
+    draw_text(820, 120, "Раунд " + string(obj_ragn_control_2.battle_number));
 }
 </string>
           </argument>
