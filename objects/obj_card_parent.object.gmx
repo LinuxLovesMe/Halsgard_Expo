@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>//Value = archer, mage or warrior
 value = 0;
-
 angle = 0;
 
 //Rotate = show the enemy's card
@@ -44,7 +43,8 @@ moved = false;
 
 clickable = false;
 
-card_speed = 20;
+card_speed = 24;
+card_round_winner = 3;
 
 loser_sprite = false;
 dissapeared = false;

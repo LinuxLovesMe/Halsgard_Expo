@@ -52,7 +52,6 @@
       <sprites name="intro_zeber">
         <sprite>sprites\spr_hero_face</sprite>
         <sprite>sprites\spr_paper_1</sprite>
-        <sprite>sprites\spr_paper_2</sprite>
         <sprite>sprites\spr_wall</sprite>
         <sprite>sprites\spr_wall_font</sprite>
         <sprite>sprites\spr_cafell</sprite>
@@ -64,6 +63,7 @@
         <sprite>sprites\spr_card_loser</sprite>
         <sprite>sprites\spr_gamecard_hell</sprite>
         <sprite>sprites\spr_card_winner</sprite>
+        <sprite>sprites\spr_card_stone</sprite>
         <sprite>sprites\spr_gamecard_good</sprite>
       </sprites>
       <sprites name="ragnarok_dialogue">
@@ -100,8 +100,8 @@
   <fonts name="fonts">
     <font>fonts\Underdog_20</font>
     <font>fonts\Runic_46</font>
-    <font>fonts\Runic_68</font>
     <font>fonts\Underdog_30</font>
+    <font>fonts\Underdog_36</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_splash_screen</object>
@@ -121,13 +121,12 @@
     </objects>
     <objects name="ragnarok_game">
       <object>objects\obj_fade_effect</object>
-      <object>objects\obj_ragn_control_1</object>
-      <object>objects\obj_ragn_control_2</object>
+      <object>objects\obj_ragn_control</object>
       <objects name="intro_zeber">
+        <object>objects\obj_prologue</object>
         <object>objects\obj_mosaica</object>
         <object>objects\obj_wall</object>
         <object>objects\obj_paper_1</object>
-        <object>objects\obj_paper_2</object>
       </objects>
       <objects name="ragnarok_dialogue">
         <object>objects\obj_dial_icon_1</object>
@@ -148,7 +147,6 @@
     <room>rooms\splash_screen</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
-    <room>rooms\ragnarok_cards</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

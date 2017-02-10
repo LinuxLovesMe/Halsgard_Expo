@@ -33,8 +33,8 @@ if enabled = true
     u_movieColor_arr[1] = 0.9;
     u_movieColor_arr[2] = 0.75;
 
-    var speedX = 0.05;
-    var speedY = 1.1;
+    var speedX = 0.04;
+    var speedY = 1.12;
     
     shader_set(shader);
         shader_set_uniform_f(u_vRatio, vRatio);

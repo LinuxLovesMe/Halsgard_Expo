@@ -42,8 +42,8 @@ player_cards = ds_list_create();
 t = 0;
 cards_number = 5;
 
-move_to_x = 960;
-move_to_y = 320;
+move_to_x = 972;
+move_to_y = 350;
 
 for (i = 0; i &lt; cards_number; i++)
 {
@@ -57,7 +57,7 @@ for (i = 0; i &lt; cards_number; i++)
     ds_list_add(player_cards, temp);
     v = ds_list_find_value(player_cards, ds_list_size(player_cards) - 1);
     v.value = choose(cards.archer, cards.warrior, cards.mage);
-    if (obj_ragn_control_2.fx_effect == 2) 
+    if (obj_ragn_control.fx_effect == 2) 
     {
         v.angle = 0;
     }
@@ -77,12 +77,16 @@ i = random(ds_list_size(oldman_cards) - 1);
 v = ds_list_find_value(oldman_cards, i);
 v.value = choose(cards.super_archer, cards.super_mage, cards.super_warrior);
 
-winner = 0; battle_text = 0;
+for (k = 0; k &lt; 5; k++)
+{
+    winner[k] = 3; //Save the result of each competition
+}
 
+battle_text = 0;
 global.played_card_oldman = 0;
 global.played_card_player = 0;
 
-alarm[0] = room_speed + 10;
+alarm[0] = 54;
 
 total_score = 0; rounds = 0;
 temp = 0; move_round = 2;
@@ -109,8 +113,8 @@ trig = 0; trig2 = 0; trig3 = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (total_score &gt;= 0) obj_ragn_control_2.total_score += 1;
-else obj_ragn_control_2.total_score -= 1;
+            <string>if (total_score &gt;= 0) obj_ragn_control.total_score += 1;
+else obj_ragn_control.total_score -= 1;
 
 with (obj_aid_card)
 {
@@ -124,6 +128,30 @@ with (obj_oldman_card)
     
 ds_list_destroy(oldman_cards);
 ds_list_destroy(player_cards);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.played_card_oldman.card_round_winner = winner[rounds - 1];
+global.played_card_player.card_round_winner = winner[rounds - 1];
 </string>
           </argument>
         </arguments>
@@ -146,7 +174,7 @@ ds_list_destroy(player_cards);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_ragn_control_2.stop_game = 1;
+            <string>obj_ragn_control.stop_game = 1;
 </string>
           </argument>
         </arguments>
@@ -340,13 +368,14 @@ if (global.played_card_oldman != 0 and global.played_card_player != 0 and game_r
         }
     }
     
-    winner = scores;
-    total_score += winner;
+    winner[rounds] = scores;
+    total_score += winner[rounds];
     
-    if (winner == -1) winner = 2; // 0 is None, 1 is Aid, 2 is Oldman
-        
+    if (winner[rounds] == -1) winner[rounds] = 2; // 0 is None, 1 is Aid, 2 is Oldman
+    
+    if (alarm[5] == -1) alarm[5] = 20;        
     game_round = false;
-    alarm[1] = room_speed * 2;
+    if (alarm[1] == -1) alarm[1] = room_speed * 2 - 20;
     rounds++;    
 }
 
@@ -601,31 +630,67 @@ if (h = true and trig3 == 1)
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Draw winner stones
+
+if (rounds &gt; 0 and rounds &lt; 6)
+{
+    for (i = 0; i &lt; rounds - 1; i++)
+    {
+        if (winner[i] != 3) draw_sprite(spr_card_stone, winner[i], room_width - 82, 80 + 110 * i);
+    }
+    
+    if (winner[rounds - 1] != 3 and alarm[5] == -1) 
+    {
+        draw_sprite(spr_card_stone, winner[rounds - 1], room_width - 82, 80 + 110 * (rounds - 1));
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>var t = 0;
 
 if (rounds == cards_number)
 {
     draw_set_colour(c_white);
-    draw_set_font(Runic_46);
-    if (!obj_ragn_control_2.stop_game)
+    draw_set_font(Underdog_36);
+    if (!obj_ragn_control.stop_game)
     {
-        if (total_score &gt; 0) draw_text(800, 120, "Победа Эйда");
-        else if(total_score &lt; 0) draw_text(800, 120, "Победа Советника");
-        else if(total_score == 0) draw_text(800, 120, "Победителя нет");
+        if (total_score &gt; 0) draw_text((room_width - string_width("Победа Эйда")) / 2 + 10, 650, "Победа Эйда");
+        else if(total_score &lt; 0) draw_text((room_width - string_width("Победа Советника")) / 2 + 10, 650, "Победа Советника");
+        else if(total_score == 0) draw_text((room_width - string_width("Победителя нет")) / 2 + 10, 650, "Победителя нет");
     }
 }
+
 else
 {
     draw_set_colour(c_white);
-    draw_set_font(Runic_46);
-    draw_text(40, 34, "Рейтинг: " + string(obj_ragn_control_2.card_rating));
-    draw_text(40, 90, "На кону: " + string(obj_ragn_control_2.con) + " ХВ");
+    draw_set_font(Underdog_20);
+    draw_text(40, 34, "Рейтинг: " + string(obj_ragn_control.card_rating));
+    draw_text(40, 90, "На кону: " + string(obj_ragn_control.con) + " ХВ");
 }
+
 if (alarm[0] == -1 and battle_text)
 {
     draw_set_colour(c_white);
-    draw_set_font(Runic_68);
-    draw_text(820, 120, "Раунд " + string(obj_ragn_control_2.battle_number));
+    draw_set_font(Underdog_36);
+    draw_text(780, 130, "Раунд " + string(obj_ragn_control.battle_number));
 }
 </string>
           </argument>
