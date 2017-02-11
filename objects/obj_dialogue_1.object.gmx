@@ -33,7 +33,7 @@ instance_create(x, y, obj_dialogue_snow);
 xx = x - sprite_width / 2; //start x-point of dialogue sprite
 yy = y - sprite_height / 2; //start y-point of dialogue sprite
 
-file = file_text_open_read("ragn_text_1.txt");
+file = file_text_open_read("Dialogue_1.txt");
 info = 0;
 
 while(!file_text_eof(file))

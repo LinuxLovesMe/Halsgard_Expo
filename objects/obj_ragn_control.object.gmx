@@ -87,6 +87,7 @@ instance_create(0, 0, obj_prologue);
             <string>battle_number++;
 fx_effect = 0;
 choose_effect = 0;
+instance_create(room_width / 2, room_height / 2, obj_dialogue_1);
 </string>
           </argument>
         </arguments>
@@ -144,14 +145,7 @@ if (stop_game and battle_number &lt; 4)
 
 if (stop_game and battle_number == 4)
 {
-    if (alarm[0] == -1) alarm[0] = room_speed * 4;
-}
-
-if (final_1 == 1)
-{
-    with (obj_dialogue_1) instance_destroy();
-    final_1 = 0;
-    alarm[1] = 45;
+    if (alarm[0] == -1) alarm[0] = room_speed;
 }
 
 if (final_2 == 1)
@@ -185,33 +179,6 @@ if (final_2 == 1)
             <string>if (fx_effect != 2)
 {
     draw_old_movie(fx_effect);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (stop_game and battle_number == 4)
-{
-    draw_set_font(Underdog_36);
-    draw_text(400, 100, string(total_score));
 }
 </string>
           </argument>
