@@ -3,7 +3,7 @@
   <spriteName>spr_dialogue_2</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-20</depth>
+  <depth>-40</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -57,7 +57,7 @@ else
             <kind>1</kind>
             <string>draw_self();
 myColor = make_colour_rgb(120, 168, 194);
-if (obj_dialogue_1.replica)
+/*if (obj_dialogue_1.replica)
 {
     draw_sprite(spr_face_oldman, 0, 1360, 538);
     draw_set_colour(c_white);
@@ -70,7 +70,7 @@ else
     draw_set_colour(myColor);
     draw_set_font(Underdog_30);
     draw_text(1264, 664, "Эйд (AP: *,*)");
-}
+}*/
 </string>
           </argument>
         </arguments>

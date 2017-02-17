@@ -71,11 +71,7 @@
         <sprite>sprites\spr_final_font</sprite>
         <sprite>sprites\spr_dialogue_1</sprite>
         <sprite>sprites\spr_dialogue_2</sprite>
-        <sprite>sprites\spr_dialogue_3</sprite>
         <sprite>sprites\spr_dialogue_4</sprite>
-        <sprite>sprites\spr_dialogue_5</sprite>
-        <sprite>sprites\spr_face_aid</sprite>
-        <sprite>sprites\spr_face_oldman</sprite>
       </sprites>
     </sprites>
     <sprites name="nova_prospekt">
@@ -134,9 +130,7 @@
       <objects name="ragnarok_dialogue">
         <object>objects\obj_dial_icon_1</object>
         <object>objects\obj_dialogue_1</object>
-        <object>objects\obj_dialogue_rain</object>
         <object>objects\obj_dialogue_fog</object>
-        <object>objects\obj_dialogue_snow</object>
       </objects>
       <objects name="cardboard_game">
         <object>objects\obj_card_parent</object>
