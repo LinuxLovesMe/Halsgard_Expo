@@ -3,7 +3,7 @@
   <spriteName>spr_dialogue_4</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-20</depth>
+  <depth>-40</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0.02;
+            <string>image_speed = 0.03;
 </string>
           </argument>
         </arguments>

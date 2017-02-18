@@ -25,8 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>obj_ragn_control.frosty_background = 0;
+obj_ragn_control.normal_background = 1;
 instance_create(0, 0, obj_cardgame_control);
+instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -49,8 +51,62 @@ instance_create(0, 0, obj_cardgame_control);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>obj_ragn_control.frosty_background = 0;
+obj_ragn_control.normal_background = 1;
 instance_create(0, 0, obj_cardgame_control);
+instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>obj_ragn_control.frosty_background = 0;
+obj_ragn_control.normal_background = 1;
+instance_create(0, 0, obj_cardgame_control);
+instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>obj_ragn_control.frosty_background = 0;
+obj_ragn_control.normal_background = 1;
+instance_create(0, 0, obj_cardgame_control);
+instance_destroy();
 </string>
           </argument>
         </arguments>

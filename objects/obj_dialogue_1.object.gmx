@@ -3,7 +3,7 @@
   <spriteName>spr_dialogue_1</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-20</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -61,12 +61,13 @@ while(!file_text_eof(file))
 
 file_text_close(file);
 
+active_answer = 0;
 pointer = 0;
 pointer_t = 0;
 replica = 1;
 separator_r = 48;
 separator_a = 54;
-string_w = sprite_width - 450;
+string_w = sprite_width - 64;
 </string>
           </argument>
         </arguments>
@@ -117,24 +118,38 @@ with (obj_dialogue_snow) instance_destroy();
 {
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
-        if ((point_in_rectangle(mouse_x, mouse_y, xx + 36, yy + 320 + separator_a * (k - 1) + 10, 
-            xx - 20 + string_width(info[pointer, k]), yy + 320 + separator_a * (k) - 10)) and mouse_check_button_released(mb_left)) 
+        if (k &gt; 1)
         {
-            pointer_t = real(string_digits(info[pointer, k]));
+            koef = k + 1 + floor(string_width(info[pointer, k - 1]) / string_w);
+        }
+        else
+        {
+            koef = k;
+        }
+        
+        if ((point_in_rectangle(mouse_x, mouse_y, xx + 36, yy + 250 + separator_a * (koef - 1) + 10, xx - 20 + string_width(info[pointer, k]), 
+                                yy + 250 + (separator_a * koef) + (separator_a * floor(string_width(info[pointer, k]) / string_w)) - 10)))
+        {
+            if (mouse_check_button_released(mb_left))
+            {
+                pointer_t = real(string_digits(info[pointer, k]));
+                break;
+            }
+            active_answer = k;
             break;
         }
-        else pointer_t = 0;
+        else 
+        {
+            pointer_t = 0;
+            active_answer = 0;
+        }
     }
 
     if (pointer_t != 0)
     {
         switch (pointer_t)
         {
-            case 7:
-                obj_ragn_control.final_1 = 1;
-            break;
-            
-            case 8:
+            case 10:
                 obj_ragn_control.final_2 = 1;
             break;
             
@@ -188,16 +203,23 @@ for (k = 0; k &lt; array_length_1d(text); k++)
 
 if (replica)
 {
-    draw_text_ext_transformed_colour(xx + 36, yy + 320, text[0], separator_r, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+    draw_text_ext_transformed_colour(xx + 36, yy + 250, text[0], separator_r, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
 }
 else
 {
-    offset = 320;
+    offset = 250;
        
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
-        draw_text_ext_transformed_colour(xx + 36, yy + offset, text[k], separator_a, string_w, 1, 1, 0, myColor, myColor, myColor, myColor, 1);
-        offset += separator_a;
+        if (active_answer &gt; 0 and active_answer == k)
+        {
+            draw_text_ext_transformed_colour(xx + 36, yy + offset, text[k], separator_a, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+        }
+        else
+        {
+            draw_text_ext_transformed_colour(xx + 36, yy + offset, text[k], separator_a, string_w, 1, 1, 0, myColor, myColor, myColor, myColor, 1);
+        }
+        offset += 2 * separator_a + separator_a * floor(string_width(info[pointer, k]) / string_w); 
     }
 }
 </string>

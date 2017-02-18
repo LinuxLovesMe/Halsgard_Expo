@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>40</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -34,8 +34,10 @@ stop_game = 0;
 battle_number = 1;
 fx_effect = 0;
 choose_effect = choose(1, 2);
+normal_background = 0;
 con = 200;
 card_rating = 50;
+frosty_background = 0;
 
 instance_create(0, 0, obj_cursor);
 instance_create(0, 0, obj_prologue);
@@ -86,6 +88,8 @@ instance_create(0, 0, obj_prologue);
             <kind>1</kind>
             <string>battle_number++;
 fx_effect = 0;
+frosty_background = 1;
+normal_background = 0;
 choose_effect = 0;
 instance_create(room_width / 2, room_height / 2, obj_dialogue_1);
 </string>
@@ -123,6 +127,7 @@ if (cardgame_start)
     with (obj_mosaica) instance_destroy();
     with (obj_wall) instance_destroy();
     instance_create(room_width / 2, room_height / 2, obj_paper_1);
+    frosty_background = 1;
 }
 
 if (card_rating != 0 and card_rating!= 100)
@@ -180,6 +185,30 @@ if (final_2 == 1)
 {
     draw_old_movie(fx_effect);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (normal_background) draw_sprite(spr_card_background, 0, 0, 0);
+if (frosty_background) draw_sprite(spr_card_frosty, 0, 0, 0);
 </string>
           </argument>
         </arguments>

@@ -35,6 +35,31 @@ x10 = x + 210; y10 = y + 210;
 x11 = x + 210; y11 = y + 630;
 x14 = x + 420; y14 = y + 630;
 x15 = x + 210; y15 = y + 420;
+
+face_hero = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>face_hero++;
 </string>
           </argument>
         </arguments>
@@ -125,7 +150,10 @@ image_alpha -= 0.05;
             alarm[0] = 45;
         break;
         
-        default: obj_wall.result = 1;
+        default: 
+            obj_wall.result = 1;
+            if (alarm[1] == -1 and face_hero &lt; 1) alarm[1] = 20;
+            if (alarm[1] == -1 and face_hero &gt;= 1) alarm[1] = 14;
         break;
     }
 }
@@ -221,6 +249,54 @@ if (obj_wall.result)
 }
 
 draw_sprite(spr_border_mosaic, 0, x - 10, y - 10);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_alpha = 1;
+obj_ragn_control.cardgame_start = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_alpha = 1;
+obj_ragn_control.cardgame_start = 1;
 </string>
           </argument>
         </arguments>

@@ -32,7 +32,7 @@
 randomize();
 
 start_point_x = 450;
-start_point_y = 780;
+start_point_y = 850;
 
 game_round = false;
 
@@ -284,7 +284,7 @@ temp = 0;
 }
 
 battle_text = 1;
-alarm[3] = room_speed;
+alarm[3] = room_speed + 20;
 </string>
           </argument>
         </arguments>
@@ -682,15 +682,15 @@ else
 {
     draw_set_colour(c_white);
     draw_set_font(Underdog_20);
-    draw_text(40, 34, "Рейтинг: " + string(obj_ragn_control.card_rating));
-    draw_text(40, 90, "На кону: " + string(obj_ragn_control.con) + " ХВ");
+    draw_text(34, 28, "Рейтинг: " + string(obj_ragn_control.card_rating));
+    draw_text(34, 82, "На кону: " + string(obj_ragn_control.con) + " ХВ");
 }
 
 if (alarm[0] == -1 and battle_text)
 {
     draw_set_colour(c_white);
     draw_set_font(Underdog_36);
-    draw_text(780, 130, "Раунд " + string(obj_ragn_control.battle_number));
+    draw_text(780, 130, "Раунд " + string(obj_ragn_control.battle_number) + "/4");
 }
 </string>
           </argument>

@@ -3,11 +3,11 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="2" name="datafiles">
+  <datafiles number="3" name="datafiles">
     <datafile>
       <name>Dialogue_1.txt</name>
       <exists>-1</exists>
-      <size>3575</size>
+      <size>6024</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -50,8 +50,8 @@
     </sprites>
     <sprites name="ragnarok_game">
       <sprites name="intro_zeber">
-        <sprite>sprites\spr_hero_face</sprite>
         <sprite>sprites\spr_paper_1</sprite>
+        <sprite>sprites\spr_hero_face</sprite>
         <sprite>sprites\spr_wall</sprite>
         <sprite>sprites\spr_wall_font</sprite>
         <sprite>sprites\spr_cafell</sprite>
@@ -65,6 +65,8 @@
         <sprite>sprites\spr_card_winner</sprite>
         <sprite>sprites\spr_card_stone</sprite>
         <sprite>sprites\spr_gamecard_good</sprite>
+        <sprite>sprites\spr_card_frosty</sprite>
+        <sprite>sprites\spr_card_background</sprite>
       </sprites>
       <sprites name="ragnarok_dialogue">
         <sprite>sprites\spr_final_sprite</sprite>
