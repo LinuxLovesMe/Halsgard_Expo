@@ -78,6 +78,7 @@
     <sprites name="dark_forest">
       <sprite>sprites\spr_mainhero</sprite>
       <sprite>sprites\spr_leaves</sprite>
+      <sprite>sprites\spr_temp_object</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -95,6 +96,10 @@
       <background>background\back_forest_8</background>
       <background>background\back_forest_9</background>
       <background>background\back_forest_10</background>
+      <background>background\back_forest_11</background>
+      <background>background\back_forest_12</background>
+      <background>background\back_forest_13</background>
+      <background>background\back_forest_14</background>
     </backgrounds>
   </backgrounds>
   <paths name="paths"/>
@@ -157,13 +162,17 @@
       <objects name="anarchy_control">
         <object>objects\obj_global_control</object>
         <object>objects\obj_playable</object>
+        <object>objects\obj_textcontrol</object>
         <object>objects\obj_interacted</object>
         <object>objects\obj_standing_on</object>
       </objects>
       <object>objects\obj_forest_control_1</object>
+      <object>objects\obj_forest_control_2</object>
+      <object>objects\obj_forest_control_3</object>
       <object>objects\obj_ground</object>
       <object>objects\obj_autumn_fall</object>
       <object>objects\obj_mainhero</object>
+      <object>objects\obj_temp_object</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -171,6 +180,8 @@
     <room>rooms\dark_forest_1</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
+    <room>rooms\dark_forest_2</room>
+    <room>rooms\dark_forest_3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

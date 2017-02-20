@@ -3,9 +3,9 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-500</depth>
+  <depth>-300</depth>
   <persistent>0</persistent>
-  <parentName>obj_playable</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,21 +25,57 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>string_full = "";
+subString = "";
+direct_speech = false;
 
-text = ""
-shift_text = "";
-text_printed = false;
+global.promptText = "";
+global.greatInfo = "";
+file = -1;
+text_loaded = false;
 
-near = false;
-destroy = false;
-
-show_text = true;
-show_old = true;
-
-//Coordinates when interacted
-xx = x;
-yy = y;
+//speech_sprite = spr_soviet_head;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (string_full != "")
+{
+    var spacePos = string_pos(" ", string_full);
+    if (spacePos != 0)
+    {
+        var new_word = string_copy(string_full, 1, spacePos);
+        subString = string_insert(new_word, subString, string_length(subString) + 1);
+        string_full = string_copy(string_full, spacePos + 1, string_length(string_full));
+        global.greatInfo = subString;
+        alarm[1] = string_length(new_word) * 2;
+    }
+    else
+    {
+        alarm[0] = 150;
+        subString = string_insert(string_full, subString, string_length(subString) + 1);        
+        string_full = "";
+        global.greatInfo = subString;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -62,9 +98,38 @@ yy = y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.greatInfo = "";
-text_printed = false;
-obj_textcontrol.direct_speech = false;
+            <string>if (!file_text_eof(file) and text_loaded == true)
+{
+    string_full = file_text_readln(file);
+    subString = "";
+    var pre_num = real(string_digits(string_full));
+    
+    if (pre_num != 0)
+    {
+        global.greatInfo = "";
+        direct_speech = false;
+        alarm[0] = pre_num * room_speed;
+    }
+    else
+    {
+        if (string_char_at(string_full, 1) == "&amp;")
+        {
+            direct_speech = true;
+            alarm[0] = 1;
+        }
+        else
+        {
+            alarm[1] = 1;
+        }
+    }
+}
+else
+{
+    global.greatInfo = "";
+    file_text_close(file);
+    text_loaded = false;
+    file = -1;
+}
 </string>
           </argument>
         </arguments>
@@ -87,69 +152,24 @@ obj_textcontrol.direct_speech = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (near)
+            <string>///Insert another direct_speech characters here!
+
+if (string_full == "&amp;Advicer")
 {
-    if (!point_in_rectangle(xx, yy, obj_mainhero.x - 30, obj_mainhero.y - obj_mainhero.sprite_height,
-                            obj_mainhero.x + 30, obj_mainhero.y))
-    {
-        global.promptText = "";
-        near = false;
-    }
+    sprite_index = spr_soviet_head;
 }
 
-/* if (obj_mainhero.outsouled and show_text)
+if (!text_loaded and file != -1)
 {
-    show_old = show_text;
-    show_text = false;
-}
-
-if (!obj_mainhero.outsouled and show_old != -1)
-{
-    show_text = show_old;
-    show_old = -1;
-} */
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_mainhero">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>with (other)
-{
-    if (!near)
-    {
-        if (point_in_rectangle(xx, yy, obj_mainhero.x - 30, obj_mainhero.y - obj_mainhero.sprite_height, obj_mainhero.x + 30, obj_mainhero.y + 10))
-        {
-            if (show_text)
-            {
-                global.promptText = shift_text;
-                near = true;
-            }
-        }
-    }
+    text_loaded = true;
+    alarm[0] = 1;
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="1">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -166,10 +186,24 @@ if (!obj_mainhero.outsouled and show_old != -1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = room_speed * 2;
-global.greatInfo = text;
-//obj_textcontrol.speech_sprite = spr_hero_head;
-obj_textcontrol.direct_speech = true;
+            <string>draw_set_font(Underdog_20);
+
+if (global.greatInfo = "")
+{
+    draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - 32, global.promptText, c_white, c_white, c_white, c_white, 1);
+}
+else
+{
+    if (direct_speech)
+    {
+        //draw_sprite(speech_sprite, 0, view_xview[0] + 8, view_yview[0] + view_hview[0] - 32);
+        draw_text_colour(view_xview[0] + 74, view_yview[0] + view_hview[0] - 32, global.greatInfo, c_white, c_white, c_white, c_white, 1);
+    }
+    else
+    {
+        draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - 32, global.greatInfo, c_white, c_white, c_white, c_white, 1);
+    }
+}
 </string>
           </argument>
         </arguments>

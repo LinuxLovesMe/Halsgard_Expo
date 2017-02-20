@@ -173,6 +173,8 @@ else
 
 global.choices = ds_map_create();
 ds_map_add(global.choices, "chaos_choice", 0);
+
+global.previous_room = "main_menu";
 </string>
           </argument>
         </arguments>

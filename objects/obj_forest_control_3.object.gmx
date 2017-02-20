@@ -29,8 +29,7 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
-if (global.previous_room == "dark_forest_2") instance_create(room_width - 280, 968, obj_mainhero);
-else instance_create(300, 968, obj_mainhero);
+instance_create(280, 968, obj_mainhero);
 </string>
           </argument>
         </arguments>
@@ -86,7 +85,7 @@ background_y[5]=floor(view_yview[0]*0.01);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.previous_room = "dark_forest_1";
+            <string>global.previous_room = "dark_forest_3";
 </string>
           </argument>
         </arguments>
