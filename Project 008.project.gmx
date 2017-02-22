@@ -25,6 +25,7 @@
   <NewExtensions>
     <extension index="0">extensions\HanifFlatUI</extension>
     <extension index="1">extensions\PostFx Bundle 1</extension>
+    <extension index="2">extensions\Blur Pack</extension>
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_game_final</sound>
@@ -79,6 +80,7 @@
       <sprite>sprites\spr_mainhero</sprite>
       <sprite>sprites\spr_leaves</sprite>
       <sprite>sprites\spr_temp_object</sprite>
+      <sprite>sprites\spr_oldman</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -107,12 +109,14 @@
     <script>scripts\scr_destruction.gml</script>
     <script>scripts\scr_menu.gml</script>
     <script>scripts\draw_text_outline.gml</script>
+    <script>scripts\gfx_blur.gml</script>
     <script>scripts\draw_old_movie.gml</script>
     <script>scripts\debug_message.gml</script>
     <script>scripts\set_window_size.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_lerp.shader</shader>
+    <shader type="GLSLES">shaders\shd_blur.shader</shader>
     <shader type="GLSLES">shaders\shader_old_movie.shader</shader>
   </shaders>
   <fonts name="fonts">
@@ -172,14 +176,15 @@
       <object>objects\obj_ground</object>
       <object>objects\obj_autumn_fall</object>
       <object>objects\obj_mainhero</object>
+      <object>objects\obj_oldman</object>
       <object>objects\obj_temp_object</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
-    <room>rooms\dark_forest_1</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
+    <room>rooms\dark_forest_1</room>
     <room>rooms\dark_forest_2</room>
     <room>rooms\dark_forest_3</room>
   </rooms>

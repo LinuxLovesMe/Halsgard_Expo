@@ -25,55 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; room_width; i += 32)
-{
-    instance_create(i, room_height - 32, obj_ground);
-}
-
-instance_create(0, 0, obj_cursor);
-instance_create(160, 336, obj_textcontrol);
-
-enum paused { pause, non_pause }
-pause = paused.non_pause;
-
-set_pause_from_other = false;
-esc_forbidden = false;
-dialogue_on = false;
-back_to_circle = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (pause = paused.non_pause)
-{
-    if (instance_exists(obj_mainhero)) obj_mainhero.state = obj_mainhero.old_state;
-    with(obj_playable) playable = true;
-    //if (!esc_forbidden) obj_inventory.hidden = true;
-}    
-else
-{
-    if (instance_exists(obj_mainhero)) obj_mainhero.state = "pause";
-    with(obj_playable) playable = false;
-    //if (!esc_forbidden) obj_inventory.hidden = false;
-}
+            <string>///BLUR
+show_debug_overlay(true);
+blur_type = 0;
+surf_mask = -1;
+surf_mask_width = view_wview[view_current];
+surf_mask_height = view_hview[view_current];
+blur_bokeh = 0;
+blur_centered = true;
 </string>
           </argument>
         </arguments>
@@ -96,22 +55,36 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Game pause control
+            <string>switch (keyboard_key){
+    case ord('1'): blur_type = 0; break;
+    case ord('2'): blur_type = 1; break;
+    case ord('3'): blur_type = 2; break;
+    case ord('4'): blur_type = 3; break;
+    case ord('5'): blur_type = 4; break;
+    case ord('6'): blur_type = 5; break;
+}
 
-if (set_pause_from_other)
-{
-    set_pause_from_other = false;    
-    if (pause == paused.pause)
-    {
-        if (instance_exists(obj_mainhero)) obj_mainhero.old_state = obj_mainhero.state;
-        with(obj_playable) playable = false;       
-    }    
-    if (alarm[0] == -1) alarm[0] = 1;
+if(keyboard_check_pressed(vk_shift)){
+    if(blur_type == 0 || blur_type == 1 || blur_type == 2){
+        if(blur_bokeh == 0){
+            blur_bokeh = 8;
+        }else{
+            blur_bokeh = 0;
+        }
+    }else{
+        if(blur_centered){
+            blur_centered = false;
+        }else{
+            blur_centered = true;
+        }
+    }
 }
 </string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="7" enumb="3">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -128,15 +101,9 @@ if (set_pause_from_other)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///If dialogue control is on
-
-if (dialogue_on)
-{
-    if(!instance_exists(obj_dialogue_control)) instance_activate_object(obj_dialogue_control);
-}
-else
-{
-    if(instance_exists(obj_dialogue_control)) instance_deactivate_object(obj_dialogue_control);
+            <string>///Mask free
+if(surface_exists(surf_mask)){
+    surface_free(surf_mask);
 }
 </string>
           </argument>
@@ -160,22 +127,61 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw blur shader on pause event
+            <string>///BLUR EFFECTS
+switch (blur_type){
+    case 0: //Blur
+        var Size = mouse_x/30;
+        gfx_blur(application_surface,2,Size,blur_bokeh);
+        break;
 
-if (pause == paused.pause)
-{
-    gfx_blur(application_surface, 5, 30, 0);
-}
-else
-{
-    gfx_blur(application_surface, 0, 0, 0);
+    case 1: //Gaussian blur
+        var Size = mouse_x/60;
+        gfx_blur_gaussian(application_surface,4,Size,blur_bokeh);
+        break;
+
+    case 2: //Masked blur
+        if(!surface_exists(surf_mask)){
+            surf_mask = surface_create(surf_mask_width,surf_mask_height);
+        }
+
+        surface_set_target(surf_mask);
+        draw_clear(c_black);
+        draw_sprite(spr_rabbit,0,mouse_x,mouse_y);
+        surface_reset_target();
+
+        var tex_mask = surface_get_texture(surf_mask);
+
+        gfx_blur_masked(application_surface,tex_mask,3,5,blur_bokeh,true);
+        break;
+
+    case 3: //Directional blur
+        /*Note: if you calculate the direction and speed of your camera,
+                you can use this effect as motion blur.
+                
+                or you can use:
+                    https://marketplace.yoyogames.com/assets/4686/advanced-camera-control
+                
+                That already includes basic motion blur and zoom blur.
+                */
+        var Direction = point_direction(640,350,mouse_x,mouse_y);
+        var Size = point_distance(640,350,mouse_x,mouse_y)/5;
+        gfx_blur_directional(application_surface,3,blur_centered,Direction,Size);
+        break;
+
+    case 4: //Radial blur
+        gfx_blur_radial(application_surface,3,mouse_x,mouse_y,blur_centered,100);
+        break;
+
+    case 5: //Twist blur
+        gfx_blur_twist(application_surface,3,mouse_x,mouse_y,15);
+        break;
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="10" enumb="27">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -192,24 +198,20 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Escape from dialogue with this button too
+            <string>draw_set_colour(c_white);
+draw_rectangle(20,20,255,64,false);
 
-if (!dialogue_on) 
-{
-    if (pause == paused.non_pause and !esc_forbidden)
-    {
-        pause = paused.pause;
-        alarm[0] = 1;
-        with(obj_moved) old_state = state;
-        with(obj_playable) playable = false;
-    }    
-    else if (pause == paused.pause and !esc_forbidden)
-    {
-        pause = paused.non_pause;
-        alarm[0] = 1;
-    }
+draw_set_colour(c_black);
+draw_text(20,20,"Press &lt;1-6&gt; to change blur")
+switch (blur_type){
+    case 0: draw_text(20,34,"Press &lt;shift&gt; for bokeh#BLUR") break;
+    case 1: draw_text(20,34,"Press &lt;shift&gt; for bokeh#GAUSSIAN BLUR") break;
+    case 2: draw_text(20,34,"Press &lt;shift&gt; for bokeh#MASKED BLUR") break;
+    case 3: draw_text(20,34,"Press &lt;shift&gt; for centered#DIRECTIONAL BLUR") break;
+    case 4: draw_text(20,34,"Press &lt;shift&gt; for centered#RADIAL BLUR") break;
+    case 5: draw_text(20,34,"TWIST BLUR") break;    
 }
-else dialogue_on = false;
+draw_set_colour(c_white);
 </string>
           </argument>
         </arguments>

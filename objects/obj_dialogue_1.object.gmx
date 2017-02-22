@@ -91,7 +91,7 @@ string_w = sprite_width - 64;
           <argument>
             <kind>1</kind>
             <string>with (obj_dial_icon_1) instance_destroy();
-with (obj_dialogue_snow) instance_destroy();
+with (obj_dialogue_fog) instance_destroy();
 </string>
           </argument>
         </arguments>

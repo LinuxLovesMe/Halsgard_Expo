@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-100</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_playable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -50,6 +50,7 @@ color_danger = make_color_hsv(0, 250, 180);
 lerp_value = 0;
 colour_to_find = shader_get_uniform(shader_lerp, "f_Colour1");
 
+old_state = "idle";
 onGround = false;
 jumped = false;
 allow_walk = true;
@@ -204,7 +205,7 @@ if (state == "falling")
             <kind>1</kind>
             <string>///State = Left
 
-if (keyboard_check_released(ord("A")) xor keyboard_check_released(vk_left))
+if (state == "left")
 {
     if (onGround)
     {
@@ -254,7 +255,7 @@ if (state == "left")
             <kind>1</kind>
             <string>///State = Right
 
-if (keyboard_check_released(ord("D")) xor keyboard_check_released(vk_right))
+if (state == "right")
 {
     if (onGround)
     {
@@ -282,6 +283,32 @@ if (state == "right")
         audio_play_sound(walk_sound, 10, false);
     }
 } */
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// State = Pause
+
+if (state == "pause")
+{
+    allow_walk = false;
+}
 </string>
           </argument>
         </arguments>
@@ -372,7 +399,7 @@ if (state == "jump")
             <kind>1</kind>
             <string>///Hero jump via keyboard keys
 
-if (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up))
+if ((allow_walk) and (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up)))
 {
     if (onGround)
     {
@@ -545,7 +572,7 @@ if (keyboard_check_released(ord("H"))) //Healing main_hero manually
             <kind>1</kind>
             <string>///Check collisions with room borders
 
-if (room_get_name(room) == "dark_forest_1")
+if (room_get_name(room) == "dark_forest_1" and state != "pause")
 {
     if (x - 240 &lt;= 0) 
     {
@@ -556,13 +583,13 @@ if (room_get_name(room) == "dark_forest_1")
     if (x + 240 &gt; room_width) room_goto (dark_forest_2);
 }
 
-if (room_get_name(room) == "dark_forest_2")
+if (room_get_name(room) == "dark_forest_2" and state != "pause")
 {
     if (x - 240 &lt;= 0) room_goto (dark_forest_1);
     if (x + 240 &gt; room_width) room_goto (dark_forest_3);
 }
 
-if (room_get_name(room) == "dark_forest_3")
+if (room_get_name(room) == "dark_forest_3" and state != "pause")
 {
     if (x - 240 &lt;= 0) room_goto (dark_forest_2);
         

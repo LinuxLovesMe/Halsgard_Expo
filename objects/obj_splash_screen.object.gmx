@@ -175,6 +175,7 @@ global.choices = ds_map_create();
 ds_map_add(global.choices, "chaos_choice", 0);
 
 global.previous_room = "main_menu";
+global.tutorial[0] = 0;
 </string>
           </argument>
         </arguments>
