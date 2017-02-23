@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="3" name="datafiles">
+  <datafiles number="5" name="datafiles">
     <datafile>
       <name>Dialogue_1.txt</name>
       <exists>-1</exists>
@@ -20,6 +20,40 @@
         </Config>
       </ConfigOptions>
       <filename>Dialogue_1.txt</filename>
+    </datafile>
+    <datafile>
+      <name>Theme_1.txt</name>
+      <exists>-1</exists>
+      <size>169</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Theme_1.txt</filename>
+    </datafile>
+    <datafile>
+      <name>Dialogue_2_0.txt</name>
+      <exists>-1</exists>
+      <size>1584</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Dialogue_2_0.txt</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -79,8 +113,11 @@
     <sprites name="dark_forest">
       <sprite>sprites\spr_mainhero</sprite>
       <sprite>sprites\spr_leaves</sprite>
-      <sprite>sprites\spr_temp_object</sprite>
       <sprite>sprites\spr_oldman</sprite>
+      <sprite>sprites\spr_main_1</sprite>
+      <sprite>sprites\spr_main_2</sprite>
+      <sprite>sprites\spr_main_3</sprite>
+      <sprite>sprites\spr_temp_object</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -170,21 +207,25 @@
         <object>objects\obj_interacted</object>
         <object>objects\obj_standing_on</object>
       </objects>
+      <objects name="interactive_objects">
+        <object>objects\obj_ground</object>
+        <object>objects\obj_autumn_fall</object>
+        <object>objects\obj_mainhero</object>
+        <object>objects\obj_oldman</object>
+        <object>objects\obj_temp_object</object>
+        <object>objects\obj_main_1</object>
+        <object>objects\obj_dialogue_2</object>
+      </objects>
       <object>objects\obj_forest_control_1</object>
       <object>objects\obj_forest_control_2</object>
       <object>objects\obj_forest_control_3</object>
-      <object>objects\obj_ground</object>
-      <object>objects\obj_autumn_fall</object>
-      <object>objects\obj_mainhero</object>
-      <object>objects\obj_oldman</object>
-      <object>objects\obj_temp_object</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
+    <room>rooms\dark_forest_1</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
-    <room>rooms\dark_forest_1</room>
     <room>rooms\dark_forest_2</room>
     <room>rooms\dark_forest_3</room>
   </rooms>

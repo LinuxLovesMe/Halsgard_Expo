@@ -39,6 +39,8 @@ else instance_create(300, 968, obj_mainhero);
 text = "";
 
 instance_create(room_width - 750, 968, obj_oldman);
+instance_create(0, 0, obj_main_1);
+instance_deactivate_object(obj_main_1);
 </string>
           </argument>
         </arguments>
@@ -101,6 +103,36 @@ background_y[2]=floor(view_yview[0]*0.4);
 background_y[3]=floor(view_yview[0]*0.2);
 background_y[4]=floor(view_yview[0]*0.2);
 background_y[5]=floor(view_yview[0]*0.01);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If dialogue is on
+
+if (dialogue_on)
+{
+    if (!instance_exists(obj_main_1)) instance_activate_object(obj_main_1);
+}
+else
+{
+    if (instance_exists(obj_main_1)) instance_deactivate_object(obj_main_1);
+}
 </string>
           </argument>
         </arguments>
