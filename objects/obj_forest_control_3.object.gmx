@@ -29,7 +29,7 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
-instance_create(280, 968, obj_mainhero);
+instance_create(240, 968, obj_mainhero);
 </string>
           </argument>
         </arguments>

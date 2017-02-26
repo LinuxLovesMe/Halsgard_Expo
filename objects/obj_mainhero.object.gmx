@@ -51,8 +51,9 @@ lerp_value = 0;
 colour_to_find = shader_get_uniform(shader_lerp, "f_Colour1");
 
 old_state = "idle";
-onGround = false;
 jumped = false;
+onGround = false;
+border_const = 234;
 allow_walk = true;
 </string>
           </argument>
@@ -574,26 +575,26 @@ if (keyboard_check_released(ord("H"))) //Healing main_hero manually
 
 if (room_get_name(room) == "dark_forest_1" and state != "pause")
 {
-    if (x - 240 &lt;= 0) 
+    if (x - border_const &lt;= 0) 
     {
         allow_walk = false; x += 2;
     }
     else allow_walk = true;
     
-    if (x + 240 &gt; room_width) room_goto (dark_forest_2);
+    if (x + border_const &gt; room_width) room_goto (dark_forest_2);
 }
 
 if (room_get_name(room) == "dark_forest_2" and state != "pause")
 {
-    if (x - 240 &lt;= 0) room_goto (dark_forest_1);
-    if (x + 240 &gt; room_width) room_goto (dark_forest_3);
+    if (x - border_const &lt;= 0) room_goto (dark_forest_1);
+    if (x + border_const &gt; room_width) room_goto (dark_forest_3);
 }
 
 if (room_get_name(room) == "dark_forest_3" and state != "pause")
 {
-    if (x - 240 &lt;= 0) room_goto (dark_forest_2);
+    if (x - border_const &lt;= 0) room_goto (dark_forest_2);
         
-    if (x + 240 &gt; room_width)
+    if (x + border_const &gt; room_width)
     {
         allow_walk = false; x -= 2;
     }

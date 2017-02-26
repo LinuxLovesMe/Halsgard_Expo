@@ -77,7 +77,14 @@ y = y_origin;
 
 if (keyboard_check_pressed(ord("E")))
 {
-    obj_forest_control_1.dialogue_on = true;
+    if (obj_forest_control_1.dialogue_exists)
+    {
+        obj_forest_control_1.dialogue_on = true;
+    }
+    else
+    {
+        global.greatInfo = "Уверен, у тебя сейчас есть дела по-важнее.";
+    }
 }
 </string>
           </argument>

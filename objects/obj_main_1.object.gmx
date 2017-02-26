@@ -39,6 +39,8 @@ theme_info = ds_map_create();
 separator = 30;
 save_theme = "";
 
+parent = obj_forest_control_1;
+
 file = file_text_open_read("Theme_1.txt");
 while (!file_text_eof(file))
 {
@@ -116,7 +118,60 @@ for (var i = 0; i &lt; 8; i++)
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (parent.dialogue_on) 
+{
+    parent.dialogue_exists = 0;
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If AP has ended
+
+if (parent.dialogue_on and AP_amount &lt; 1)
+{
+    if (alarm[2] == -1) alarm[2] = room_speed / 2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -252,7 +307,7 @@ for (i = 0; i &lt; ds_map_size(theme_info); i++)
             filename = string(ds_map_find_value(theme_info, iterator));
             if (!instance_exists(obj_dialogue_2)) instance_create(0, 0, obj_dialogue_2);
             AP_amount -= 1;
-            obj_forest_control_1.dialogue_on = false;
+            parent.dialogue_on = false;
         }
     }
 }
@@ -279,6 +334,8 @@ for (i = 0; i &lt; ds_map_size(theme_info); i++)
           <argument>
             <kind>1</kind>
             <string>///Draw three rings
+
+draw_sprite(spr_frosty_back, 0, view_xview[0], view_yview[0]);
 
 draw_sprite_ext(spr_main_1, 0, center_x, center_y, 1, 1, 0, c_white, 1);
 
@@ -316,6 +373,37 @@ for (var i = 0; i &lt; 8; i++)
         draw_set_font(Underdog_20);
         draw_text_ext(center_x - sprite_get_width(spr_main_3) / 3, center_y - sprite_get_height(spr_main_3) / 3, text, separator, sprite_get_width(spr_main_3));
     }
+}
+
+draw_set_font(Underdog_30);
+draw_text_outline(view_xview[0] + 20, view_yview[0] + 14, "Собеседник: Советник", 1, c_black, 16);
+if (AP_amount &gt;=0) draw_text_outline(view_xview[0] + view_wview[0] - 302, view_yview[0] + view_hview[0] - 60, "Осталось ОД: " + string(AP_amount), 1, c_black, 16);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (parent.dialogue_on) 
+{
+    parent.dialogue_exists = 0;
+    instance_destroy();
 }
 </string>
           </argument>

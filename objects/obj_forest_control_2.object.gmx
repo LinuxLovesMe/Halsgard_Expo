@@ -29,8 +29,12 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
-if (global.previous_room == "dark_forest_3") instance_create(room_width - 280, 968, obj_mainhero);
-else instance_create(280, 968, obj_mainhero);
+if (global.previous_room == "dark_forest_3") instance_create(room_width - 240, 968, obj_mainhero);
+else
+{
+    instance_create(240, 968, obj_mainhero);
+    obj_mainhero.image_xscale = -1;
+}
 
 instance_create(1360, 600, obj_temp_object);
 </string>

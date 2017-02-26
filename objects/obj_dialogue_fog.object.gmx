@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 1;
+            <string>if (instance_exists(obj_ragn_control)) image_index = 1;
 </string>
           </argument>
         </arguments>
@@ -71,7 +71,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>if (instance_exists(obj_forest_control_1))
+{
+    draw_sprite(spr_frosty_back, 0, view_xview[0], view_yview[0]);
+}
+
+draw_self();
 </string>
           </argument>
         </arguments>
