@@ -76,11 +76,11 @@
     </sprites>
     <sprites name="main_menu">
       <sprite>sprites\spr_blur_menu</sprite>
-      <sprite>sprites\spr_fire</sprite>
       <sprite>sprites\spr_cursor</sprite>
-      <sprite>sprites\spr_option_menu</sprite>
+      <sprite>sprites\spr_light</sprite>
       <sprite>sprites\spr_snowflake</sprite>
-      <sprite>sprites\spr_birds_animation</sprite>
+      <sprite>sprites\spr_lamp</sprite>
+      <sprite>sprites\spr_option_menu</sprite>
     </sprites>
     <sprites name="ragnarok_game">
       <sprites name="intro_zeber">
@@ -106,8 +106,11 @@
         <sprite>sprites\spr_final_sprite</sprite>
         <sprite>sprites\spr_final_font</sprite>
         <sprite>sprites\spr_dialogue_1</sprite>
-        <sprite>sprites\spr_dialogue_2</sprite>
         <sprite>sprites\spr_dialogue_4</sprite>
+        <sprite>sprites\spr_dialogue_2</sprite>
+        <sprite>sprites\spr_dialogue_3</sprite>
+        <sprite>sprites\spr_dialogue_5</sprite>
+        <sprite>sprites\spr_dialogue_6</sprite>
       </sprites>
     </sprites>
     <sprites name="dark_forest">
@@ -167,14 +170,12 @@
     <object>objects\obj_final_part</object>
     <object>objects\obj_final_control</object>
     <objects name="main_menu">
-      <objects name="asset_objects">
-        <object>objects\obj_fire_12</object>
-      </objects>
       <object>objects\obj_menu</object>
       <object>objects\obj_menu_music</object>
-      <object>objects\obj_birds</object>
+      <object>objects\obj_lamp</object>
       <object>objects\obj_cursor</object>
       <object>objects\obj_option_menu</object>
+      <object>objects\obj_light</object>
       <object>objects\obj_snowflake</object>
       <object>objects\obj_snow_control</object>
     </objects>
@@ -188,8 +189,8 @@
         <object>objects\obj_paper_1</object>
       </objects>
       <objects name="ragnarok_dialogue">
-        <object>objects\obj_dial_icon_1</object>
         <object>objects\obj_dialogue_1</object>
+        <object>objects\obj_dial_icon</object>
         <object>objects\obj_dialogue_fog</object>
       </objects>
       <objects name="cardboard_game">
@@ -223,9 +224,9 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
+    <room>rooms\dark_forest_1</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
-    <room>rooms\dark_forest_1</room>
     <room>rooms\dark_forest_2</room>
     <room>rooms\dark_forest_3</room>
   </rooms>

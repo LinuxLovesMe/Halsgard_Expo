@@ -59,9 +59,9 @@ while (!file_text_eof(file))
         str = string_replace_all(str, "@", "");
         str = string_copy(str, 0, 12);
         ds_map_replace(theme_info, save_theme, str);
-        debug_message(save_theme, str);
     }
 }
+
 file_text_close(file);
 </string>
           </argument>

@@ -3,7 +3,7 @@
   <spriteName>spr_dialogue_1</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-20</depth>
+  <depth>-180</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -28,7 +28,8 @@
             <string>x = room_width / 2;
 y = room_height / 2;
 instance_create(x, y, obj_dialogue_fog);
-instance_create(x, y, obj_dial_icon_1);
+instance_create(x, y, obj_dial_icon);
+instance_create(0, 0, obj_snow_control);
 
 xx = x - sprite_width / 2; //start x-point of dialogue sprite
 yy = y - sprite_height / 2; //start y-point of dialogue sprite
@@ -90,8 +91,32 @@ string_w = sprite_width - 64;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (obj_dial_icon_1) instance_destroy();
+            <string>with (obj_snow_control) instance_destroy();
+with (obj_dial_icon) instance_destroy();
 with (obj_dialogue_fog) instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///No code here!
 </string>
           </argument>
         </arguments>
@@ -114,7 +139,8 @@ with (obj_dialogue_fog) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!replica)
+            <string>pointer_t = 0;
+if (replica == 0)
 {
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
@@ -164,6 +190,60 @@ with (obj_dialogue_fog) instance_destroy();
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="57">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (replica == 1)
+{
+    mouse_clear(mb_right);
+    replica = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (replica == 1)
+{
+    mouse_clear(mb_left);
+    replica = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
@@ -184,6 +264,7 @@ with (obj_dialogue_fog) instance_destroy();
             <string>draw_self();
 myColor = make_colour_rgb(120, 168, 194);
 draw_set_font(Underdog_20);
+Color2 = make_colour_rgb(150, 210, 242);
 
 text = 0; text[0] = info[pointer, 0];
 
@@ -213,7 +294,7 @@ else
     {
         if (active_answer &gt; 0 and active_answer == k)
         {
-            draw_text_ext_transformed_colour(xx + 36, yy + offset, text[k], separator_a, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+            draw_text_ext_transformed_colour(xx + 36, yy + offset, text[k], separator_a, string_w, 1, 1, 0, Color2, Color2, Color2, Color2, 1);
         }
         else
         {

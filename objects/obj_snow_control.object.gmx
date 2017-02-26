@@ -27,7 +27,8 @@
             <kind>1</kind>
             <string>randomize();
 
-instance_create(random(room_width), 0,obj_snowflake);
+instance_create(random(room_width * 2), 0, obj_snowflake);
+instance_create(random(room_width * 2), 0, obj_snowflake);
 </string>
           </argument>
         </arguments>
