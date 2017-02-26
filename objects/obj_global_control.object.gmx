@@ -45,40 +45,6 @@ back_to_circle = false;
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (pause = paused.non_pause)
-{
-    if (instance_exists(obj_mainhero)) obj_mainhero.state = obj_mainhero.old_state;
-    with(obj_playable) playable = true;
-    //if (!esc_forbidden) obj_inventory.hidden = true;
-}    
-else
-{
-    if (instance_exists(obj_mainhero)) obj_mainhero.state = "pause";
-    with(obj_playable) playable = false;
-    //if (!esc_forbidden) obj_inventory.hidden = false;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -98,15 +64,22 @@ else
             <kind>1</kind>
             <string>///Game pause control
 
-if (set_pause_from_other)
+if (pause == paused.non_pause)
 {
-    set_pause_from_other = false;    
-    if (pause == paused.pause)
+    if (instance_exists(obj_mainhero))
     {
+        obj_mainhero.state = obj_mainhero.old_state;
+    }
+}
+
+if (pause == paused.pause)
+{
+    if (set_pause_from_other)
+    {
+        set_pause_from_other = false;
         if (instance_exists(obj_mainhero)) obj_mainhero.old_state = obj_mainhero.state;
-        with(obj_playable) playable = false;       
-    }    
-    if (alarm[0] == -1) alarm[0] = 1;
+    }
+    if (instance_exists(obj_mainhero)) obj_mainhero.state = "pause";
 }
 </string>
           </argument>
@@ -139,42 +112,6 @@ if (pause == paused.pause)
 else
 {
     gfx_blur(application_surface, 0, 0, 0);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="27">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Alias global pause menu
-
-if (pause == paused.non_pause and !esc_forbidden)
-{
-    pause = paused.pause;
-    if (instance_exists(obj_mainhero)) obj_mainhero.old_state = obj_mainhero.state;
-    with(obj_playable) playable = false;
-    alarm[0] = 1;
-}    
-else if (pause == paused.pause and !esc_forbidden)
-{
-    pause = paused.non_pause;
-    alarm[0] = 1;
 }
 </string>
           </argument>

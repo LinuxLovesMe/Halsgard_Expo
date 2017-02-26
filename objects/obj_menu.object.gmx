@@ -34,8 +34,8 @@ instance_create(0, 0, obj_cursor);
 space = 90;
 curr_pos = 0;
 
-menu_x = 1194;
-menu_y = 568;
+menu_x = 1192;
+menu_y = 604;
 
 menu_0_height = menu_y + space;
 menu_1_height = menu_0_height + space;
