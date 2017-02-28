@@ -43,6 +43,7 @@ if (global.tutorial[0] == 0)
     instance_create(room_width - 750, 968, obj_oldman);
     instance_create(0, 0, obj_main_1);
     instance_deactivate_object(obj_main_1);
+    instance_create(0, 0, obj_fade_effect);
 }
 dialogue_exists = 1;
 </string>

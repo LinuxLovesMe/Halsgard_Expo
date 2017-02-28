@@ -35,7 +35,7 @@ space = 80;
 curr_pos = 0;
 
 menu_x = 1192;
-menu_y = 580;
+menu_y = 598;
 
 menu_0_height = menu_y + space;
 menu_1_height = menu_0_height + space;
