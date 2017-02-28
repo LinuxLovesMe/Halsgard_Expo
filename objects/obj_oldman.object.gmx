@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-100</depth>
   <persistent>0</persistent>
-  <parentName>obj_playable</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -36,6 +36,31 @@ cough_cooldown = false;
 
 counter = 0;
 move_distance = 0;
+
+say_string = "Уверен, что сейчас у тебя есть более важные дела.";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.greatInfo = "";
 </string>
           </argument>
         </arguments>
@@ -137,26 +162,29 @@ if (obj_forest_control_1.pause == paused.pause)
 }
 else
 {
-    randomize();
-    var rand = irandom_range(1, 400);
+    if (state == "idle" or state == "walk")
+    {
+        randomize();
+        var rand = irandom_range(1, 400);
     
-    if (rand == 5 and !cough_cooldown)
-    {
-        old_state = "idle";
-        cough_cooldown = true;
-        alarm[0] = irandom_range(room_speed * 3, room_speed * 8);
-        state = "cough";
-    }
-    else if (rand == 10 and !watch_cooldown)
-    {
-        old_state = "idle";
-        watch_cooldown = true;
-        alarm[1] = irandom_range(room_speed * 5, room_speed * 8);
-        state = "watch";
-    }
-    else
-    {
-        if ((state != "cough") and (state != "watch")) state = "walk";   
+        if (rand == 5 and !cough_cooldown)
+        {
+            old_state = "idle";
+            cough_cooldown = true;
+            alarm[0] = irandom_range(room_speed * 3, room_speed * 8);
+            state = "cough";
+        }
+        else if (rand == 10 and !watch_cooldown)
+        {
+            old_state = "idle";
+            watch_cooldown = true;
+            alarm[1] = irandom_range(room_speed * 5, room_speed * 8);
+            state = "watch";
+        }
+        else
+        {
+            if ((state != "cough") and (state != "watch")) state = "walk";   
+        }
     }
 }
 
@@ -219,18 +247,18 @@ if (state == "walk")
     sprite_index = spr_oldman_walk;
     image_speed = 0.14;
     
-    if (x + move_distance &lt;= x_center - 140)
+    if (x + move_distance &lt;= x_center - 300)
     {
         image_xscale = -image_xscale;
     }
     
-    if (x + move_distance &gt;= x_center + 100)
+    if (x + move_distance &gt;= x_center + 60)
     {
         image_xscale = -image_xscale;
     }
     
-    if (image_xscale == -1) move_distance += 0.2;
-    else move_distance -= 0.2;
+    if (image_xscale == -1) move_distance += 0.3;
+    else move_distance -= 0.3;
 }
 
 x += move_distance;
@@ -299,17 +327,20 @@ if (state == "watch")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Turning dialogue on
+            <string>///Create dialogue instance (only once)
 
 if (keyboard_check_pressed(ord("E")))
 {
     if (obj_forest_control_1.dialogue_exists)
     {
+        instance_create(0, 0, obj_main_1); //Create dialogue controller
         obj_forest_control_1.dialogue_on = true;
+        obj_forest_control_1.pause = paused.pause;
     }
     else
     {
-        global.greatInfo = "Уверен, у тебя сейчас есть дела по-важнее.";
+        global.greatInfo = say_string;
+        if (alarm[2] == -1 and global.greatInfo == say_string) alarm[2] = room_speed * 4; //Clear greatInfo text
     }
 }
 </string>

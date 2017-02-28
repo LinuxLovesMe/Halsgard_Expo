@@ -672,9 +672,9 @@ if (rounds == cards_number)
     draw_set_font(Underdog_36);
     if (!obj_ragn_control.stop_game)
     {
-        if (total_score &gt; 0) draw_text((room_width - string_width("Победа Эйда")) / 2 + 52, 660, "Победа Эйда");
-        else if(total_score &lt; 0) draw_text((room_width - string_width("Победа Советника")) / 2 + 58, 660, "Победа Советника");
-        else if(total_score == 0) draw_text((room_width - string_width("Победителя нет")) / 2 + 54, 660, "Победителя нет");
+        if (total_score &gt; 0) draw_text((room_width - string_width("Победа Эйда")) / 2 + 52, 650, "Победа Эйда");
+        else if(total_score &lt; 0) draw_text((room_width - string_width("Победа Советника")) / 2 + 58, 650, "Победа Советника");
+        else if(total_score == 0) draw_text((room_width - string_width("Победителя нет")) / 2 + 54, 650, "Победителя нет");
     }
 }
 

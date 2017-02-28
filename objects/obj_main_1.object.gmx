@@ -135,11 +135,12 @@ for (var i = 0; i &lt; 8; i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (parent.dialogue_on) 
-{
-    parent.dialogue_exists = 0;
-    instance_destroy();
-}
+            <string>///Destroy dialogue after Esc or AP has ended
+
+parent.dialogue_exists = 0;
+parent.dialogue_on = false;
+parent.pause = paused.non_pause;
+instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -188,7 +189,9 @@ if (parent.dialogue_on and AP_amount &lt; 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (rotated == 1)
+            <string>///Dialogue main controller
+
+if (rotated == 1)
 {
     angle += 1;
     if (angle &gt;= old_angle + 45) rotated = false;
@@ -400,11 +403,9 @@ if (AP_amount &gt;=0) draw_text_outline(view_xview[0] + view_wview[0] - 302, vie
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (parent.dialogue_on) 
-{
-    parent.dialogue_exists = 0;
-    instance_destroy();
-}
+            <string>///If Esc has been released
+
+if (alarm[2] == -1) alarm[2] = 4;
 </string>
           </argument>
         </arguments>

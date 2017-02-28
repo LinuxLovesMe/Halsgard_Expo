@@ -216,7 +216,6 @@
     <objects name="dark_forest">
       <objects name="anarchy_control">
         <object>objects\obj_global_control</object>
-        <object>objects\obj_playable</object>
         <object>objects\obj_textcontrol</object>
         <object>objects\obj_interacted</object>
         <object>objects\obj_standing_on</object>
@@ -233,6 +232,8 @@
       <object>objects\obj_forest_control_1</object>
       <object>objects\obj_forest_control_2</object>
       <object>objects\obj_forest_control_3</object>
+      <object>objects\obj_journal</object>
+      <object>objects\obj_quest_resorting</object>
     </objects>
   </objects>
   <rooms name="rooms">

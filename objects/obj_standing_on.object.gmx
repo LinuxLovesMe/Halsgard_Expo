@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>180</depth>
   <persistent>0</persistent>
-  <parentName>obj_playable</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events/>
   <PhysicsObject>0</PhysicsObject>
