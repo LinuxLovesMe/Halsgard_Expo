@@ -175,13 +175,14 @@ global.choices = ds_map_create();
 ds_map_add(global.choices, "chaos_choice", 0);
 
 global.previous_room = "main_menu";
-global.tutorial[0] = 0;
 
-for (i = 0; i &lt; 6; i++)
+for (i = 0; i &lt; 6; i++) //Generate arrays for Quests
 {
     global.complete[i] = "";
     global.uncomplete[i] = "";
 }
+
+for (j = 0; j &lt; 4; j++) global.tutorial[i] = 0; //Generate array for Tutorials
 </string>
           </argument>
         </arguments>

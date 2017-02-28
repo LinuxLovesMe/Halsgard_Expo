@@ -29,14 +29,51 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
-if (global.previous_room == "dark_forest_3") instance_create(room_width - 240, 968, obj_mainhero);
+if (global.previous_room == "dark_forest_3")
+{
+    instance_create(room_width - 240, 968, obj_mainhero);
+}
 else
 {
     instance_create(240, 968, obj_mainhero);
     obj_mainhero.image_xscale = -1;
 }
 
-instance_create(1360, 600, obj_temp_object);
+if (global.tutorial[3] == 0) dialogue_exists = 1; //Allow to create dialogue only once!
+else dialogue_exists = 0;
+
+text = "";
+tutorial_text[3] = "Кажется, эта штука за мной следит! Надо бы проверить её при помощи ПКМ (ЛКМ - далее).";
+
+instance_create(2400, 960, obj_oldman);
+instance_create(1780, 300, obj_masquerade);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Clear text of tutorial message
+
+pause = paused.non_pause;
+text = "";
+global.greatInfo = "";
 </string>
           </argument>
         </arguments>
@@ -59,7 +96,39 @@ instance_create(1360, 600, obj_temp_object);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>background_x[1]=floor(view_xview[0]*0.8);
+            <string>///Basic events for forest_controller
+
+event_inherited();
+
+esc_forbidden = false;
+
+if (text != "")
+{
+    global.greatInfo = text;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parallax settings
+
+background_x[1]=floor(view_xview[0]*0.8);
 background_x[2]=floor(view_xview[0]*0.4);
 background_x[3]=floor(view_xview[0]*0.2);
 background_x[4]=floor(view_xview[0]*0.2);
@@ -70,6 +139,69 @@ background_y[2]=floor(view_yview[0]*0.4);
 background_y[3]=floor(view_yview[0]*0.2);
 background_y[4]=floor(view_yview[0]*0.2);
 background_y[5]=floor(view_yview[0]*0.01);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Tutorial [3] with game pause (only once)
+
+if (instance_exists(obj_mainhero))
+{
+    if (obj_mainhero.x &gt; 600) global.tutorial[3]++;
+}
+
+if (global.tutorial[3] == 1) //Block pause menu if tutorial is active
+{
+    esc_forbidden = true;
+    global.tutorial[3]++;
+    pause = paused.pause;
+    text = tutorial_text[3];
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Break tutorial pause earlier
+
+if (global.tutorial[3] &gt; 1 and global.tutorial[3] != 13 and pause == paused.pause)
+{
+    alarm[10] = 4;
+    global.tutorial[3] = 13;
+}
 </string>
           </argument>
         </arguments>
@@ -93,6 +225,35 @@ background_y[5]=floor(view_yview[0]*0.01);
           <argument>
             <kind>1</kind>
             <string>global.previous_room = "dark_forest_2";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Break tutorial pause earlier
+
+if (global.tutorial[3] &gt; 1 and global.tutorial[3] != 13 and pause == paused.pause)
+{
+    alarm[10] = 4;
+    global.tutorial[3] = 13;
+}
 </string>
           </argument>
         </arguments>

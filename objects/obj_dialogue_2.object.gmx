@@ -154,7 +154,7 @@ if (!replica)
         switch (pointer_t)
         {
             case 50:
-                obj_forest_control_1.dialogue_on = true;
+                obj_forest_control_2.dialogue_on = true;
                 instance_destroy();
             break;
             

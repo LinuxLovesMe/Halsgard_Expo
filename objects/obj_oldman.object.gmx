@@ -156,7 +156,7 @@ x_center = x_origin + floor(view_xview[0] * 0.2);
             <kind>1</kind>
             <string>///State = Idle
 
-if (obj_forest_control_1.pause == paused.pause)
+if (obj_forest_control_2.pause == paused.pause)
 {
     state = "idle";
 }
@@ -331,11 +331,11 @@ if (state == "watch")
 
 if (keyboard_check_pressed(ord("E")))
 {
-    if (obj_forest_control_1.dialogue_exists)
+    if (obj_forest_control_2.dialogue_exists)
     {
         instance_create(0, 0, obj_main_1); //Create dialogue controller
-        obj_forest_control_1.dialogue_on = true;
-        obj_forest_control_1.pause = paused.pause;
+        obj_forest_control_2.dialogue_on = true;
+        obj_forest_control_2.pause = paused.pause;
     }
     else
     {

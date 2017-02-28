@@ -71,7 +71,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(obj_forest_control_1))
+            <string>if (instance_exists(obj_forest_control_2))
 {
     draw_sprite(spr_frosty_back, 0, view_xview[0], view_yview[0]);
 }

@@ -139,12 +139,12 @@ else
 draw_set_font(Underdog_20);
 draw_set_colour(c_white);
 
-if (page_1) draw_text(room_width - 460, room_height - 106, "ЛКМ - СЛЕДУЮЩАЯ СТРАНИЦА");
+if (page_1) draw_text(room_width - 468, room_height - 106, "[ЛКМ] - СЛЕДУЮЩАЯ СТРАНИЦА");
 
 if (page_2) 
 {
-    draw_text(54, room_height - 106, "ПКМ - ПРЕДЫДУЩАЯ СТРАНИЦА");
-    draw_text(room_width - 358, room_height - 106, "ЛКМ - К БИТВЕ!");
+    draw_text(40, room_height - 106, "[ПКМ] - ПРЕДЫДУЩАЯ СТРАНИЦА");
+    draw_text(room_width - 354, room_height - 106, "[ЛКМ] - К БИТВЕ!");
 }
 </string>
           </argument>

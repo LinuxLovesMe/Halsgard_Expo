@@ -29,11 +29,17 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
-if (global.tutorial[0] == 0) // Only in first time
+if (global.tutorial[0] == 0) // Only in the first time
 {
     instance_create(0, 0, obj_fade_effect);
-    dialogue_exists = 1;
+    global.uncomplete[0] = "Квест 1: Исследовать обстановку.";
+    global.uncomplete[1] = "Квест 2: Побеседовать с Советником.";
 }
+
+text = "";
+tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";
+tutorial_text[2] = "Найдите Советника и нажмите [E] рядом с ним, чтобы начать разговор (ЛКМ - далее).";
+tutorial_text[1] = "В гиде по выживанию [Esc] всегда можно прочесть свежие игровые подсказки (ЛКМ - далее).";
 
 if (global.previous_room == "dark_forest_2")
 {
@@ -41,11 +47,6 @@ if (global.previous_room == "dark_forest_2")
     obj_mainhero.image_xscale = -1;
 }
 else instance_create(300, 968, obj_mainhero);
-
-text = "";
-instance_create(room_width - 750, 960, obj_oldman);
-
-global.complete[1] = "Квест 1: Поговорить с Советником.";
 </string>
           </argument>
         </arguments>
@@ -71,8 +72,8 @@ global.complete[1] = "Квест 1: Поговорить с Советником
             <string>///Clear text of tutorial message
 
 pause = paused.non_pause;
-global.greatInfo = ""; text = "";
-set_pause_from_other = true;
+text = "";
+global.greatInfo = "";
 </string>
           </argument>
         </arguments>
@@ -95,7 +96,7 @@ set_pause_from_other = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check different conditions
+            <string>///Basic events for forest_controller
 
 event_inherited();
 
@@ -158,24 +159,25 @@ background_y[5]=floor(view_yview[0]*0.01);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Tutorial #1 with game pause (only once)
+            <string>///Tutorials [0-2] with game pause (only once)
 
 if (instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.x &gt; (room_width / 2 - 240)) global.tutorial[0]++;
+    if (obj_mainhero.x &gt; 900) global.tutorial[0]++;
+    if (obj_mainhero.x &gt; 1760) global.tutorial[1]++;
+    if (obj_mainhero.x &gt; 2300) global.tutorial[2]++;
 }
 
-for (i = 0; i &lt; 1; i++)
+for (i = 0; i &lt; 3; i++)
 {
-    if (global.tutorial[i] == 1) esc_forbidden = true;
-    break;
-}
-
-if (global.tutorial[0] == 1)
-{
-    global.tutorial[0]++;
-    pause = paused.pause;
-    text = "Подойдите к Советнику и нажмите [E], чтобы вспомнить беседу.";    
+    if (global.tutorial[i] == 1) //Block pause menu if tutorial is active
+    {
+        esc_forbidden = true;
+        global.tutorial[i]++;
+        pause = paused.pause;
+        text = tutorial_text[i];
+        break;
+    }
 }
 </string>
           </argument>
@@ -201,10 +203,13 @@ if (global.tutorial[0] == 1)
             <kind>1</kind>
             <string>///Break tutorial pause earlier
 
-if (global.tutorial[0] &gt; 1 and global.tutorial[0] != 13 and pause == paused.pause)
+for (i = 0; i &lt; 3; i++)
 {
-    alarm[10] = 4;
-    global.tutorial[0] = 13;
+    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and pause == paused.pause)
+    {
+        alarm[10] = 4;
+        global.tutorial[i] = 13;
+    }
 }
 </string>
           </argument>
@@ -253,10 +258,13 @@ if (global.tutorial[0] &gt; 1 and global.tutorial[0] != 13 and pause == paused.p
             <kind>1</kind>
             <string>///Break tutorial pause earlier
 
-if (global.tutorial[0] &gt; 1 and global.tutorial[0] != 13 and pause == paused.pause)
+for (i = 0; i &lt; 3; i++)
 {
-    alarm[10] = 4;
-    global.tutorial[0] = 13;
+    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and pause == paused.pause)
+    {
+        alarm[10] = 4;
+        global.tutorial[i] = 13;
+    }
 }
 </string>
           </argument>

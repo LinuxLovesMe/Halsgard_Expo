@@ -39,7 +39,7 @@ theme_info = ds_map_create();
 separator = 30;
 save_theme = "";
 
-parent = obj_forest_control_1;
+parent = obj_forest_control_2;
 
 file = file_text_open_read("Theme_1.txt");
 while (!file_text_eof(file))

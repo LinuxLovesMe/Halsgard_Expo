@@ -117,18 +117,29 @@
       <sprite>sprites\spr_intro_2</sprite>
       <sprite>sprites\spr_tutorial_2</sprite>
     </sprites>
-    <sprites name="dark_forest">
+    <sprites name="dark_forest_1">
       <sprite>sprites\spr_mainhero</sprite>
-      <sprite>sprites\spr_leaves</sprite>
       <sprite>sprites\spr_frosty_back</sprite>
-      <sprite>sprites\spr_main_1</sprite>
-      <sprite>sprites\spr_main_2</sprite>
-      <sprite>sprites\spr_main_3</sprite>
-      <sprite>sprites\spr_temp_object</sprite>
-      <sprite>sprites\spr_oldman_idle</sprite>
-      <sprite>sprites\spr_oldman_cough</sprite>
-      <sprite>sprites\spr_oldman_walk</sprite>
-      <sprite>sprites\spr_oldman_watch</sprite>
+      <sprite>sprites\spr_leaves</sprite>
+      <sprite>sprites\spr_quest_journal</sprite>
+    </sprites>
+    <sprites name="dark_forest_2">
+      <sprites name="rune_dialogue">
+        <sprite>sprites\spr_main_1</sprite>
+        <sprite>sprites\spr_main_2</sprite>
+        <sprite>sprites\spr_main_3</sprite>
+      </sprites>
+      <sprites name="mask_group">
+        <sprite>sprites\spr_mask_1</sprite>
+        <sprite>sprites\spr_mask_2</sprite>
+        <sprite>sprites\spr_mask_3</sprite>
+      </sprites>
+      <sprites name="oldman_group">
+        <sprite>sprites\spr_oldman_idle</sprite>
+        <sprite>sprites\spr_oldman_cough</sprite>
+        <sprite>sprites\spr_oldman_walk</sprite>
+        <sprite>sprites\spr_oldman_watch</sprite>
+      </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -225,15 +236,14 @@
         <object>objects\obj_autumn_fall</object>
         <object>objects\obj_mainhero</object>
         <object>objects\obj_oldman</object>
-        <object>objects\obj_temp_object</object>
+        <object>objects\obj_masquerade</object>
         <object>objects\obj_main_1</object>
         <object>objects\obj_dialogue_2</object>
       </objects>
+      <object>objects\obj_journal</object>
       <object>objects\obj_forest_control_1</object>
       <object>objects\obj_forest_control_2</object>
       <object>objects\obj_forest_control_3</object>
-      <object>objects\obj_journal</object>
-      <object>objects\obj_quest_resorting</object>
     </objects>
   </objects>
   <rooms name="rooms">
