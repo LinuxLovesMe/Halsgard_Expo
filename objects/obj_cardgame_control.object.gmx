@@ -42,8 +42,8 @@ player_cards = ds_list_create();
 t = 0;
 cards_number = 5;
 
-move_to_x = 972;
-move_to_y = 350;
+move_to_x = 1010;
+move_to_y = 378;
 
 for (i = 0; i &lt; cards_number; i++)
 {
@@ -672,9 +672,9 @@ if (rounds == cards_number)
     draw_set_font(Underdog_36);
     if (!obj_ragn_control.stop_game)
     {
-        if (total_score &gt; 0) draw_text((room_width - string_width("Победа Эйда")) / 2 + 10, 650, "Победа Эйда");
-        else if(total_score &lt; 0) draw_text((room_width - string_width("Победа Советника")) / 2 + 10, 650, "Победа Советника");
-        else if(total_score == 0) draw_text((room_width - string_width("Победителя нет")) / 2 + 10, 650, "Победителя нет");
+        if (total_score &gt; 0) draw_text((room_width - string_width("Победа Эйда")) / 2 + 60, 660, "Победа Эйда");
+        else if(total_score &lt; 0) draw_text((room_width - string_width("Победа Советника")) / 2 + 60, 660, "Победа Советника");
+        else if(total_score == 0) draw_text((room_width - string_width("Победителя нет")) / 2 + 60, 660, "Победителя нет");
     }
 }
 
@@ -690,7 +690,7 @@ if (alarm[0] == -1 and battle_text)
 {
     draw_set_colour(c_white);
     draw_set_font(Underdog_36);
-    draw_text(780, 130, "Раунд " + string(obj_ragn_control.battle_number) + "/6");
+    draw_text(788, 124, "Раунд " + string(obj_ragn_control.battle_number) + "/5");
 }
 </string>
           </argument>

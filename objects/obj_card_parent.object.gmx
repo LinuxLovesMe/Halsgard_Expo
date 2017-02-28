@@ -77,6 +77,8 @@ if (moved and point_distance(x, y, point_x[0], point_y[0]) &gt; card_speed)
 {
     move_towards_point(point_x[0], point_y[0], card_speed);
     
+    if (scale &gt; 0.95) scale -=0.01;
+        
     if (point_distance(x, y, point_x[0], point_y[0]) &lt; card_speed * 3)
     {
         moved = false;

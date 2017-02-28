@@ -31,11 +31,11 @@ menu[2] = "НАСТРОЙКИ";
 menu[3] = "ВЫЙТИ В WINDOWS";
 
 instance_create(0, 0, obj_cursor);
-space = 90;
+space = 80;
 curr_pos = 0;
 
 menu_x = 1192;
-menu_y = 604;
+menu_y = 580;
 
 menu_0_height = menu_y + space;
 menu_1_height = menu_0_height + space;
@@ -139,9 +139,9 @@ for (m = 0; m &lt; array_length_1d(menu); m++)
 var line = menu_y + (curr_pos * space);
 
 draw_set_color(c_black);
-draw_line_width(menu_x - 2, line + 56, 1328, line + 56, 8);
+draw_line_width(menu_x - 2, line + 50, 1328, line + 50, 8);
 draw_set_color(c_white);
-draw_line_width(menu_x, line + 56, 1328, line + 56, 2);
+draw_line_width(menu_x, line + 50, 1328, line + 50, 2);
 </string>
           </argument>
         </arguments>

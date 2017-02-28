@@ -30,8 +30,8 @@ choose_trump = false;
 click = false;
 trump_choosed = false;
 
-move_to_x = 742;
-move_to_y = 350;
+move_to_x = 796;
+move_to_y = 378;
 scale_option = 1.1;
 </string>
           </argument>
@@ -118,7 +118,7 @@ if (point_in_rectangle(mouse_x, mouse_y, xx - sprite_width / 2, yy - sprite_heig
 }
 else
 {
-    scale = 1;
+    if (y == 850) scale = 1;
 }
 </string>
           </argument>
