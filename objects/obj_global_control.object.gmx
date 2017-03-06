@@ -36,9 +36,6 @@ instance_create(160, 336, obj_textcontrol);
 
 dialogue_on = false;
 esc_forbidden = false;
-
-enum paused { pause, non_pause }
-pause = paused.non_pause;
 </string>
           </argument>
         </arguments>
@@ -61,22 +58,69 @@ pause = paused.non_pause;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Tab-menu with Quests and Brains
+
+if (keyboard_check(vk_tab))
+{
+    if (global.pause != paused.pause)
+    {
+        obj_journal.active = true;
+    }
+    else
+    {
+        obj_journal.active = false;
+    }
+}
+else
+{
+    obj_journal.active = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Game pause control
 
-if (pause == paused.non_pause)
+if (global.pause == paused.non_pause)
 {
     if (instance_exists(obj_mainhero))
     {
         obj_mainhero.state = obj_mainhero.old_state;
     }
+    
+    if (instance_exists(obj_autumn_fall))
+    {
+        obj_autumn_fall.pause_emit = false;
+    }
 }
 
-if (pause == paused.pause)
+if (global.pause == paused.pause)
 {
     if (instance_exists(obj_mainhero))
     {
         if (obj_mainhero.state != "pause") obj_mainhero.old_state = obj_mainhero.state;
         obj_mainhero.state = "pause";
+    }
+    
+    if (instance_exists(obj_autumn_fall))
+    {
+        obj_autumn_fall.pause_emit = true;
     }
 }
 </string>
@@ -99,22 +143,15 @@ if (pause == paused.pause)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Tab-menu with Quests and Brains
+            <string>///Show global pause window with inventory
 
-if (keyboard_check(vk_tab))
+if (!instance_exists(obj_global_pause) and global.pause == paused.non_pause)
 {
-    if (pause != paused.pause)
+    if (keyboard_check_released(vk_escape))
     {
-        obj_journal.active = true;
+        global.pause = paused.pause;
+        instance_create(0, 0, obj_global_pause);
     }
-    else
-    {
-        obj_journal.active = false;
-    }
-}
-else
-{
-    obj_journal.active = false;
 }
 </string>
           </argument>
@@ -138,15 +175,15 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw blur shader on pause event
+            <string>///Draw blur shader on tutorial pause event
 
-if (pause == paused.pause and !dialogue_on)
+for (i = 0; i &lt; 4; i++)
 {
-    gfx_blur(application_surface, 5, 30, 0);
-}
-else
-{
-    gfx_blur(application_surface, 0, 0, 0);
+    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and global.pause == paused.pause)
+    {
+        gfx_blur(application_surface, 5, 30, 0);
+        break;
+    }
 }
 </string>
           </argument>

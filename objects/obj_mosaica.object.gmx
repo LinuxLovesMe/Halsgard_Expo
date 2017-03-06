@@ -180,7 +180,7 @@ image_alpha -= 0.05;
           <argument>
             <kind>1</kind>
             <string>image_alpha = 1;
-obj_ragn_control.cardgame_start = 1;
+obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
         </arguments>
@@ -204,7 +204,7 @@ obj_ragn_control.cardgame_start = 1;
           <argument>
             <kind>1</kind>
             <string>image_alpha = 1;
-obj_ragn_control.cardgame_start = 1;
+obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
         </arguments>
@@ -272,7 +272,7 @@ draw_sprite(spr_border_mosaic, 0, x - 10, y - 10);
           <argument>
             <kind>1</kind>
             <string>image_alpha = 1;
-obj_ragn_control.cardgame_start = 1;
+obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
         </arguments>
@@ -296,7 +296,7 @@ obj_ragn_control.cardgame_start = 1;
           <argument>
             <kind>1</kind>
             <string>image_alpha = 1;
-obj_ragn_control.cardgame_start = 1;
+obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
         </arguments>

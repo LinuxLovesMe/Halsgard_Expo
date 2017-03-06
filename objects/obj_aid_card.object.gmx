@@ -30,7 +30,7 @@ choose_trump = false;
 click = false;
 trump_choosed = false;
 
-move_to_x = 792;
+move_to_x = 800;
 move_to_y = 378;
 scale_option = 1.1;
 </string>

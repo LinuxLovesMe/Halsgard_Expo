@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>prologue_finish = 0;
-final_1 = 0;
+dialogue_start = 0;
 final_2 = 0;
 cardgame_start = 0;
 total_score = 0;
@@ -41,6 +41,8 @@ frosty_background = 0;
 
 instance_create(0, 0, obj_cursor);
 instance_create(0, 0, obj_prologue);
+
+delta_volume = ds_map_find_value(global.options, "volume");
 </string>
           </argument>
         </arguments>
@@ -113,18 +115,30 @@ instance_create(room_width / 2, room_height / 2, obj_dialogue_1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (prologue_finish)
+            <string>var volume = ds_map_find_value(global.options, "volume");
+
+if (prologue_finish)
 {
     instance_create(0, 0, obj_wall);
     prologue_finish = 0;
     instance_create(0, 0, obj_fade_effect);
 }
 
-if (cardgame_start)
+if (dialogue_start)
 {
-    cardgame_start = 0;
+    dialogue_start = 0;
     with (obj_mosaica) instance_destroy();
     with (obj_wall) instance_destroy();
+    instance_create(room_width / 2, room_height / 2, obj_dialogue_0);
+    audio_sound_gain(snd_dialogue_time, 0.06 * volume, 0);
+    audio_play_sound(snd_dialogue_time, 1, true);
+}
+
+if (cardgame_start)
+{
+    audio_stop_sound(snd_dialogue_time);
+    cardgame_start = 0;
+    with (obj_dialogue_0) instance_destroy();
     instance_create(room_width / 2, room_height / 2, obj_paper_1);
     frosty_background = 1;
 }
@@ -149,16 +163,27 @@ if (stop_game and battle_number &lt; 4)
 
 if (stop_game and battle_number == 4)
 {
-    with (obj_cardgame_control) instance_destroy();
-    if (alarm[0] == -1) alarm[0] = 4;
+    if (delta_volume &gt; 0)
+    {
+        audio_sound_gain(snd_dialogue_time, 0.08 * delta_volume, 0);
+        delta_volume -= 0.1;
+    }
+    else
+    {
+        audio_stop_sound(snd_cardgame);
+        with (obj_cardgame_control) instance_destroy();
+        audio_sound_gain(snd_dialogue_time, 0.06 * volume, 0);
+        if (alarm[0] == -1) alarm[0] = 4;
+        if (!audio_is_playing(snd_dialogue_time)) audio_play_sound(snd_dialogue_time, 1, true);
+    }
 }
 
 if (final_2 == 1)
 {
+    audio_stop_sound(snd_dialogue_time);
     with (obj_dialogue_1) instance_destroy();
     d3d_set_culling(false);
-    final_2 = 0;
-    room_goto_next();
+    final_2 = 0; room_goto_next();
 }
 </string>
           </argument>

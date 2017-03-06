@@ -31,6 +31,7 @@ instance_create(0, 0, obj_autumn_fall);
 
 if (global.tutorial[0] == 0) // Only in the first time
 {
+    instance_create(2080, 140, obj_masquerade);
     instance_create(0, 0, obj_fade_effect);
     global.uncomplete[0] = "Квест 1: Исследовать обстановку.";
     global.uncomplete[1] = "Квест 2: Побеседовать с Советником.";
@@ -38,7 +39,7 @@ if (global.tutorial[0] == 0) // Only in the first time
 
 text = "";
 tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";
-tutorial_text[2] = "Найдите Советника и нажмите [E] рядом с ним, чтобы начать разговор (ЛКМ - далее).";
+tutorial_text[2] = "Уверен, эта штука за мной следит! Надо бы проверить ее при помощи ПКМ (ЛКМ - далее).";
 tutorial_text[1] = "В гиде по выживанию [Esc] всегда можно прочесть свежие игровые подсказки (ЛКМ - далее).";
 
 if (global.previous_room == "dark_forest_2")
@@ -71,7 +72,7 @@ else instance_create(300, 968, obj_mainhero);
             <kind>1</kind>
             <string>///Clear text of tutorial message
 
-pause = paused.non_pause;
+global.pause = paused.non_pause;
 text = "";
 global.greatInfo = "";
 </string>
@@ -163,9 +164,9 @@ background_y[5]=floor(view_yview[0]*0.01);
 
 if (instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.x &gt; 900) global.tutorial[0]++;
-    if (obj_mainhero.x &gt; 1760) global.tutorial[1]++;
-    if (obj_mainhero.x &gt; 2300) global.tutorial[2]++;
+    if (obj_mainhero.x &gt; 910 and global.tutorial[0] == 0) global.tutorial[0]++;
+    if (obj_mainhero.x &gt; 1700 and global.tutorial[1] == 0) global.tutorial[1]++;
+    if (obj_mainhero.x &gt; 2294 and global.tutorial[2] == 0) global.tutorial[2]++;
 }
 
 for (i = 0; i &lt; 3; i++)
@@ -174,7 +175,7 @@ for (i = 0; i &lt; 3; i++)
     {
         esc_forbidden = true;
         global.tutorial[i]++;
-        pause = paused.pause;
+        global.pause = paused.pause;
         text = tutorial_text[i];
         break;
     }
@@ -205,7 +206,7 @@ for (i = 0; i &lt; 3; i++)
 
 for (i = 0; i &lt; 3; i++)
 {
-    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and pause == paused.pause)
+    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and global.pause == paused.pause)
     {
         alarm[10] = 4;
         global.tutorial[i] = 13;
@@ -260,7 +261,7 @@ for (i = 0; i &lt; 3; i++)
 
 for (i = 0; i &lt; 3; i++)
 {
-    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and pause == paused.pause)
+    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and global.pause == paused.pause)
     {
         alarm[10] = 4;
         global.tutorial[i] = 13;

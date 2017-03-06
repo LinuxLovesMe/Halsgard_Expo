@@ -27,7 +27,35 @@
             <kind>1</kind>
             <string>event_inherited();
 
-text = "Наиужаснейшая штука! Надеюсь, она меня не убьёт. И не приснится ночью.";
+x_origin = x;
+y_origin = y;
+text = "Странная маска. По всем Законам ее здесь быть не должно.";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parallax settings
+
+x = x_origin + floor(view_xview[0] * 0.2);
+y = y_origin;
 </string>
           </argument>
         </arguments>
@@ -50,8 +78,14 @@ text = "Наиужаснейшая штука! Надеюсь, она меня �
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(spr_mask_2, 0, x, y);
-draw_sprite(spr_mask_3, 0, x, y);
+            <string>draw_sprite(spr_mask_2, 0, x, y + 10);
+
+if (instance_exists(obj_mainhero))
+{
+    if (obj_mainhero.x &lt; x - 140) draw_sprite(spr_mask_3, 0, x, y + 10);
+    else if (obj_mainhero.x &lt; x + 120) draw_sprite(spr_mask_3, 0, x + 8, y + 10);
+    else draw_sprite(spr_mask_3, 0, x + 16, y + 10);
+}
 draw_self();
 </string>
           </argument>

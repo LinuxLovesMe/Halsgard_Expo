@@ -3,7 +3,24 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="5" name="datafiles">
+  <datafiles number="8" name="datafiles">
+    <datafile>
+      <name>Dialogue_0.txt</name>
+      <exists>-1</exists>
+      <size>1779</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Dialogue_0.txt</filename>
+    </datafile>
     <datafile>
       <name>Dialogue_1.txt</name>
       <exists>-1</exists>
@@ -22,7 +39,7 @@
       <filename>Dialogue_1.txt</filename>
     </datafile>
     <datafile>
-      <name>Theme_1.txt</name>
+      <name>Themes_1.txt</name>
       <exists>-1</exists>
       <size>169</size>
       <exportAction>2</exportAction>
@@ -36,7 +53,7 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>Theme_1.txt</filename>
+      <filename>Themes_1.txt</filename>
     </datafile>
     <datafile>
       <name>Dialogue_2_0.txt</name>
@@ -55,6 +72,23 @@
       </ConfigOptions>
       <filename>Dialogue_2_0.txt</filename>
     </datafile>
+    <datafile>
+      <name>Lovushka.txt</name>
+      <exists>-1</exists>
+      <size>982</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Lovushka.txt</filename>
+    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\HanifFlatUI</extension>
@@ -62,8 +96,9 @@
     <extension index="2">extensions\Blur Pack</extension>
   </NewExtensions>
   <sounds name="sound">
-    <sound>sound\snd_game_final</sound>
     <sound>sound\snd_menu_music</sound>
+    <sound>sound\snd_cardgame</sound>
+    <sound>sound\snd_dialogue_time</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_ground</sprite>
@@ -118,6 +153,11 @@
       <sprite>sprites\spr_tutorial_2</sprite>
     </sprites>
     <sprites name="dark_forest_1">
+      <sprites name="mask_group">
+        <sprite>sprites\spr_mask_1</sprite>
+        <sprite>sprites\spr_mask_2</sprite>
+        <sprite>sprites\spr_mask_3</sprite>
+      </sprites>
       <sprite>sprites\spr_mainhero</sprite>
       <sprite>sprites\spr_frosty_back</sprite>
       <sprite>sprites\spr_leaves</sprite>
@@ -129,17 +169,15 @@
         <sprite>sprites\spr_main_2</sprite>
         <sprite>sprites\spr_main_3</sprite>
       </sprites>
-      <sprites name="mask_group">
-        <sprite>sprites\spr_mask_1</sprite>
-        <sprite>sprites\spr_mask_2</sprite>
-        <sprite>sprites\spr_mask_3</sprite>
-      </sprites>
       <sprites name="oldman_group">
         <sprite>sprites\spr_oldman_idle</sprite>
         <sprite>sprites\spr_oldman_cough</sprite>
         <sprite>sprites\spr_oldman_walk</sprite>
         <sprite>sprites\spr_oldman_watch</sprite>
       </sprites>
+      <sprite>sprites\spr_lovushka</sprite>
+      <sprite>sprites\spr_interactive</sprite>
+      <sprite>sprites\spr_inter_mask</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -157,10 +195,6 @@
       <background>background\back_forest_8</background>
       <background>background\back_forest_9</background>
       <background>background\back_forest_10</background>
-      <background>background\back_forest_11</background>
-      <background>background\back_forest_12</background>
-      <background>background\back_forest_13</background>
-      <background>background\back_forest_14</background>
     </backgrounds>
   </backgrounds>
   <paths name="paths"/>
@@ -168,13 +202,15 @@
     <script>scripts\scr_destruction.gml</script>
     <script>scripts\scr_menu.gml</script>
     <script>scripts\draw_text_outline.gml</script>
+    <script>scripts\gfx_blur_masked.gml</script>
     <script>scripts\gfx_blur.gml</script>
-    <script>scripts\draw_old_movie.gml</script>
     <script>scripts\debug_message.gml</script>
+    <script>scripts\draw_old_movie.gml</script>
     <script>scripts\set_window_size.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_lerp.shader</shader>
+    <shader type="GLSLES">shaders\shd_blur_masked.shader</shader>
     <shader type="GLSLES">shaders\shd_blur.shader</shader>
     <shader type="GLSLES">shaders\shader_old_movie.shader</shader>
   </shaders>
@@ -207,16 +243,19 @@
         <object>objects\obj_wall</object>
         <object>objects\obj_paper_1</object>
       </objects>
-      <objects name="ragnarok_dialogue">
-        <object>objects\obj_dialogue_1</object>
-        <object>objects\obj_dial_icon</object>
-        <object>objects\obj_dialogue_fog</object>
-      </objects>
       <objects name="cardboard_game">
         <object>objects\obj_card_parent</object>
         <object>objects\obj_aid_card</object>
         <object>objects\obj_oldman_card</object>
         <object>objects\obj_cardgame_control</object>
+      </objects>
+      <objects name="ragn_dialogue_1">
+        <object>objects\obj_dialogue_0</object>
+      </objects>
+      <objects name="ragn_dialogue_2">
+        <object>objects\obj_dialogue_1</object>
+        <object>objects\obj_dial_icon</object>
+        <object>objects\obj_dialogue_fog</object>
       </objects>
     </objects>
     <objects name="start_room">
@@ -230,6 +269,7 @@
         <object>objects\obj_textcontrol</object>
         <object>objects\obj_interacted</object>
         <object>objects\obj_standing_on</object>
+        <object>objects\obj_planescape</object>
       </objects>
       <objects name="interactive_objects">
         <object>objects\obj_ground</object>
@@ -239,6 +279,8 @@
         <object>objects\obj_masquerade</object>
         <object>objects\obj_main_1</object>
         <object>objects\obj_dialogue_2</object>
+        <object>objects\obj_lovushka</object>
+        <object>objects\obj_global_pause</object>
       </objects>
       <object>objects\obj_journal</object>
       <object>objects\obj_forest_control_1</object>
@@ -248,11 +290,11 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
+    <room>rooms\dark_forest_2</room>
+    <room>rooms\dark_forest_1</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
     <room>rooms\start_room</room>
-    <room>rooms\dark_forest_1</room>
-    <room>rooms\dark_forest_2</room>
     <room>rooms\dark_forest_3</room>
   </rooms>
   <help>

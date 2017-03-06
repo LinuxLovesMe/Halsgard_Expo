@@ -36,10 +36,11 @@ option[6] = "НАЗАД В ГЛАВНОЕ МЕНЮ";
 space = 80;
 curr_pos = 0;
 
-x = (surface_get_width(application_surface) - sprite_width) / 2;
-y = (surface_get_height(application_surface) - sprite_height) / 2;
-option_x = x + 80;
-option_y = y + 80;
+x = surface_get_width(application_surface) / 2;
+y = surface_get_height(application_surface) / 2;
+
+option_x = x - sprite_width / 2 + 80;
+option_y = y - sprite_height / 2 + 80;
 
 range = ui_range_create(option_x + string_width(string(option[1])) + 80, option_y + space + 4, 400, ui_default);
 ui_range_set_limit(range, 0, 10);

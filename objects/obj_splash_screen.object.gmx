@@ -169,12 +169,14 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Create map array with Hero choices
+            <string>///Create global array with Hero choices
 
-global.choices = ds_map_create();
-ds_map_add(global.choices, "chaos_choice", 0);
-
+global.planescape_file = "";
+global.planescape_parent = 0;
+global.full_show = false;
 global.previous_room = "main_menu";
+
+enum paused { pause, non_pause } global.pause = paused.non_pause;
 
 for (i = 0; i &lt; 6; i++) //Generate arrays for Quests
 {

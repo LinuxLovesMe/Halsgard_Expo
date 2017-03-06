@@ -41,7 +41,7 @@ save_theme = "";
 
 parent = obj_forest_control_2;
 
-file = file_text_open_read("Theme_1.txt");
+file = file_text_open_read("Themes_1.txt");
 while (!file_text_eof(file))
 {
     str = file_text_readln(file); //Source string with theme name
@@ -139,7 +139,7 @@ for (var i = 0; i &lt; 8; i++)
 
 parent.dialogue_exists = 0;
 parent.dialogue_on = false;
-parent.pause = paused.non_pause;
+global.pause = paused.non_pause;
 instance_destroy();
 </string>
           </argument>

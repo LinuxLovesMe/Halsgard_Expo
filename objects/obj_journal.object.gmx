@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>active = false;
 
-x = view_xview[0] + (view_wview[0] - 980) / 2;
-y = view_yview[0] + (view_hview[0] - 560 - 32) / 2;
+x = view_xview[0] + 24;
+y = view_yview[0] + 24;
 </string>
           </argument>
         </arguments>
@@ -51,8 +51,8 @@ y = view_yview[0] + (view_hview[0] - 560 - 32) / 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = view_xview[0] + (view_wview[0] - 1480) / 2;
-y = view_yview[0] + (view_hview[0] - 840 - 32) / 2;
+            <string>x = view_xview[0] + 24;
+y = view_yview[0] + 24;
 </string>
           </argument>
         </arguments>
@@ -87,8 +87,7 @@ y = view_yview[0] + (view_hview[0] - 840 - 32) / 2;
     {
         if (global.complete[i] != "") draw_text(x + 40, y + (60 * (i + 1)), global.complete[i]);
         if (global.uncomplete[i] != "") draw_text(x + 40, y + (60 * (i + 1)), global.uncomplete[i]);
-    }    
-    //Insert Aid Brains here!
+    }
 }
 </string>
           </argument>

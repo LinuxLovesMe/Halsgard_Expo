@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>//Rain system
 part_leafSys = part_system_create();
+pause_emit = false;
 
 //Rain particle
 part_leaf = part_type_create();
@@ -43,10 +44,8 @@ part_leafEmit = part_emitter_create(part_leafSys);
 part_emitter_region(part_leafSys, part_leafEmit, 0, room_width, -100, 100, ps_shape_line, ps_distr_linear);
 part_emitter_stream(part_leafSys, part_leafEmit, part_leaf, -3);
 
-pause_emit = false;
-
-repeat(room_speed * 30)
-{   
+repeat (room_speed * 30)
+{
     part_system_update(part_leafSys);
 }
 </string>

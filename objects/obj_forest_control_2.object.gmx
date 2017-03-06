@@ -43,10 +43,10 @@ if (global.tutorial[3] == 0) dialogue_exists = 1; //Allow to create dialogue onl
 else dialogue_exists = 0;
 
 text = "";
-tutorial_text[3] = "Кажется, эта штука за мной следит! Надо бы проверить её при помощи ПКМ (ЛКМ - далее).";
+tutorial_text[3] = "Найдите Советника и нажмите [E] рядом с ним, чтобы начать разговор (ЛКМ - далее).";
 
-instance_create(2400, 960, obj_oldman);
-instance_create(1780, 300, obj_masquerade);
+//instance_create(2400, 960, obj_oldman);
+instance_create(2728, 652, obj_lovushka);
 </string>
           </argument>
         </arguments>
@@ -71,7 +71,7 @@ instance_create(1780, 300, obj_masquerade);
             <kind>1</kind>
             <string>///Clear text of tutorial message
 
-pause = paused.non_pause;
+global.pause = paused.non_pause;
 text = "";
 global.greatInfo = "";
 </string>
@@ -163,14 +163,14 @@ background_y[5]=floor(view_yview[0]*0.01);
 
 if (instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.x &gt; 600) global.tutorial[3]++;
+    if (obj_mainhero.x &gt; 600 and global.tutorial[3] == 0) global.tutorial[3]++;
 }
 
 if (global.tutorial[3] == 1) //Block pause menu if tutorial is active
 {
     esc_forbidden = true;
     global.tutorial[3]++;
-    pause = paused.pause;
+    global.pause = paused.pause;
     text = tutorial_text[3];
 }
 </string>
@@ -197,7 +197,7 @@ if (global.tutorial[3] == 1) //Block pause menu if tutorial is active
             <kind>1</kind>
             <string>///Break tutorial pause earlier
 
-if (global.tutorial[3] &gt; 1 and global.tutorial[3] != 13 and pause == paused.pause)
+if (global.tutorial[3] &gt; 1 and global.tutorial[3] != 13 and global.pause == paused.pause)
 {
     alarm[10] = 4;
     global.tutorial[3] = 13;
@@ -249,7 +249,7 @@ if (global.tutorial[3] &gt; 1 and global.tutorial[3] != 13 and pause == paused.p
             <kind>1</kind>
             <string>///Break tutorial pause earlier
 
-if (global.tutorial[3] &gt; 1 and global.tutorial[3] != 13 and pause == paused.pause)
+if (global.tutorial[3] &gt; 1 and global.tutorial[3] != 13 and global.pause == paused.pause)
 {
     alarm[10] = 4;
     global.tutorial[3] = 13;
