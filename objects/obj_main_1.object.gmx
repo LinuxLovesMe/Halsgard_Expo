@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>///Read themes from file
 
+need_case = "";
+
 coords = 0;
 angle = 0;
 rotated = false;
@@ -223,10 +225,10 @@ triangle_y3 = center_y + 50 + 86.6;
 for (var i = 0; i &lt; 8; i++)
 {
     //X coordinate
-    coords[i, 0] = center_x - (sprite_get_width(spr_main_2) / 2 - 50) * cos((-angle + i * 45) * pi / 180);
+    coords[i, 0] = center_x - (sprite_get_width(spr_main_2) / 2 - 84) * cos((-angle + i * 45) * pi / 180);
     
     //Y coordinate
-    coords[i, 1] = center_y - (sprite_get_height(spr_main_2) / 2 - 50) * sin((-angle + i * 45) * pi / 180);
+    coords[i, 1] = center_y - (sprite_get_height(spr_main_2) / 2 - 84) * sin((-angle + i * 45) * pi / 180);
     
     //Angle (to rotate a sprite)
     coords[i, 2] = angle - i * 45 - 90;
@@ -298,14 +300,14 @@ for (var i = 0; i &lt; 8; i++)
     }
 }
 
-for (i = 0; i &lt; ds_map_size(theme_info); i++)
+if (point_in_circle(mouse_x, mouse_y, center_x, center_y, sprite_get_width(spr_main_3) / 2))
 {
-    if (i == 0) iterator = ds_map_find_last(theme_info);
-    else iterator = ds_map_find_previous(theme_info, iterator);
-        
-    if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
+    for (i = 0; i &lt; ds_map_size(theme_info); i++)
     {
-        if (point_in_triangle(mouse_x, mouse_y, triangle_x1, triangle_y1, triangle_x2, triangle_y2, triangle_x3, triangle_y3))
+        if (i == 0) iterator = ds_map_find_last(theme_info);
+        else iterator = ds_map_find_previous(theme_info, iterator);
+        
+        if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
         {
             filename = string(ds_map_find_value(theme_info, iterator));
             if (!instance_exists(obj_dialogue_2)) instance_create(0, 0, obj_dialogue_2);
@@ -346,41 +348,52 @@ draw_sprite_ext(spr_main_2, 1, center_x, center_y, 1, 1, angle, c_white, 1);
 
 draw_sprite_ext(spr_main_3, 2, center_x, center_y, 1, 1, 0, c_white, 1);
       
-//Draw triangle-button
-
-draw_triangle_colour(triangle_x1, triangle_y1, triangle_x2, triangle_y2, triangle_x3, triangle_y3, c_white, c_white, c_white, false);
-
 for (var i = 0; i &lt; 8; i++)
 {
     if (i &lt; ds_map_size(theme_info))
     {
         if (i == 0) first = ds_map_find_last(theme_info);
         else first = ds_map_find_previous(theme_info, first);
-        draw_circle_colour(coords[i, 0], coords[i, 1], 40, c_white, c_white, false);
         text = first;
     }
     else
     {
-        text = "Вы не можете сейчас открыть этот диалог";
-        draw_circle_colour(coords[i, 0], coords[i, 1], 40, c_red, c_red, false);
+        text = "Сейчас данная тема не доступна";
     }
-        
-    //Draw number on circle
-    draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_black, c_black, c_black, c_black, 1);
-          
-    //Write message about dialog in center if circle is under triangle
+    
+    draw_set_font(Runic_46);
     
     if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
     {
-        draw_set_colour(c_white);
-        draw_set_font(Underdog_20);
-        draw_text_ext(center_x - sprite_get_width(spr_main_3) / 3, center_y - sprite_get_height(spr_main_3) / 3, text, separator, sprite_get_width(spr_main_3));
+        draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, ui_blue_grey, ui_blue_grey, 1);
+    }
+    else
+    {
+        draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, c_white, c_white, 1);    
+    }
+        
+    //Write message about dialog in center if circle is under triangle
+    
+    draw_set_colour(c_white);
+    draw_set_font(Underdog_30);
+    
+    if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
+    {
+        draw_text_outline(view_xview[0] + view_wview[0] - string_width("Тема: " + text) - 24, view_yview[0] + 14, "Тема: " + text, 1, c_black, 16);
     }
 }
 
+draw_set_colour(c_white);
 draw_set_font(Underdog_30);
+
 draw_text_outline(view_xview[0] + 20, view_yview[0] + 14, "Собеседник: Советник", 1, c_black, 16);
-if (AP_amount &gt;=0) draw_text_outline(view_xview[0] + view_wview[0] - 302, view_yview[0] + view_hview[0] - 60, "Осталось ОД: " + string(AP_amount), 1, c_black, 16);
+
+if (AP_amount &gt;= 0)
+{
+    draw_text_outline(view_xview[0] + view_wview[0] - 302, view_yview[0] + view_hview[0] - 60, "Осталось ОД: " + string(AP_amount), 1, c_black, 16);
+}
+
+draw_text_outline(view_xview[0] + 20, view_yview[0] + view_hview[0] - 60, need_case, 1, c_black, 16);
 </string>
           </argument>
         </arguments>

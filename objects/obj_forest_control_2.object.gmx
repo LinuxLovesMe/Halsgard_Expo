@@ -45,8 +45,9 @@ else dialogue_exists = 0;
 text = "";
 tutorial_text[3] = "Найдите Советника и нажмите [E] рядом с ним, чтобы начать разговор (ЛКМ - далее).";
 
-//instance_create(2400, 960, obj_oldman);
-instance_create(2728, 652, obj_lovushka);
+instance_create(2012, 960, obj_oldman);
+instance_create(1010, 1020, obj_gorka);
+instance_create(2400, 652, obj_lovushka);
 </string>
           </argument>
         </arguments>
@@ -132,7 +133,7 @@ background_x[1]=floor(view_xview[0]*0.8);
 background_x[2]=floor(view_xview[0]*0.4);
 background_x[3]=floor(view_xview[0]*0.2);
 background_x[4]=floor(view_xview[0]*0.2);
-background_x[5]=floor(view_xview[0]*0.01);
+background_x[5]=100 + floor(view_xview[0]*0.01);
 
 background_y[1]=floor(view_yview[0]*0.8);
 background_y[2]=floor(view_yview[0]*0.4);
@@ -163,7 +164,7 @@ background_y[5]=floor(view_yview[0]*0.01);
 
 if (instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.x &gt; 600 and global.tutorial[3] == 0) global.tutorial[3]++;
+    if (obj_mainhero.x &gt; 410 and global.tutorial[3] == 0) global.tutorial[3]++;
 }
 
 if (global.tutorial[3] == 1) //Block pause menu if tutorial is active

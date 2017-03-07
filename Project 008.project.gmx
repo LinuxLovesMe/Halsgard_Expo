@@ -175,8 +175,11 @@
         <sprite>sprites\spr_oldman_walk</sprite>
         <sprite>sprites\spr_oldman_watch</sprite>
       </sprites>
-      <sprite>sprites\spr_lovushka</sprite>
       <sprite>sprites\spr_interactive</sprite>
+      <sprite>sprites\spr_gazette_1</sprite>
+      <sprite>sprites\spr_lovushka</sprite>
+      <sprite>sprites\spr_gorka</sprite>
+      <sprite>sprites\spr_sandbox</sprite>
       <sprite>sprites\spr_inter_mask</sprite>
     </sprites>
   </sprites>
@@ -281,6 +284,9 @@
         <object>objects\obj_dialogue_2</object>
         <object>objects\obj_lovushka</object>
         <object>objects\obj_global_pause</object>
+        <object>objects\obj_gorka</object>
+        <object>objects\obj_sandbox</object>
+        <object>objects\obj_gazette_1</object>
       </objects>
       <object>objects\obj_journal</object>
       <object>objects\obj_forest_control_1</object>

@@ -122,6 +122,9 @@ if (global.pause == paused.pause)
     {
         obj_autumn_fall.pause_emit = true;
     }
+    
+    global.greatInfo = "";
+    global.promptText = "";
 }
 </string>
           </argument>
