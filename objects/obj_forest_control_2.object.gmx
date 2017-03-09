@@ -46,7 +46,7 @@ text = "";
 tutorial_text[3] = "Найдите Советника и нажмите [E] рядом с ним, чтобы начать разговор (ЛКМ - далее).";
 
 instance_create(2012, 960, obj_oldman);
-instance_create(1010, 1020, obj_gorka);
+//instance_create(1010, 1020, obj_gorka);
 instance_create(2400, 652, obj_lovushka);
 </string>
           </argument>

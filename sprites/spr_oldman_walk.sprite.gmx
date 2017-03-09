@@ -2,15 +2,15 @@
 <sprite>
   <type>0</type>
   <xorig>110</xorig>
-  <yorigin>372</yorigin>
+  <yorigin>370</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>6</bbox_left>
+  <bbox_left>7</bbox_left>
   <bbox_right>209</bbox_right>
   <bbox_top>3</bbox_top>
-  <bbox_bottom>372</bbox_bottom>
+  <bbox_bottom>369</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -18,7 +18,7 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>210</width>
-  <height>373</height>
+  <height>370</height>
   <frames>
     <frame index="0">images\spr_oldman_walk_0.png</frame>
     <frame index="1">images\spr_oldman_walk_1.png</frame>
@@ -36,6 +36,5 @@
     <frame index="13">images\spr_oldman_walk_13.png</frame>
     <frame index="14">images\spr_oldman_walk_14.png</frame>
     <frame index="15">images\spr_oldman_walk_15.png</frame>
-    <frame index="16">images\spr_oldman_walk_16.png</frame>
   </frames>
 </sprite>

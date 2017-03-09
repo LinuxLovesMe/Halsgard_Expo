@@ -121,17 +121,8 @@ if (!replica)
 {
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
-        if (k &gt; 1)
-        {
-            koef = k + 1 + floor(string_width(info[pointer, k - 1]) / string_w);
-        }
-        else
-        {
-            koef = k;
-        }
-        
-        if ((point_in_rectangle(mouse_x, mouse_y, xx + 20, yy + 30 + separator_a * (koef - 1) + 10, xx - 20 + string_width(info[pointer, k]), 
-                                yy + 30 + (separator_a * koef) + (separator_a * floor(string_width(info[pointer, k]) / string_w)) - 10)))
+        if ((point_in_rectangle(mouse_x, mouse_y, xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1),
+                                xx + 30 + (string_w - string_width(text_d[k])) / 2 + string_width(text_d[k]), yy + 30 + separator_a * k)))
         {
             if (mouse_check_button_released(mb_left))
             {
@@ -268,22 +259,20 @@ if (global.full_show)
 
     if (replica)
     {
-        draw_text_ext_transformed_colour(xx + 20, yy + 30, text_d[0], separator_r, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+        draw_text_ext_transformed_colour(xx + 30, yy + 30, text_d[0], separator_r, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
     }
     else
     {
-        offset = 30;
         for (k = 1; k &lt; array_length_2d(info, pointer); k++)
         {
             if (active_answer &gt; 0 and active_answer == k)
             {
-                draw_text_ext_transformed_colour(xx + 20, yy + offset, text_d[k], separator_a, string_w, 1, 1, 0, Color2, Color2, Color2, Color2, 1);
+                draw_text_ext_transformed_colour(xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1), text_d[k], separator_a, string_w, 1, 1, 0, Color2, Color2, Color2, Color2, 1);
             }
             else
             {
-                draw_text_ext_transformed_colour(xx + 20, yy + offset, text_d[k], separator_a, string_w, 1, 1, 0, myColor, myColor, myColor, myColor, 1);
+                draw_text_ext_transformed_colour(xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1), text_d[k], separator_a, string_w, 1, 1, 0, myColor, myColor, myColor, myColor, 1);
             }
-            offset += 2 * separator_a + separator_a * floor(string_width(info[pointer, k]) / string_w); 
         }
     }
 }

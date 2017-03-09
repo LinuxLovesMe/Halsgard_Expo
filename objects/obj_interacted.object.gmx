@@ -27,45 +27,14 @@
             <kind>1</kind>
             <string>///Basic object initializations
 
-shift_text = "";
+near = false;
+destroy = false;
 text = "";
 text_printed = false;
 
-full_show = false;
-near = false;
-destroy = false;
-
-show_old = true;
 show_text = true;
-
+show_old = true;
 object_state = "action_0";
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Clear RMB message from Info
-
-global.greatInfo = "";
-text_printed = false;
-obj_textcontrol.direct_speech = false;
 </string>
           </argument>
         </arguments>
@@ -88,14 +57,76 @@ obj_textcontrol.direct_speech = false;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Read text message while holding RMB
+
+if (mouse_check_button(mb_right) and position_meeting(mouse_x, mouse_y, obj_interacted))
+{
+    global.greatInfo = text;
+}
+else
+{
+    if (global.greatInfo == text) global.greatInfo = "";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///If hero went enough far from object
 
 if (near)
 {
-    if (!point_in_rectangle(x, y, obj_mainhero.x - 80, obj_mainhero.y - obj_mainhero.sprite_height, obj_mainhero.x + 80, obj_mainhero.y + 40))
+    if (!point_in_rectangle(x, y, obj_mainhero.x - 100, obj_mainhero.y - obj_mainhero.sprite_height, obj_mainhero.x + 100, obj_mainhero.y + 50))
     {
-        global.promptText = "";
         near = false;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Destroy text interaction window on Escape
+
+if (keyboard_check_released(vk_escape))
+{
+    if (instance_exists(obj_planescape) and global.full_show)
+    {
+        object_state = "action_0";
+        global.pause = paused.non_pause;
+        global.full_show = false;
+        keyboard_clear(vk_escape);
+        with (obj_planescape) instance_destroy();
     }
 }
 </string>
@@ -120,19 +151,15 @@ if (near)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Show Info if hero is near the object
+            <string>///Show info when hero is near the object
 
 with (other)
 {
     if (!near)
     {
-        if (point_in_rectangle(x, y, obj_mainhero.x - 80, obj_mainhero.y - obj_mainhero.sprite_height, obj_mainhero.x + 80, obj_mainhero.y + 40))
+        if (point_in_rectangle(x, y, obj_mainhero.x - 100, obj_mainhero.y - obj_mainhero.sprite_height, obj_mainhero.x + 100, obj_mainhero.y + 50))
         {
-            if (show_text)
-            {
-                global.promptText = shift_text;
-                near = true;
-            }
+            near = true;
         }
     }
 }
@@ -141,7 +168,7 @@ with (other)
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="1">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -158,11 +185,10 @@ with (other)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///RMB text message for 3 seconds
-
-alarm[0] = room_speed * 3;
-global.greatInfo = text;
-obj_textcontrol.direct_speech = true;
+            <string>if (near and global.pause == paused.non_pause)
+{
+    draw_sprite(spr_key_E, 0, key_sprite_x, key_sprite_y);
+}
 </string>
           </argument>
         </arguments>

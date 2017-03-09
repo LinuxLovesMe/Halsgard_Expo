@@ -31,11 +31,11 @@ local_menu[2] = "ХАРАКТЕРИСТИКИ";
 local_menu[3] = "ГРОМКОСТЬ";
 local_menu[4] = "В ГЛАВНОЕ МЕНЮ";
 
-space = 100;
+space = 120;
 action = 0;
 curr_pos = 0;
 
-range = ui_range_create(view_xview[0] + view_wview[0] - string_width(local_menu[3]) - 400, view_yview[0] + 38 + (3 * space), 280, ui_default);
+range = ui_range_create(view_xview[0] + view_wview[0] - string_width(local_menu[3]) - 400, view_yview[0] + 208 + (3 * space), 280, ui_default);
 ui_range_set_limit(range, 0, 10);
 ui_range_set_max(range, 10);
 ui_range_set_value(range, ds_map_find_value(global.options, "volume"));
@@ -101,8 +101,8 @@ ui_clear_all();
             <kind>1</kind>
             <string>for (t = 0; t &lt; 5; t++)
 {
-    if (point_in_rectangle(mouse_x, mouse_y, view_xview[0] + view_wview[0] - string_width(local_menu[t]) - 30, view_yview[0] + (t * space) + 20,
-                           view_xview[0] + view_wview[0] - 30, view_yview[0] + 82 + (t * space)) and t != 3)
+    if (point_in_rectangle(mouse_x, mouse_y, view_xview[0] + view_wview[0] - string_width(local_menu[t]) - 30, view_yview[0] + (t * space) + 200,
+                           view_xview[0] + view_wview[0] - 30, view_yview[0] + 250 + (t * space)) and t != 3)
     {
         curr_pos = t;
         if (mouse_check_button_released(mb_left))
@@ -117,8 +117,8 @@ ui_clear_all();
     }
 }
 
-if (point_in_rectangle(mouse_x, mouse_y, view_xview[0] + view_wview[0] - string_width(local_menu[3]) - 300, view_yview[0] + (3 * space) + 20,
-                       view_xview[0] + view_wview[0] - 30, view_yview[0] + 82 + (3 * space)))
+if (point_in_rectangle(mouse_x, mouse_y, view_xview[0] + view_wview[0] - string_width(local_menu[3]) - 300, view_yview[0] + (3 * space) + 200,
+                       view_xview[0] + view_wview[0] - 30, view_yview[0] + 250 + (3 * space)))
 {
     curr_pos = 3;
 }
@@ -167,11 +167,11 @@ for (j = 0; j &lt; 5; j++)
 {
     if (j == curr_pos and j != 3)
     {
-        draw_text_colour(view_xview[0] + view_wview[0] - string_width (local_menu[j]) - 30, view_yview[0] + 30 + (j * space), string(local_menu[j]), deepRed, deepRed, deepRed, deepRed, 1);
+        draw_text_colour(view_xview[0] + view_wview[0] - string_width(local_menu[j]) - 30, view_yview[0] + 200 + (j * space), string(local_menu[j]), deepRed, deepRed, deepRed, deepRed, 1);
     }
     else
     {
-        draw_text_colour(view_xview[0] + view_wview[0] - string_width (local_menu[j]) - 30, view_yview[0] + 30 + (j * space), string(local_menu[j]), c_white, c_white, c_white, c_white, 1);
+        draw_text_colour(view_xview[0] + view_wview[0] - string_width(local_menu[j]) - 30, view_yview[0] + 200 + (j * space), string(local_menu[j]), c_white, c_white, c_white, c_white, 1);
     }
 }
 
@@ -179,6 +179,8 @@ ui_set_foreground_colour(range, c_white);
 ui_set_background_colour(range, deepRed);
 
 ui_draw_all();
+
+draw_sprite(spr_valentine, 0, view_xview[0] + 550, view_yview[0] + 464);
 </string>
           </argument>
         </arguments>

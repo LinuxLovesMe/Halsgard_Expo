@@ -190,10 +190,14 @@ if (!text_loaded and file != -1)
 
 if (global.greatInfo = "")
 {
-    draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - 32, global.promptText, c_white, c_white, c_white, c_white, 1);
+    draw_text_colour(view_xview[0] + 12, view_yview[0] + view_hview[0] - 34, global.promptText, c_white, c_white, c_white, c_white, 1);
 }
 else
 {
+    draw_text_colour(view_xview[0] + 12, view_yview[0] + view_hview[0] - 34, global.greatInfo, c_white, c_white, c_white, c_white, 1);
+}
+
+/*
     if (direct_speech)
     {
         //draw_sprite(speech_sprite, 0, view_xview[0] + 8, view_yview[0] + view_hview[0] - 32);
@@ -201,9 +205,9 @@ else
     }
     else
     {
-        draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - 32, global.greatInfo, c_white, c_white, c_white, c_white, 1);
+        draw_text_colour(view_xview[0] + 12, view_yview[0] + view_hview[0] - 34, global.greatInfo, c_white, c_white, c_white, c_white, 1);
     }
-}
+}*/
 </string>
           </argument>
         </arguments>

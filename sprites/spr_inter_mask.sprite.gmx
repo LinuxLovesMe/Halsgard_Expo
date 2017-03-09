@@ -17,8 +17,8 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>840</width>
-  <height>480</height>
+  <width>860</width>
+  <height>400</height>
   <frames>
     <frame index="0">images\spr_inter_mask_0.png</frame>
   </frames>

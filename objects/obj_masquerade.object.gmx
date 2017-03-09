@@ -29,6 +29,7 @@
 
 x_origin = x;
 y_origin = y;
+
 text = "Странная маска. По всем Законам ее здесь быть не должно.";
 </string>
           </argument>
@@ -53,6 +54,8 @@ text = "Странная маска. По всем Законам ее здес�
           <argument>
             <kind>1</kind>
             <string>///Parallax settings
+
+event_inherited();
 
 x = x_origin + floor(view_xview[0] * 0.2);
 y = y_origin;
@@ -82,10 +85,11 @@ y = y_origin;
 
 if (instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.x &lt; x - 140) draw_sprite(spr_mask_3, 0, x, y + 10);
-    else if (obj_mainhero.x &lt; x + 120) draw_sprite(spr_mask_3, 0, x + 8, y + 10);
-    else draw_sprite(spr_mask_3, 0, x + 16, y + 10);
+    if (abs(obj_mainhero.x - x) &lt;= 200) draw_sprite(spr_mask_3, 0, x + 8 + floor((obj_mainhero.x - x) / 25), y + 10);
+    else if ((obj_mainhero.x - x) &lt; 201) draw_sprite(spr_mask_3, 0, x, y + 10);
+    else if ((obj_mainhero.x - x) &gt; 201) draw_sprite(spr_mask_3, 0, x + 16, y + 10);
 }
+
 draw_self();
 </string>
           </argument>

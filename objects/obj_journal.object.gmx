@@ -34,30 +34,6 @@ y = view_yview[0] + 24;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>x = view_xview[0] + 24;
-y = view_yview[0] + 24;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
@@ -77,15 +53,22 @@ y = view_yview[0] + 24;
             <kind>1</kind>
             <string>if (active)
 {
+    x = view_xview[0] + 24;
+    y = view_yview[0] + 24;
+    
     draw_sprite(spr_quest_journal, 0, x, y);
     
     draw_set_font(Underdog_20);
     draw_set_colour(c_white);
     
-    //We must enter some type of checkbox for complete quests
     for (i = 0; i &lt; 6; i++)
     {
-        if (global.complete[i] != "") draw_text(x + 40, y + (60 * (i + 1)), global.complete[i]);
+        if (global.complete[i] != "")
+        {
+            draw_text(x + 40, y + (60 * (i + 1)), global.complete[i]);
+            draw_line_width(x + 40, y + (60 * (i + 1)) + 18, x + 40 + string_width(global.complete[i]), y + (60 * (i + 1)) + 18, 3);
+        }
+        
         if (global.uncomplete[i] != "") draw_text(x + 40, y + (60 * (i + 1)), global.uncomplete[i]);
     }
 }

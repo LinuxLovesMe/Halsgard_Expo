@@ -33,11 +33,16 @@ if (global.tutorial[0] == 0) // Only in the first time
 {
     instance_create(2080, 140, obj_masquerade);
     instance_create(0, 0, obj_fade_effect);
-    global.uncomplete[0] = "Квест 1: Исследовать обстановку.";
+    global.complete[0] = "Квест 1: Исследовать обстановку.";
     global.uncomplete[1] = "Квест 2: Побеседовать с Советником.";
+}
+else
+{
+    instance_create(1880, 980, obj_sandbox);
 }
 
 text = "";
+global.valentine_text = "Да здравствует Его Величество, Вигго Валентайн!";
 tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";
 tutorial_text[2] = "Уверен, эта штука за мной следит! Надо бы проверить ее при помощи ПКМ (ЛКМ - далее).";
 tutorial_text[1] = "В гиде по выживанию [Esc] всегда можно прочесть свежие игровые подсказки (ЛКМ - далее).";

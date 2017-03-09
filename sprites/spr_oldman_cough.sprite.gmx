@@ -8,7 +8,7 @@
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>1</bbox_left>
-  <bbox_right>188</bbox_right>
+  <bbox_right>189</bbox_right>
   <bbox_top>0</bbox_top>
   <bbox_bottom>367</bbox_bottom>
   <HTile>0</HTile>
@@ -17,7 +17,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>189</width>
+  <width>190</width>
   <height>368</height>
   <frames>
     <frame index="0">images\spr_oldman_cough_0.png</frame>
@@ -32,5 +32,9 @@
     <frame index="9">images\spr_oldman_cough_9.png</frame>
     <frame index="10">images\spr_oldman_cough_10.png</frame>
     <frame index="11">images\spr_oldman_cough_11.png</frame>
+    <frame index="12">images\spr_oldman_cough_12.png</frame>
+    <frame index="13">images\spr_oldman_cough_13.png</frame>
+    <frame index="14">images\spr_oldman_cough_14.png</frame>
+    <frame index="15">images\spr_oldman_cough_15.png</frame>
   </frames>
 </sprite>
