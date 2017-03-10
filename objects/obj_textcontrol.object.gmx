@@ -33,8 +33,6 @@ global.promptText = "";
 global.greatInfo = "";
 file = -1;
 text_loaded = false;
-
-//speech_sprite = spr_soviet_head;
 </string>
           </argument>
         </arguments>
@@ -154,15 +152,9 @@ else
             <kind>1</kind>
             <string>///Insert another direct_speech characters here!
 
-if (string_full == "&amp;Advicer")
-{
-    sprite_index = spr_soviet_head;
-}
-
 if (!text_loaded and file != -1)
 {
-    text_loaded = true;
-    alarm[0] = 1;
+    text_loaded = true; alarm[0] = 1;
 }
 </string>
           </argument>
@@ -196,18 +188,6 @@ else
 {
     draw_text_colour(view_xview[0] + 12, view_yview[0] + view_hview[0] - 34, global.greatInfo, c_white, c_white, c_white, c_white, 1);
 }
-
-/*
-    if (direct_speech)
-    {
-        //draw_sprite(speech_sprite, 0, view_xview[0] + 8, view_yview[0] + view_hview[0] - 32);
-        draw_text_colour(view_xview[0] + 74, view_yview[0] + view_hview[0] - 32, global.greatInfo, c_white, c_white, c_white, c_white, 1);
-    }
-    else
-    {
-        draw_text_colour(view_xview[0] + 12, view_yview[0] + view_hview[0] - 34, global.greatInfo, c_white, c_white, c_white, c_white, 1);
-    }
-}*/
 </string>
           </argument>
         </arguments>

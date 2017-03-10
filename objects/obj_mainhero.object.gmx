@@ -55,6 +55,34 @@ jumped = false;
 onGround = false;
 border_const = 234;
 allow_walk = true;
+
+cooldown_amount = 0;
+weapon_cooldown = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Turning back cooldown value
+
+weapon_cooldown = false;
 </string>
           </argument>
         </arguments>
@@ -379,79 +407,49 @@ if (room_get_name(room) == "dark_forest_3" and state != "pause")
             <kind>1</kind>
             <string>///Weapons' behaviour
 
-/*if (state == "idle" &amp;&amp; weapon != weapons.weapon_none)
+if (state == "idle" and weapon != weapons.weapon_none and !weapon_cooldown)
 {
     if (image_xscale &gt; 0)
     {
         switch (weapon)
         {
             case weapons.weapon_fire:
-                runicBullet = instance_create(x - 50, y - 116, obj_rune_1);
+                runicBullet = instance_create(x + 230, y - 256, obj_bullet_fire);
+                cooldown_amount = 40;
             break;
             case weapons.weapon_ice:
-                runicBullet = instance_create(x - 50, y - 116, obj_rune_2);
+                runicBullet = instance_create(x + 230, y - 256, obj_bullet_ice);
+                cooldown_amount = 28;
             break;
         }
-        runicBullet.direction = 180;
+        runicBullet.direction = 0;
     }
     else
     {
         switch (weapon)
         {
             case weapons.weapon_fire:
-                runicBullet = instance_create(x + 50, y - 116, obj_rune_1);
+                runicBullet = instance_create(x - 230, y - 256, obj_bullet_fire);
+                cooldown_amount = 40;
             break;
             case weapons.weapon_ice:
-                runicBullet = instance_create(x + 50, y - 116, obj_rune_2);
+                runicBullet = instance_create(x - 230, y - 256, obj_bullet_ice);
+                cooldown_amount = 28;
             break;
         }
-        runicBullet.direction = 0;
+        runicBullet.direction = 180;
     }
     
-    if ((maxenergy - 1) == 0)
-    {
-        weapon = weapons.weapon_none;
-    }
+    if ((maxenergy - 1) == 0) weapon = weapons.weapon_none;
+        
     maxenergy --;
-    runicBullet.speed = 18;
+    runicBullet.speed = 20;
     runicBullet.xCreate = x;
     runicBullet.yCreate = y;
-}*/
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw lerp-effect shader on main_hero
-
-if (shader_is_compiled(shader_lerp))
-{
-    shader_set(shader_lerp);
-    if (lerp_value &gt; 0)
-    {
-        lerp_value -= 0.1;
-    }
-    shader_set_uniform_f(colour_to_find, 1, 1, 1, lerp_value);
+    
+    weapon_cooldown = true;
+    if (alarm[1] == -1) alarm[1] = cooldown_amount;
 }
-draw_self();
-shader_reset();
 </string>
           </argument>
         </arguments>

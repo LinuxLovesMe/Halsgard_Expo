@@ -29,7 +29,6 @@
 { 
     archer, mage, warrior, super_archer, super_mage, super_warrior
 };
-randomize();
 
 start_point_x = 450;
 start_point_y = 850;

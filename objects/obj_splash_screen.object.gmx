@@ -176,6 +176,7 @@ global.planescape_parent = 0;
 global.full_show = false;
 global.previous_room = "main_menu";
 
+randomize();
 global.valentine_text = "";
 
 enum paused { pause, non_pause } global.pause = paused.non_pause;

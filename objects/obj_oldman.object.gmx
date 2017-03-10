@@ -164,9 +164,7 @@ else
 {
     if (state == "idle" or state == "walk")
     {
-        randomize();
-        var rand = irandom_range(1, 400);
-    
+        var rand = irandom_range(1, 400);    
         if (rand == 5 and !cough_cooldown)
         {
             old_state = "idle";

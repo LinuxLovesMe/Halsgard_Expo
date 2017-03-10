@@ -2,23 +2,23 @@
 <sprite>
   <type>0</type>
   <xorig>104</xorig>
-  <yorigin>382</yorigin>
+  <yorigin>380</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>13</bbox_left>
-  <bbox_right>200</bbox_right>
-  <bbox_top>14</bbox_top>
-  <bbox_bottom>381</bbox_bottom>
+  <bbox_left>10</bbox_left>
+  <bbox_right>196</bbox_right>
+  <bbox_top>11</bbox_top>
+  <bbox_bottom>379</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>202</width>
-  <height>382</height>
+  <width>198</width>
+  <height>380</height>
   <frames>
     <frame index="0">images\spr_oldman_watch_0.png</frame>
     <frame index="1">images\spr_oldman_watch_1.png</frame>

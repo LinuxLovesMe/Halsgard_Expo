@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>alarm[0] = 3;
 step = 0;
-randomize();
 alarm_1_launched = 0;
 </string>
           </argument>

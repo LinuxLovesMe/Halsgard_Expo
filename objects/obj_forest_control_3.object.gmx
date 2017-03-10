@@ -29,7 +29,51 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
+alarm[10] = 20;
+
+anarchy_text[0] = "Привет, браза!";
+anarchy_text[1] = "Йоу, привет!";
+anarchy_text[2] = "Как дела, братан?";
+anarchy_text[3] = "Да заебись!";
+anarchy_text[4] = "Ну че, идем шухер наводить?";
+
+//Setup parametres for garage cutscene
+
+cutscene_start = 0;
+j_count = 0;
+anarchy_man_1 = 0;
+anarchy_man_2 = 0;
+
 instance_create(240, 968, obj_mainhero);
+instance_create(1846, 112, obj_owl_forest);
+instance_create(1632, 928, obj_rune_fire);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>cutscene_start = 1;
+anarchy_man_1 = instance_create(1200, 950, obj_anarchy_man);
+anarchy_man_1.image_xscale = -1;
+anarchy_man_2 = instance_create(1500, 950, obj_anarchy_man);
+anarchy_man_2.pause = true;
 </string>
           </argument>
         </arguments>
@@ -52,7 +96,9 @@ instance_create(240, 968, obj_mainhero);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>background_x[1]=floor(view_xview[0]*0.8);
+            <string>///Parallax settings
+
+background_x[1]=floor(view_xview[0]*0.8);
 background_x[2]=floor(view_xview[0]*0.4);
 background_x[3]=floor(view_xview[0]*0.2);
 background_x[4]=floor(view_xview[0]*0.2);
@@ -63,6 +109,87 @@ background_y[2]=floor(view_yview[0]*0.4);
 background_y[3]=floor(view_yview[0]*0.2);
 background_y[4]=floor(view_yview[0]*0.2);
 background_y[5]=floor(view_yview[0]*0.01);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Different events for third scene
+
+event_inherited();
+
+if (cutscene_start)
+{
+    global.pause = paused.pause;
+    global.greatInfo = anarchy_text[j_count];
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Cutscene management on LMB
+
+if (cutscene_start)
+{
+    if (anarchy_man_1.pause)
+    {
+        anarchy_man_1.pause = false;
+        anarchy_man_2.pause = true;
+    }
+    else
+    {
+        anarchy_man_1.pause = true;
+        anarchy_man_2.pause = false;
+    }
+    j_count++;
+}
+
+if (j_count == 5) //Last click in cutscene, start anarchy's animation
+{
+    cutscene_start = 0;
+    anarchy_man_1.pause = false;
+    anarchy_man_2.pause = false;
+    global.greatInfo = "";
+    
+    j_count = 13;
+    anarchy_man_1.image_xscale = 1;
+    anarchy_man_1.state = "walk";
+    anarchy_man_2.state = "walk";
+    global.pause = paused.non_pause;
+}
 </string>
           </argument>
         </arguments>
