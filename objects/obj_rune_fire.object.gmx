@@ -54,7 +54,7 @@ y_origin = y;
             <string>///Parallax settings
 
 x = x_origin + floor(view_xview[0] * 0.2);
-y = y_origin + floor(view_yview[0] * 0.2);
+y = y_origin;
 </string>
           </argument>
         </arguments>

@@ -33,8 +33,9 @@ if (global.tutorial[0] == 0) // Only in the first time
 {
     instance_create(2080, 140, obj_masquerade);
     instance_create(0, 0, obj_fade_effect);
-    global.complete[0] = "Квест 1: Исследовать обстановку.";
+    global.uncomplete[0] = "Квест 1: Разведать обстановку.";
     global.uncomplete[1] = "Квест 2: Побеседовать с Советником.";
+    global.uncomplete[2] = "Квест 3: Найти обелиск пламени.";
 }
 else
 {
@@ -42,7 +43,6 @@ else
 }
 
 text = "";
-global.valentine_text = "Да здравствует Его Величество, Вигго Валентайн!";
 tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";
 tutorial_text[2] = "Уверен, эта штука за мной следит! Надо бы проверить ее при помощи ПКМ (ЛКМ - далее).";
 tutorial_text[1] = "В гиде по выживанию [Esc] всегда можно прочесть свежие игровые подсказки (ЛКМ - далее).";
@@ -240,6 +240,33 @@ for (i = 0; i &lt; 3; i++)
           <argument>
             <kind>1</kind>
             <string>global.previous_room = "dark_forest_1";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.tutorial[0] == 0 and instance_exists(obj_mainhero))
+{
+    if (obj_mainhero.image_xscale &gt; 0) draw_sprite(spr_key_WASD, 0, obj_mainhero.x + 40, obj_mainhero.y - obj_mainhero.sprite_height - 18);
+    else draw_sprite(spr_key_WASD, 0, obj_mainhero.x - 40, obj_mainhero.y - obj_mainhero.sprite_height - 18);
+}
 </string>
           </argument>
         </arguments>

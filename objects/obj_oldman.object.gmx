@@ -37,7 +37,7 @@ cough_cooldown = false;
 counter = 0;
 move_distance = 0;
 
-say_string = "Уверен, что сейчас у тебя есть более важные дела.";
+say_string = "Уверен, сейчас у тебя есть более важные дела.";
 </string>
           </argument>
         </arguments>
@@ -245,12 +245,12 @@ if (state == "walk")
     sprite_index = spr_oldman_walk;
     image_speed = 0.14;
     
-    if (x + move_distance &lt;= x_center - 200)
+    if (x + move_distance &lt;= x_center - 330)
     {
         image_xscale = -image_xscale;
     }
     
-    if (x + move_distance &gt;= x_center + 100)
+    if (x + move_distance &gt;= x_center + 80)
     {
         image_xscale = -image_xscale;
     }
@@ -327,7 +327,7 @@ if (state == "watch")
             <kind>1</kind>
             <string>///Create dialogue instance (only once)
 
-if (keyboard_check_released(ord("E")) and abs(obj_mainhero.x - x) &lt; 200)
+if (keyboard_check_released(ord("E")) and abs(obj_mainhero.x - x) &lt; 180)
 {
     if (global.uncomplete[1] != "")
     {

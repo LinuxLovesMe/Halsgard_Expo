@@ -30,7 +30,7 @@ choose_trump = false;
 click = false;
 trump_choosed = false;
 
-move_to_x = 800;
+move_to_x = 808;
 move_to_y = 378;
 scale_option = 1.1;
 </string>
@@ -186,7 +186,7 @@ else
             <kind>1</kind>
             <string>event_inherited();
 
-if (ds_map_find_value(global.choices, "chaos_choice"))
+if (global.chaos_choice)
 {
     draw_sprite_ext(spr_gamecard_hell, value, 0, 0, scale, scale, 0, c_white, image_alpha);
 }

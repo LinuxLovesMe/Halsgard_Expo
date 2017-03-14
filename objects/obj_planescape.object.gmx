@@ -126,7 +126,8 @@ if (!replica)
         {
             if (mouse_check_button_released(mb_left))
             {
-                pointer_t = real(string_digits(info[pointer, k]));
+                var num_string = string_copy(info[pointer, k], 0, 5);
+                pointer_t = real(string_digits(num_string));
                 break;
             }
             active_answer = k;

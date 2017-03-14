@@ -33,7 +33,7 @@ total_score = 0;
 stop_game = 0;
 battle_number = 1;
 fx_effect = 0;
-choose_effect = choose(1, 2);
+choose_effect = choose(1, 2, 3);
 normal_background = 0;
 con = 200;
 card_rating = 50;
@@ -151,6 +151,10 @@ if (card_rating != 0 and card_rating!= 100)
 if ((battle_number &gt; 2 and choose_effect == 1) or (battle_number == 2 and choose_effect == 2))
 {
     fx_effect = choose_effect;
+}
+else if ((battle_number == 2 and choose_effect == 3))
+{
+    global.chaos_choice = 1;
 }
 
 if (stop_game and battle_number &lt; 4)

@@ -163,9 +163,10 @@
       <sprite>sprites\spr_mainhero</sprite>
       <sprite>sprites\spr_quest_journal</sprite>
       <sprite>sprites\spr_valentine</sprite>
-      <sprite>sprites\spr_needles</sprite>
-      <sprite>sprites\spr_gazette_1</sprite>
+      <sprite>sprites\spr_key_WASD</sprite>
       <sprite>sprites\spr_key_E</sprite>
+      <sprite>sprites\spr_gazette_1</sprite>
+      <sprite>sprites\spr_needles</sprite>
       <sprite>sprites\spr_sandbox_10</sprite>
     </sprites>
     <sprites name="dark_forest_2">
@@ -182,20 +183,22 @@
       </sprites>
       <sprite>sprites\spr_interactive</sprite>
       <sprite>sprites\spr_lovushka</sprite>
-      <sprite>sprites\spr_gorka_10</sprite>
+      <sprite>sprites\spr_gorka_12</sprite>
       <sprite>sprites\spr_inter_mask</sprite>
     </sprites>
     <sprites name="dark_forest_3">
       <sprite>sprites\spr_owl_forest</sprite>
       <sprite>sprites\spr_bullet</sprite>
-      <sprite>sprites\spr_rune_fire</sprite>
       <sprites name="anarchy_group">
         <sprite>sprites\spr_anarchy_walk</sprite>
         <sprite>sprites\spr_anarchy_idle</sprite>
-        <sprite>sprites\spr_anarchy_prepare</sprite>
         <sprite>sprites\spr_anarchy_slash</sprite>
+        <sprite>sprites\spr_anarchy_prepare</sprite>
         <sprite>sprites\spr_anarchy_death</sprite>
       </sprites>
+      <sprite>sprites\spr_volga_auto</sprite>
+      <sprite>sprites\spr_rune_fire</sprite>
+      <sprite>sprites\spr_garage_new</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -307,6 +310,7 @@
       </objects>
       <objects name="dark_forest_2">
         <object>objects\obj_lovushka</object>
+        <object>objects\obj_gorka</object>
         <object>objects\obj_oldman</object>
         <object>objects\obj_main_1</object>
         <object>objects\obj_dialogue_2</object>
@@ -323,8 +327,10 @@
           <object>objects\obj_dest_05</object>
         </objects>
         <object>objects\obj_bullet</object>
+        <object>objects\obj_volga_auto</object>
         <object>objects\obj_bullet_fire</object>
         <object>objects\obj_bullet_ice</object>
+        <object>objects\obj_garage_new</object>
       </objects>
       <object>objects\obj_forest_control_1</object>
       <object>objects\obj_forest_control_2</object>
@@ -333,12 +339,12 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
-    <room>rooms\dark_forest_3</room>
-    <room>rooms\dark_forest_1</room>
-    <room>rooms\dark_forest_2</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
     <room>rooms\start_room</room>
+    <room>rooms\dark_forest_1</room>
+    <room>rooms\dark_forest_2</room>
+    <room>rooms\dark_forest_3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

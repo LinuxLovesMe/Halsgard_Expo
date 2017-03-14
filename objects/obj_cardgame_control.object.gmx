@@ -283,7 +283,7 @@ temp = 0;
 }
 
 battle_text = 1;
-alarm[3] = room_speed + 20;
+alarm[3] = room_speed + 8;
 </string>
           </argument>
         </arguments>

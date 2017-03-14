@@ -31,11 +31,11 @@ instance_create(0, 0, obj_autumn_fall);
 
 alarm[10] = 20;
 
-anarchy_text[0] = "Привет, браза!";
-anarchy_text[1] = "Йоу, привет!";
-anarchy_text[2] = "Как дела, братан?";
-anarchy_text[3] = "Да заебись!";
-anarchy_text[4] = "Ну че, идем шухер наводить?";
+anarchy_text[0] = "Нашел ту маску, о которой говорил Агни?";
+anarchy_text[1] = "Эм... Да, я кое-что прихватил с собой. Кхе... Давай глянем!";
+anarchy_text[2] = "Черт с ней. Потом посмотрим. Надо торопиться.";
+anarchy_text[3] = "Кстати, моя супруга вечером готовит ужин - знаешь, прямо как мне нравится. Заглянешь?";
+anarchy_text[4] = "Отчего же нет? Заметано! А теперь двинули скорее к хэрсиру, пока он нас живьем не закопал.";
 
 //Setup parametres for garage cutscene
 
@@ -46,7 +46,9 @@ anarchy_man_2 = 0;
 
 instance_create(240, 968, obj_mainhero);
 instance_create(1846, 112, obj_owl_forest);
-instance_create(1632, 928, obj_rune_fire);
+instance_create(840, 954, obj_volga_auto);
+instance_create(1800, 940, obj_rune_fire);
+instance_create(2430, 940, obj_garage_new);
 </string>
           </argument>
         </arguments>
