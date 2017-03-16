@@ -149,13 +149,16 @@
       <sprite>sprites\spr_tutorial_2</sprite>
     </sprites>
     <sprites name="dark_forest_1">
-      <sprites name="maskmask_group">
+      <sprites name="mainhero_group">
+        <sprite>sprites\spr_mainhero_idle</sprite>
+        <sprite>sprites\spr_mainhero_walk</sprite>
+      </sprites>
+      <sprites name="mask_group">
         <sprite>sprites\spr_mask_1</sprite>
         <sprite>sprites\spr_mask_2</sprite>
         <sprite>sprites\spr_mask_3</sprite>
       </sprites>
       <sprite>sprites\spr_frosty_back</sprite>
-      <sprite>sprites\spr_mainhero</sprite>
       <sprite>sprites\spr_sandbox_10</sprite>
       <sprite>sprites\spr_valentine</sprite>
       <sprite>sprites\spr_division_line</sprite>

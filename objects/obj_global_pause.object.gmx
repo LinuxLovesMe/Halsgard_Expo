@@ -134,7 +134,7 @@ if (ui_get_enable(range))
 
 switch (action)
 {
-    case 1:
+    case 2:
         instance_destroy();
         instance_create(0, 0, obj_hero_status);
     break;

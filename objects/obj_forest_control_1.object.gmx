@@ -29,6 +29,13 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
+if (global.previous_room == "dark_forest_2")
+{
+    instance_create(room_width - 240, 968, obj_mainhero);
+    obj_mainhero.image_xscale = -1;
+}
+else instance_create(300, 968, obj_mainhero);
+
 if (global.tutorial[0] == 0) // Only in the first time
 {
     instance_create(2080, 140, obj_masquerade);
@@ -36,6 +43,12 @@ if (global.tutorial[0] == 0) // Only in the first time
     global.uncomplete[0] = "Квест 1: Разведать обстановку.";
     global.uncomplete[1] = "Квест 2: Побеседовать с Советником.";
     global.uncomplete[2] = "Квест 3: Найти обелиск пламени.";
+    
+    if (instance_exists(obj_mainhero))
+    {
+        global.character[8] = global.character[0]; //Setup current value of HP
+        global.character[9] = global.character[7]; //Setup current value of AP
+    }
 }
 else
 {
@@ -46,13 +59,6 @@ text = "";
 tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";
 tutorial_text[2] = "Уверен, эта штука за мной следит! Надо бы проверить ее при помощи ПКМ (ЛКМ - далее).";
 tutorial_text[1] = "В гиде по выживанию [Esc] всегда можно прочесть свежие игровые подсказки (ЛКМ - далее).";
-
-if (global.previous_room == "dark_forest_2")
-{
-    instance_create(room_width - 240, 968, obj_mainhero);
-    obj_mainhero.image_xscale = -1;
-}
-else instance_create(300, 968, obj_mainhero);
 </string>
           </argument>
         </arguments>

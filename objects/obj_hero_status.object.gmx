@@ -87,11 +87,36 @@ draw_sprite(spr_heart_icon, 0, xx + 32, yy + 814);
 draw_sprite(spr_fire_icon, 0, xx + 32, yy + 870);
 draw_sprite(spr_action_icon, 0, xx + 34, yy + 754);
 
-draw_text(xx + 48, yy + 740, ornamentus[8]);
-draw_text(xx + 48, yy + 800, ornamentus[9]);
-draw_text(xx + 48, yy + 860, ornamentus[10]);
+draw_text(xx + 48, yy + 740, ornamentus[8] + string(global.character[9]) + "/" + string(global.character[7]));
+draw_text(xx + 48, yy + 800, ornamentus[9] + string(global.character[8]) + "/" + string(global.character[0]));
+draw_text(xx + 48, yy + 860, ornamentus[10] + string(obj_mainhero.maxenergy));
 
 draw_sprite(spr_division_line, 0, xx + 1020, yy + 668);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>keyboard_clear(vk_escape);
+instance_destroy();
+instance_create(0, 0, obj_global_pause);
 </string>
           </argument>
         </arguments>
