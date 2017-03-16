@@ -134,6 +134,11 @@ if (ui_get_enable(range))
 
 switch (action)
 {
+    case 1:
+        instance_destroy();
+        instance_create(0, 0, obj_hero_status);
+    break;
+    
     case 4:
         instance_destroy();
         room_goto(main_menu);        

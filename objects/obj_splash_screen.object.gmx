@@ -189,6 +189,19 @@ for (i = 0; i &lt; 6; i++) //Generate arrays for Quests
 }
 
 for (j = 0; j &lt; 4; j++) global.tutorial[i] = 0; //Generate array for Tutorials
+
+//Aid's skills and stats arrays init
+
+global.character[0] = 0; //Физическое здоровье
+global.character[1] = 0; //Сила Вигго
+global.character[2] = 0; //Целительная энергия
+global.character[3] = 0; //Зов Хильд
+global.character[4] = 0; //Начитанность (мудрость)
+global.character[5] = 0; //Дар Браги
+global.character[6] = 0; //Предсказание Скульд
+global.character[7] = 0; //Физическая активность
+global.character[8] = 0; //Current HP status
+global.character[9] = 0; //Current AP status
 </string>
           </argument>
         </arguments>
