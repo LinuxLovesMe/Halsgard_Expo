@@ -152,7 +152,7 @@ if ((battle_number &gt; 2 and choose_effect == 1) or (battle_number == 2 and cho
 {
     fx_effect = choose_effect;
 }
-else if ((battle_number == 2 and choose_effect == 3))
+else if ((battle_number &gt; 2 and choose_effect == 3))
 {
     global.chaos_choice = 1;
 }

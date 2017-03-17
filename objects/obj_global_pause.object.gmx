@@ -32,8 +32,8 @@ local_menu[3] = "ГРОМКОСТЬ";
 local_menu[4] = "В ГЛАВНОЕ МЕНЮ";
 
 space = 120;
-action = 0;
-curr_pos = 0;
+action = 5;
+curr_pos = 5;
 
 range = ui_range_create(view_xview[0] + view_wview[0] - string_width(local_menu[3]) - 400, view_yview[0] + 208 + (3 * space), 280, ui_default);
 ui_range_set_limit(range, 0, 10);
@@ -109,6 +109,7 @@ ui_clear_all();
                            view_xview[0] + view_wview[0] - 30, view_yview[0] + 250 + (t * space)) and t != 3)
     {
         curr_pos = t;
+        
         if (mouse_check_button_released(mb_left))
         {
             action = t;
@@ -134,6 +135,11 @@ if (ui_get_enable(range))
 
 switch (action)
 {
+    case 0:
+        instance_destroy();
+        instance_create(0, 0, obj_survival_guide);
+    break;
+    
     case 2:
         instance_destroy();
         instance_create(0, 0, obj_hero_status);

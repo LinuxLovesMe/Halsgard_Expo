@@ -122,10 +122,10 @@
       <sprites name="intro_zeber">
         <sprite>sprites\spr_paper_1</sprite>
         <sprite>sprites\spr_hero_face</sprite>
+        <sprite>sprites\spr_prologue</sprite>
         <sprite>sprites\spr_wall</sprite>
         <sprite>sprites\spr_wall_font</sprite>
         <sprite>sprites\spr_cafell</sprite>
-        <sprite>sprites\spr_prologue</sprite>
         <sprite>sprites\spr_border_mosaic</sprite>
       </sprites>
       <sprites name="card_game">
@@ -138,15 +138,7 @@
         <sprite>sprites\spr_card_frosty</sprite>
         <sprite>sprites\spr_card_background</sprite>
       </sprites>
-      <sprites name="ragnarok_dialogue">
-        <sprite>sprites\spr_final_sprite</sprite>
-        <sprite>sprites\spr_final_font</sprite>
-        <sprite>sprites\spr_dialogue_main</sprite>
-      </sprites>
-    </sprites>
-    <sprites name="start_room">
-      <sprite>sprites\spr_intro_2</sprite>
-      <sprite>sprites\spr_tutorial_2</sprite>
+      <sprite>sprites\spr_dialogue_main</sprite>
     </sprites>
     <sprites name="dark_forest_1">
       <sprites name="mainhero_group">
@@ -190,6 +182,7 @@
       <sprite>sprites\spr_inter_mask</sprite>
     </sprites>
     <sprites name="dark_forest_3">
+      <sprite>sprites\spr_universal_back</sprite>
       <sprite>sprites\spr_owl_forest</sprite>
       <sprite>sprites\spr_bullet</sprite>
       <sprite>sprites\spr_garage_new</sprite>
@@ -203,6 +196,8 @@
       <sprite>sprites\spr_volga_auto</sprite>
       <sprite>sprites\spr_rune_fire</sprite>
       <sprite>sprites\spr_fireball_attack</sprite>
+      <sprite>sprites\spr_surikene</sprite>
+      <sprite>sprites\spr_item_description</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -253,8 +248,6 @@
   </fonts>
   <objects name="objects">
     <object>objects\obj_splash_screen</object>
-    <object>objects\obj_final_part</object>
-    <object>objects\obj_final_control</object>
     <objects name="main_menu">
       <object>objects\obj_menu</object>
       <object>objects\obj_menu_music</object>
@@ -343,12 +336,12 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
-    <room>rooms\dark_forest_1</room>
-    <room>rooms\dark_forest_3</room>
-    <room>rooms\ragnarok_intro</room>
     <room>rooms\main_menu</room>
+    <room>rooms\ragnarok_intro</room>
     <room>rooms\start_room</room>
+    <room>rooms\dark_forest_1</room>
     <room>rooms\dark_forest_2</room>
+    <room>rooms\dark_forest_3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

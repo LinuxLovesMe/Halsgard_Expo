@@ -120,7 +120,7 @@ else
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -140,11 +140,11 @@ else
             <string>draw_self();
 
 draw_set_font(Underdog_20);
-draw_set_colour(c_white);
+draw_set_colour(c_black);
 
 if (page_1) draw_text(x + sprite_width / 2 + 30, room_height - 100, "[ЛКМ] - СЛЕДУЮЩАЯ СТРАНИЦА");
 
-if (page_2) 
+if (page_2)
 {
     draw_text(x - sprite_width / 2 - string_width("[ПКМ] - ПРЕДЫДУЩАЯ СТРАНИЦА") - 28, room_height - 100, "[ПКМ] - ПРЕДЫДУЩАЯ СТРАНИЦА");
     draw_text(x + sprite_width / 2 + 30, room_height - 100, "[ЛКМ] - К БИТВЕ!");
