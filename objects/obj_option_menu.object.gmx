@@ -42,14 +42,13 @@ y = surface_get_height(application_surface) / 2;
 option_x = x - sprite_width / 2 + 80;
 option_y = y - sprite_height / 2 + 80;
 
-range = ui_range_create(option_x + string_width(string(option[1])) + 80, option_y + space + 4, 400, ui_default);
-ui_range_set_limit(range, 0, 10);
-ui_range_set_max(range, 10);
+range = ui_range_create(option_x + 250, option_y + space + 8, 400, ui_default);
+ui_range_set_limit(range, 0, 10); ui_range_set_max(range, 10);
 ui_range_set_value(range, ds_map_find_value(global.options, "volume"));
 
-checkbox1 = ui_checkbox_create(option_x + string_width(string(option[0])) + 80, option_y + 2, 54, "");
-checkbox2 = ui_checkbox_create(option_x + string_width(string(option[3])) + 120, option_y + space * 3, 54, "");
-checkbox3 = ui_checkbox_create(option_x + string_width(string(option[4])) + 80, option_y + space * 4, 54, "");
+checkbox1 = ui_checkbox_create(option_x + 334, option_y + 2, 54, "");
+checkbox2 = ui_checkbox_create(option_x + 248, option_y + space * 3 + 2, 54, "");
+checkbox3 = ui_checkbox_create(option_x + 324, option_y + space * 4 + 2, 54, "");
 
 if (ds_map_find_value(global.options, "history_mode")) ui_set_checked(checkbox2, true) else ui_set_checked(checkbox2, false);
 if (ds_map_find_value(global.options, "fullscreen")) ui_set_checked(checkbox1, true) else ui_set_checked(checkbox1, false);
@@ -211,7 +210,7 @@ ui_set_background_colour(checkbox3, deepRed);
 
 ui_draw_all();
 
-draw_text(option_x + string_width(string(option[1])) + 540, option_y + space, string(ui_range_get_value(range)));
+draw_text(option_x + string_width(string(option[1])) + 450, option_y + space, string(ui_range_get_value(range)));
 
 draw_line_width_color(option_x, option_y + space * 7 - 20, option_x + string_width(string(option[6])), option_y + space * 7 - 20, 3, myColor, myColor);
 </string>

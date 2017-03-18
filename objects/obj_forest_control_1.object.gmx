@@ -31,10 +31,10 @@ instance_create(0, 0, obj_autumn_fall);
 
 if (global.previous_room == "dark_forest_2")
 {
-    instance_create(room_width - 240, 968, obj_mainhero);
+    instance_create(room_width - 200, 980, obj_mainhero);
     obj_mainhero.image_xscale = -1;
 }
-else instance_create(300, 968, obj_mainhero);
+else instance_create(240, 980, obj_mainhero);
 
 if (global.tutorial[0] == 0) // Only in the first time
 {
@@ -270,8 +270,8 @@ for (i = 0; i &lt; 3; i++)
             <kind>1</kind>
             <string>if (global.tutorial[0] == 0 and instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.image_xscale &gt; 0) draw_sprite(spr_key_WASD, 0, obj_mainhero.x + 40, obj_mainhero.y - obj_mainhero.sprite_height - 18);
-    else draw_sprite(spr_key_WASD, 0, obj_mainhero.x - 40, obj_mainhero.y - obj_mainhero.sprite_height - 18);
+    if (obj_mainhero.image_xscale &gt; 0) draw_sprite(spr_key_WASD, 0, obj_mainhero.x + 86, obj_mainhero.y - obj_mainhero.sprite_height - 12);
+    else draw_sprite(spr_key_WASD, 0, obj_mainhero.x - 86, obj_mainhero.y - obj_mainhero.sprite_height - 12);
 }
 </string>
           </argument>

@@ -31,11 +31,11 @@ instance_create(0, 0, obj_autumn_fall);
 
 if (global.previous_room == "dark_forest_3")
 {
-    instance_create(room_width - 240, 968, obj_mainhero);
+    instance_create(room_width - 200, 980, obj_mainhero);
 }
 else
 {
-    instance_create(240, 968, obj_mainhero);
+    instance_create(200, 980, obj_mainhero);
     obj_mainhero.image_xscale = -1;
 }
 

@@ -44,7 +44,7 @@ j_count = 0;
 anarchy_man_1 = 0;
 anarchy_man_2 = 0;
 
-instance_create(240, 968, obj_mainhero);
+instance_create(200, 980, obj_mainhero);
 instance_create(1846, 112, obj_owl_forest);
 instance_create(840, 954, obj_volga_auto);
 instance_create(1800, 940, obj_rune_fire);

@@ -113,9 +113,9 @@
     <sprites name="main_menu">
       <sprite>sprites\spr_blur_menu</sprite>
       <sprite>sprites\spr_cursor</sprite>
+      <sprite>sprites\spr_menu_button</sprite>
       <sprite>sprites\spr_light</sprite>
       <sprite>sprites\spr_snowflake</sprite>
-      <sprite>sprites\spr_lamp</sprite>
       <sprite>sprites\spr_option_menu</sprite>
     </sprites>
     <sprites name="ragnarok_game">
@@ -251,12 +251,10 @@
     <objects name="main_menu">
       <object>objects\obj_menu</object>
       <object>objects\obj_menu_music</object>
-      <object>objects\obj_lamp</object>
       <object>objects\obj_cursor</object>
-      <object>objects\obj_option_menu</object>
-      <object>objects\obj_light</object>
       <object>objects\obj_snowflake</object>
-      <object>objects\obj_snow_control</object>
+      <object>objects\obj_light</object>
+      <object>objects\obj_option_menu</object>
     </objects>
     <objects name="ragnarok_game">
       <object>objects\obj_fade_effect</object>
