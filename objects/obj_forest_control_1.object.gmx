@@ -270,8 +270,8 @@ for (i = 0; i &lt; 3; i++)
             <kind>1</kind>
             <string>if (global.tutorial[0] == 0 and instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.image_xscale &gt; 0) draw_sprite(spr_key_WASD, 0, obj_mainhero.x + 86, obj_mainhero.y - obj_mainhero.sprite_height - 12);
-    else draw_sprite(spr_key_WASD, 0, obj_mainhero.x - 86, obj_mainhero.y - obj_mainhero.sprite_height - 12);
+    if (obj_mainhero.image_xscale &gt; 0) draw_sprite(spr_key_WASD, 0, obj_mainhero.x + 86, obj_mainhero.y - obj_mainhero.sprite_height);
+    else draw_sprite(spr_key_WASD, 0, obj_mainhero.x - 86, obj_mainhero.y - obj_mainhero.sprite_height);
 }
 </string>
           </argument>

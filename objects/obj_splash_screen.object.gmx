@@ -115,6 +115,46 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Set splash screen sprites coordinates
+
+ph1_x = 0;
+ph1_y = 0;
+
+ph2_x = 0;
+ph2_y = 0;
+
+font_x = 400;
+font_y = 0;
+
+alarm[0] = room_speed * 1;
+alarm[1] = room_speed * 2 + 10;
+alarm[2] = room_speed * 3 + 40;
+
+video_state = 0;
+
+var fullscreen = ds_map_find_value(global.options, "fullscreen");
+
+if (fullscreen) window_set_fullscreen(true); else set_window_size();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Create new "file with options", if first check was wrong
 
 if (file_with_options_correct)
@@ -178,9 +218,7 @@ global.chaos_choice = 0;
 global.previous_room = "main_menu";
 
 randomize();
-global.valentine_text = "";
-
-enum paused { pause, non_pause } global.pause = paused.non_pause;
+enum paused { pause, non_pause } global.pause = paused.non_pause; //Pause events
 
 for (i = 0; i &lt; 6; i++) //Generate arrays for Quests
 {
@@ -222,54 +260,28 @@ global.character[9] = 0; //Current AP status
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set fullscreen on game start
+            <string>///Create inventory slots and item's descriptions
 
-var fullscreen = ds_map_find_value(global.options, "fullscreen");
+global.items_list = ds_map_create(); //Global map-array for item descriptions
 
-if (fullscreen) 
-{
-    window_set_fullscreen(true);
-}
-else
-{
-    set_window_size();
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Set splash screen sprites coordinates
+global.halsvord = ds_list_create();
+ds_list_add(global.halsvord, 0, 0, "Хальсворды");
 
-ph1_x = 0;
-ph1_y = 0;
+global.medical_rune = ds_list_create();
+ds_list_add(global.medical_rune, 1, 0, "Руна исцеления");
 
-ph2_x = 0;
-ph2_y = 0;
+global.chain_chain = ds_list_create();
+ds_list_add(global.chain_chain, 2, 0, "Цепная реакция");
 
-font_x = 400;
-font_y = 0;
+global.theatre_mask = ds_list_create();
+ds_list_add(global.theatre_mask, 3, 0, "Предмет для квеста");
 
-alarm[0] = room_speed * 1;
-alarm[1] = room_speed * 2 + 10;
-alarm[2] = room_speed * 3 + 40;
+ds_map_add(global.items_list, "Halsvord", global.halsvord);
+ds_map_add(global.items_list, "Medical_Rune", global.medical_rune);
+ds_map_add(global.items_list, "Chain_Chain", global.chain_chain);
+ds_map_add(global.items_list, "Theatre_Mask", global.theatre_mask);
 
-video_state = 0;
+for (n = 0; n &lt; 10; n++) global.inventory[n] = ""; //Inventory is Viggo Valentine
 </string>
           </argument>
         </arguments>
@@ -386,7 +398,7 @@ switch (video_state)
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>

@@ -193,6 +193,7 @@
         <sprite>sprites\spr_anarchy_prepare</sprite>
         <sprite>sprites\spr_anarchy_death</sprite>
       </sprites>
+      <sprite>sprites\spr_inventory_icon</sprite>
       <sprite>sprites\spr_volga_auto</sprite>
       <sprite>sprites\spr_rune_fire</sprite>
       <sprite>sprites\spr_fireball_attack</sprite>
@@ -321,7 +322,6 @@
           <object>objects\obj_dest_04</object>
           <object>objects\obj_dest_05</object>
         </objects>
-        <object>objects\obj_bullet</object>
         <object>objects\obj_volga_auto</object>
         <object>objects\obj_bullet_fire</object>
         <object>objects\obj_bullet_ice</object>
