@@ -175,9 +175,9 @@ background_y[5]=floor(view_yview[0]*0.01);
 
 if (instance_exists(obj_mainhero))
 {
-    if (obj_mainhero.x &gt; 910 and global.tutorial[0] == 0) global.tutorial[0]++;
-    if (obj_mainhero.x &gt; 1700 and global.tutorial[1] == 0) global.tutorial[1]++;
-    if (obj_mainhero.x &gt; 2294 and global.tutorial[2] == 0) global.tutorial[2]++;
+    if (obj_mainhero.x &gt; 900 and global.tutorial[0] == 0) global.tutorial[0]++;
+    if (obj_mainhero.x &gt; 1680 and global.tutorial[1] == 0) global.tutorial[1]++;
+    if (obj_mainhero.x &gt; 2274 and global.tutorial[2] == 0) global.tutorial[2]++;
 }
 
 for (i = 0; i &lt; 3; i++)

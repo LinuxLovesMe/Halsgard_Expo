@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="8" name="datafiles">
+  <datafiles number="15" name="datafiles">
     <datafile>
       <name>Dialogue_0.txt</name>
       <exists>-1</exists>
@@ -41,7 +41,7 @@
     <datafile>
       <name>Themes_1.txt</name>
       <exists>-1</exists>
-      <size>169</size>
+      <size>317</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -56,7 +56,58 @@
       <filename>Themes_1.txt</filename>
     </datafile>
     <datafile>
-      <name>Dialogue_2_0.txt</name>
+      <name>Dialogue_2_1.txt</name>
+      <exists>-1</exists>
+      <size>3484</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Dialogue_2_1.txt</filename>
+    </datafile>
+    <datafile>
+      <name>Dialogue_2_2.txt</name>
+      <exists>-1</exists>
+      <size>3694</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Dialogue_2_2.txt</filename>
+    </datafile>
+    <datafile>
+      <name>Dialogue_2_3.txt</name>
+      <exists>-1</exists>
+      <size>3438</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Dialogue_2_3.txt</filename>
+    </datafile>
+    <datafile>
+      <name>Dialogue_2_4.txt</name>
       <exists>-1</exists>
       <size>1584</size>
       <exportAction>2</exportAction>
@@ -70,7 +121,24 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>Dialogue_2_0.txt</filename>
+      <filename>Dialogue_2_4.txt</filename>
+    </datafile>
+    <datafile>
+      <name>Dialogue_2_5.txt</name>
+      <exists>-1</exists>
+      <size>563</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Dialogue_2_5.txt</filename>
     </datafile>
     <datafile>
       <name>Lovushka.txt</name>
@@ -150,18 +218,20 @@
         <sprite>sprites\spr_mask_2</sprite>
         <sprite>sprites\spr_mask_3</sprite>
       </sprites>
-      <sprite>sprites\spr_frosty_back</sprite>
+      <sprites name="perks_icon_group">
+        <sprite>sprites\spr_fire_icon</sprite>
+        <sprite>sprites\spr_action_icon</sprite>
+        <sprite>sprites\spr_heart_icon</sprite>
+        <sprite>sprites\spr_division_line</sprite>
+      </sprites>
       <sprite>sprites\spr_sandbox_10</sprite>
-      <sprite>sprites\spr_valentine</sprite>
-      <sprite>sprites\spr_division_line</sprite>
+      <sprite>sprites\spr_viggo_valentine</sprite>
+      <sprite>sprites\spr_frosty_back</sprite>
+      <sprite>sprites\spr_gazette_1</sprite>
       <sprite>sprites\spr_key_E</sprite>
       <sprite>sprites\spr_key_WASD</sprite>
-      <sprite>sprites\spr_heart_icon</sprite>
-      <sprite>sprites\spr_fire_icon</sprite>
-      <sprite>sprites\spr_action_icon</sprite>
       <sprite>sprites\spr_needles</sprite>
       <sprite>sprites\spr_ornamentus</sprite>
-      <sprite>sprites\spr_gazette_1</sprite>
       <sprite>sprites\spr_quest_journal</sprite>
     </sprites>
     <sprites name="dark_forest_2">
@@ -231,6 +301,8 @@
     <script>scripts\gfx_blur_masked.gml</script>
     <script>scripts\gfx_blur.gml</script>
     <script>scripts\debug_message.gml</script>
+    <script>scripts\item_set_value.gml</script>
+    <script>scripts\item_check_value.gml</script>
     <script>scripts\draw_old_movie.gml</script>
     <script>scripts\set_window_size.gml</script>
   </scripts>

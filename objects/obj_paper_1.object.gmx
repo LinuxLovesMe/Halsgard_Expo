@@ -140,7 +140,7 @@ else
             <string>draw_self();
 
 draw_set_font(Underdog_20);
-draw_set_colour(c_black);
+draw_set_colour(c_white);
 
 if (page_1) draw_text(x + sprite_width / 2 + 30, room_height - 100, "[ЛКМ] - СЛЕДУЮЩАЯ СТРАНИЦА");
 

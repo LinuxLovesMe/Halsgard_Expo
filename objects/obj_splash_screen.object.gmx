@@ -268,13 +268,13 @@ global.halsvord = ds_list_create();
 ds_list_add(global.halsvord, 0, 0, "Хальсворды");
 
 global.medical_rune = ds_list_create();
-ds_list_add(global.medical_rune, 1, 0, "Руна исцеления");
+ds_list_add(global.medical_rune, 1, 0, "Зелье исцеления");
 
 global.chain_chain = ds_list_create();
-ds_list_add(global.chain_chain, 2, 0, "Цепная реакция");
+ds_list_add(global.chain_chain, 2, 0, "Артефакт 'Цепная реакция'");
 
 global.theatre_mask = ds_list_create();
-ds_list_add(global.theatre_mask, 3, 0, "Предмет для квеста");
+ds_list_add(global.theatre_mask, 3, 0, "Театральная маска");
 
 ds_map_add(global.items_list, "Halsvord", global.halsvord);
 ds_map_add(global.items_list, "Medical_Rune", global.medical_rune);
@@ -282,6 +282,9 @@ ds_map_add(global.items_list, "Chain_Chain", global.chain_chain);
 ds_map_add(global.items_list, "Theatre_Mask", global.theatre_mask);
 
 for (n = 0; n &lt; 10; n++) global.inventory[n] = ""; //Inventory is Viggo Valentine
+
+global.inventory[0] = "Halsvord";
+global.inventory[1] = "Medical_Rune";
 </string>
           </argument>
         </arguments>

@@ -332,7 +332,6 @@ if (keyboard_check_released(ord("E")) and abs(obj_mainhero.x - x) &lt; 180)
     if (global.uncomplete[1] != "")
     {
         instance_create(0, 0, obj_main_1); //Create dialogue controller
-        obj_forest_control_2.dialogue_on = true;
         global.pause = paused.pause;
     }
     else

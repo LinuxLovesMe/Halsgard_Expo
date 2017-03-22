@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///Read themes from file
 
+filename = "";
 need_case = "";
 
 coords = 0;
@@ -34,35 +35,18 @@ angle = 0;
 rotated = false;
 old_angle = 0;
 
-filename = "";
-AP_amount = 3;
-
-theme_info = ds_map_create();
 separator = 30;
-save_theme = "";
-
-parent = obj_forest_control_2;
+theme_info = ds_list_create();
 
 file = file_text_open_read("Themes_1.txt");
+
 while (!file_text_eof(file))
 {
     str = file_text_readln(file); //Source string with theme name
     if (string_pos("%T", str) != 0)
     {
-        sub_str = string_copy(str, 0, 3);
-        num = real(string_digits(sub_str));
         str = string_replace_all(str, "%T", "");
-        num2 = string(num);
-        str = string_replace_all(str, num2, "");        
-        save_theme = str;
-        ds_map_add(theme_info, str, filename);
-    }
-    
-    if (string_pos("@", str) != 0)
-    {
-        str = string_replace_all(str, "@", "");
-        str = string_copy(str, 0, 12);
-        ds_map_replace(theme_info, save_theme, str);
+        ds_list_add(theme_info, str);
     }
 }
 
@@ -139,12 +123,10 @@ for (var i = 0; i &lt; 8; i++)
             <kind>1</kind>
             <string>///Destroy dialogue after Esc or AP has ended
 
-parent.dialogue_exists = 0;
-parent.dialogue_on = false;
 global.pause = paused.non_pause;
 global.complete[1] = global.uncomplete[1];
 global.uncomplete[1] = "";
-global.uncomplete[3] = "Квест 4: Организовать засаду возле гаража."
+global.uncomplete[3] = "Квест 4: Организовать засаду возле гаража.";
 instance_destroy();
 </string>
           </argument>
@@ -170,10 +152,7 @@ instance_destroy();
             <kind>1</kind>
             <string>///If AP has ended
 
-if (parent.dialogue_on and AP_amount &lt; 1)
-{
-    if (alarm[2] == -1) alarm[2] = room_speed / 2;
-}
+if (global.character[9] &lt; 1) if (alarm[2] == -1) alarm[2] = room_speed / 2;
 </string>
           </argument>
         </arguments>
@@ -207,6 +186,7 @@ if (rotated == 2)
     angle -= 1;
     if (angle &lt;= old_angle - 45) rotated = false;
 }
+
 if (angle &gt;= 360) angle = 0;
 
 //Draw circles in center    
@@ -305,17 +285,34 @@ for (var i = 0; i &lt; 8; i++)
 
 if (point_in_circle(mouse_x, mouse_y, center_x, center_y, sprite_get_width(spr_main_3) / 2))
 {
-    for (i = 0; i &lt; ds_map_size(theme_info); i++)
+    for (i = 0; i &lt; ds_list_size(theme_info); i++)
     {
-        if (i == 0) iterator = ds_map_find_last(theme_info);
-        else iterator = ds_map_find_previous(theme_info, iterator);
-        
         if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
         {
-            filename = string(ds_map_find_value(theme_info, iterator));
-            if (!instance_exists(obj_dialogue_2)) instance_create(0, 0, obj_dialogue_2);
-            AP_amount -= 1;
-            parent.dialogue_on = false;
+            filename = "Dialogue_2_" + string(i + 1) + ".txt";
+            
+            //Working with themes' number iterators
+            
+            if (i != 2 and i != 3 and i != 4) global.character[9] -= 1; //Change number of local level AP amount
+            
+            if (i != 3 and i != 4)
+            {
+                if (!instance_exists(obj_dialogue_2)) instance_create(0, 0, obj_dialogue_2);
+                instance_deactivate_object(obj_main_1);
+            }
+            else
+            {
+                var value = item_check_value("Halsvord");
+                
+                if (value &gt;= 200)
+                {
+                    item_set_value("Halsvord", value - 200);
+                    global.character[9] -= 1;
+                    if (!instance_exists(obj_dialogue_2)) instance_create(0, 0, obj_dialogue_2);
+                    instance_deactivate_object(obj_main_1);
+                }
+            }
+            break;
         }
     }
 }
@@ -353,22 +350,22 @@ draw_sprite_ext(spr_main_3, 2, center_x, center_y, 1, 1, 0, c_white, 1);
       
 for (var i = 0; i &lt; 8; i++)
 {
-    if (i &lt; ds_map_size(theme_info))
+    if (i &lt; ds_list_size(theme_info))
     {
-        if (i == 0) first = ds_map_find_last(theme_info);
-        else first = ds_map_find_previous(theme_info, first);
-        text = first;
+        text = ds_list_find_value(theme_info, i);
     }
     else
     {
         text = "Сейчас данная тема не доступна";
     }
-    
+        
     draw_set_font(Runic_46);
     
-    if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
+    if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3) //If scenario-number is under the triangle
     {
-        draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, ui_blue_grey, ui_blue_grey, 1);
+        if (i == 2) draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, c_red, c_red, 1);
+        
+        else draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, c_teal, c_teal, 1);
     }
     else
     {
@@ -382,6 +379,10 @@ for (var i = 0; i &lt; 8; i++)
     
     if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
     {
+        if (i == 3) need_case = "Требуется 200 хальсвордов";
+        else if (i == 4) need_case = "Требуется 200 хальсвордов";
+        else need_case = "";
+        
         draw_text_outline(view_xview[0] + view_wview[0] - string_width("Тема: " + text) - 24, view_yview[0] + 14, "Тема: " + text, 1, c_black, 16);
     }
 }
@@ -391,9 +392,9 @@ draw_set_font(Underdog_30);
 
 draw_text_outline(view_xview[0] + 20, view_yview[0] + 14, "Собеседник: Советник", 1, c_black, 16);
 
-if (AP_amount &gt;= 0)
+if (global.character[9] &gt;= 0)
 {
-    draw_text_outline(view_xview[0] + view_wview[0] - 302, view_yview[0] + view_hview[0] - 60, "Осталось ОД: " + string(AP_amount), 1, c_black, 16);
+    draw_text_outline(view_xview[0] + view_wview[0] - 302, view_yview[0] + view_hview[0] - 60, "Осталось ОД: " + string(global.character[9]), 1, c_black, 16);
 }
 
 draw_text_outline(view_xview[0] + 20, view_yview[0] + view_hview[0] - 60, need_case, 1, c_black, 16);
