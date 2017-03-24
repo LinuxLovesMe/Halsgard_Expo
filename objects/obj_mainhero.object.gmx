@@ -315,7 +315,7 @@ if (state != "pause" and state != "shoot")
     else if (!onGround and x == old_x)
     {
         sprite_index = spr_mainhero_jump;
-        image_speed = 0.64;
+        image_speed = 0.54;
         if (image_index &gt; 24) image_index = 24;
     }
     else sprite_index = spr_mainhero_idle;
