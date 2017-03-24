@@ -109,9 +109,7 @@ else
 {
     obj_ragn_control.frosty_background = 0;
     obj_ragn_control.normal_background = 1;
-    instance_create(0, 0, obj_cardgame_control);    
-    var volume = ds_map_find_value(global.options, "volume");
-    audio_sound_gain(snd_cardgame, 0.08 * volume, 0);
+    instance_create(0, 0, obj_cardgame_control);
     audio_play_sound(snd_cardgame, 1, true);
     instance_destroy();
 }
@@ -140,14 +138,20 @@ else
             <string>draw_self();
 
 draw_set_font(Underdog_20);
-draw_set_colour(c_white);
+draw_set_colour(c_black);
 
-if (page_1) draw_text(x + sprite_width / 2 + 30, room_height - 100, "[ЛКМ] - СЛЕДУЮЩАЯ СТРАНИЦА");
+if (page_1)
+{
+    draw_sprite(spr_turn_arrow, 0, x + sprite_width / 2 + 80, room_height - 78);
+    draw_text(x + sprite_width / 2 + 128, room_height - 94, "[ЛКМ]");
+}
 
 if (page_2)
 {
-    draw_text(x - sprite_width / 2 - string_width("[ПКМ] - ПРЕДЫДУЩАЯ СТРАНИЦА") - 28, room_height - 100, "[ПКМ] - ПРЕДЫДУЩАЯ СТРАНИЦА");
-    draw_text(x + sprite_width / 2 + 30, room_height - 100, "[ЛКМ] - К БИТВЕ!");
+    draw_sprite(spr_turn_arrow, 0, x + sprite_width / 2 + 80, room_height - 78);
+    draw_text(x + sprite_width / 2 + 128, room_height - 94, "[ЛКМ]");
+    draw_sprite(spr_turn_arrow, 1, x - sprite_width / 2 - 80, room_height - 78);
+    draw_text(x - sprite_width / 2 - 204, room_height - 94, "[ПКМ]");
 }
 </string>
           </argument>
@@ -180,9 +184,7 @@ else
 {
     obj_ragn_control.frosty_background = 0;
     obj_ragn_control.normal_background = 1;
-    instance_create(0, 0, obj_cardgame_control);    
-    var volume = ds_map_find_value(global.options, "volume");
-    audio_sound_gain(snd_cardgame, 0.08 * volume, 0);
+    instance_create(0, 0, obj_cardgame_control);
     audio_play_sound(snd_cardgame, 1, true);
     instance_destroy();
 }

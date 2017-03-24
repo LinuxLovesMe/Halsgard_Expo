@@ -68,11 +68,17 @@ part_type_alpha2(spark, 0.8, 0.4);
 event_inherited();
 
 image_speed = 0.4;
-if (obj_mainhero.image_xscale &gt; 0) part_particles_create(ps, x + 24 - random(8), y + random_range(-8, 8), spark, 50);
-else part_particles_create(ps, x - 24 + random(8), y + random_range(-8, 8), spark, 50);
-image_angle = direction;
 
-if (destroy) instance_destroy();
+if (obj_mainhero.image_xscale &gt; 0)
+{
+    part_particles_create(ps, x + 24 - random(8), y + random_range(-8, 8), spark, 50);
+}
+else
+{
+    part_particles_create(ps, x - 24 + random(8), y + random_range(-8, 8), spark, 50);
+}
+
+image_angle = direction;
 </string>
           </argument>
         </arguments>

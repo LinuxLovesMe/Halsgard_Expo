@@ -361,11 +361,11 @@ for (var i = 0; i &lt; 8; i++)
         
     draw_set_font(Runic_46);
     
-    if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3) //If scenario-number is under the triangle
+    if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3 and i &lt; ds_list_size(theme_info)) //If scenario-number is under the triangle
     {
-        if (i == 2) draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, c_red, c_red, 1);
+        if (i == 2) draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_red, c_red, c_white, c_white, 1);
         
-        else draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, c_teal, c_teal, 1);
+        else draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_teal, c_teal, c_white, c_white, 1);
     }
     else
     {
@@ -379,8 +379,8 @@ for (var i = 0; i &lt; 8; i++)
     
     if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
     {
-        if (i == 3) need_case = "Требуется 200 хальсвордов";
-        else if (i == 4) need_case = "Требуется 200 хальсвордов";
+        if (i == 3) need_case = "Требуется 200 хальсвордов!";
+        else if (i == 4) need_case = "Требуется 200 хальсвордов!";
         else need_case = "";
         
         draw_text_outline(view_xview[0] + view_wview[0] - string_width("Тема: " + text) - 24, view_yview[0] + 14, "Тема: " + text, 1, c_black, 16);

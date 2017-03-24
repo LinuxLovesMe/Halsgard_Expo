@@ -98,7 +98,7 @@ if (global.pause == paused.non_pause)
 {
     if (instance_exists(obj_mainhero))
     {
-        obj_mainhero.state = obj_mainhero.old_state;
+        if (obj_mainhero.state == "pause") obj_mainhero.state = obj_mainhero.old_state;
     }
 }
 

@@ -191,6 +191,7 @@
         <sprite>sprites\spr_paper_1</sprite>
         <sprite>sprites\spr_hero_face</sprite>
         <sprite>sprites\spr_prologue</sprite>
+        <sprite>sprites\spr_turn_arrow</sprite>
         <sprite>sprites\spr_wall</sprite>
         <sprite>sprites\spr_wall_font</sprite>
         <sprite>sprites\spr_cafell</sprite>
@@ -206,12 +207,15 @@
         <sprite>sprites\spr_card_frosty</sprite>
         <sprite>sprites\spr_card_background</sprite>
       </sprites>
+      <sprite>sprites\spr_harms_frosty</sprite>
       <sprite>sprites\spr_dialogue_main</sprite>
     </sprites>
     <sprites name="dark_forest_1">
       <sprites name="mainhero_group">
-        <sprite>sprites\spr_mainhero_idle</sprite>
         <sprite>sprites\spr_mainhero_walk</sprite>
+        <sprite>sprites\spr_mainhero_idle</sprite>
+        <sprite>sprites\spr_mainhero_shoot</sprite>
+        <sprite>sprites\spr_mainhero_jump</sprite>
       </sprites>
       <sprites name="mask_group">
         <sprite>sprites\spr_mask_1</sprite>
@@ -228,6 +232,7 @@
       <sprite>sprites\spr_viggo_valentine</sprite>
       <sprite>sprites\spr_frosty_back</sprite>
       <sprite>sprites\spr_gazette_1</sprite>
+      <sprite>sprites\spr_new_quest</sprite>
       <sprite>sprites\spr_key_E</sprite>
       <sprite>sprites\spr_key_WASD</sprite>
       <sprite>sprites\spr_needles</sprite>
@@ -265,9 +270,8 @@
       </sprites>
       <sprite>sprites\spr_inventory_icon</sprite>
       <sprite>sprites\spr_volga_auto</sprite>
-      <sprite>sprites\spr_rune_fire</sprite>
       <sprite>sprites\spr_fireball_attack</sprite>
-      <sprite>sprites\spr_surikene</sprite>
+      <sprite>sprites\spr_rune_fire</sprite>
       <sprite>sprites\spr_item_description</sprite>
     </sprites>
   </sprites>
@@ -295,16 +299,19 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="shader_group">
+      <script>scripts\gfx_blur_masked.gml</script>
+      <script>scripts\gfx_blur.gml</script>
+      <script>scripts\draw_old_movie.gml</script>
+    </scripts>
     <script>scripts\scr_destruction.gml</script>
     <script>scripts\scr_menu.gml</script>
     <script>scripts\draw_text_outline.gml</script>
-    <script>scripts\gfx_blur_masked.gml</script>
-    <script>scripts\gfx_blur.gml</script>
+    <script>scripts\save_options.gml</script>
+    <script>scripts\set_window_size.gml</script>
     <script>scripts\debug_message.gml</script>
     <script>scripts\item_set_value.gml</script>
     <script>scripts\item_check_value.gml</script>
-    <script>scripts\draw_old_movie.gml</script>
-    <script>scripts\set_window_size.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_lerp.shader</shader>
@@ -330,6 +337,7 @@
       <object>objects\obj_option_menu</object>
     </objects>
     <objects name="ragnarok_game">
+      <object>objects\obj_ragn_pause</object>
       <object>objects\obj_fade_effect</object>
       <object>objects\obj_ragn_control</object>
       <objects name="intro_zeber">
@@ -406,12 +414,12 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\splash_screen</room>
+    <room>rooms\dark_forest_3</room>
     <room>rooms\main_menu</room>
     <room>rooms\ragnarok_intro</room>
     <room>rooms\start_room</room>
     <room>rooms\dark_forest_1</room>
     <room>rooms\dark_forest_2</room>
-    <room>rooms\dark_forest_3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

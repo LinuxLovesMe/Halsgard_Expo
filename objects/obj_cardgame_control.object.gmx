@@ -41,7 +41,7 @@ player_cards = ds_list_create();
 t = 0;
 cards_number = 5;
 
-move_to_x = 1000;
+move_to_x = 1002;
 move_to_y = 378;
 
 for (i = 0; i &lt; cards_number; i++)

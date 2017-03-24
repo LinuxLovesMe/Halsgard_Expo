@@ -142,7 +142,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (clickable)
+            <string>if (clickable and global.pause == paused.non_pause)
 {
     if (!choose_trump)
     {   
@@ -207,6 +207,7 @@ else if (card_round_winner == 0 or card_round_winner == 2)
 }
 
 d3d_transform_set_identity();
+d3d_set_culling(false);
 </string>
           </argument>
         </arguments>

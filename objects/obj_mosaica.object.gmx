@@ -179,7 +179,8 @@ image_alpha -= 0.05;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha = 1;
+            <string>mouse_clear(mb_right);
+image_alpha = 1;
 obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
@@ -203,7 +204,8 @@ obj_ragn_control.dialogue_start = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha = 1;
+            <string>mouse_clear(mb_left);
+image_alpha = 1;
 obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
@@ -271,7 +273,8 @@ draw_sprite(spr_border_mosaic, 0, x - 10, y - 10);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha = 1;
+            <string>keyboard_clear(vk_space);
+image_alpha = 1;
 obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>
@@ -295,7 +298,8 @@ obj_ragn_control.dialogue_start = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha = 1;
+            <string>keyboard_clear(vk_escape);
+image_alpha = 1;
 obj_ragn_control.dialogue_start = 1;
 </string>
           </argument>

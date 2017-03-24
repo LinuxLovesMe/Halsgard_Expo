@@ -105,7 +105,7 @@ if (replica == 0)
         if ((point_in_rectangle(mouse_x, mouse_y, xx + 36, yy + 36 + separator_a * (koef - 1) + 10, xx - 20 + string_width(info[pointer, k]), 
                                 yy + 36 + (separator_a * koef) + (separator_a * floor(string_width(info[pointer, k]) / string_w)) - 10)))
         {
-            if (mouse_check_button_released(mb_left))
+            if (mouse_check_button_released(mb_left) and global.pause == paused.non_pause)
             {
                 pointer_t = real(string_digits(info[pointer, k]));
                 break;
@@ -156,10 +156,9 @@ if (replica == 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (replica == 1)
+            <string>if (replica == 1 and global.pause == paused.non_pause)
 {
-    mouse_clear(mb_right);
-    replica = 0;
+    mouse_clear(mb_left); replica = 0;
 }
 </string>
           </argument>
@@ -183,10 +182,9 @@ if (replica == 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (replica == 1)
+            <string>if (replica == 1 and global.pause == paused.non_pause)
 {
-    mouse_clear(mb_left);
-    replica = 0;
+    mouse_clear(mb_left); replica = 0;
 }
 </string>
           </argument>

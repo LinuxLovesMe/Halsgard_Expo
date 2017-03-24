@@ -44,6 +44,13 @@ if (global.tutorial[0] == 0) // Only in the first time
     global.uncomplete[1] = "Квест 2: Побеседовать с Советником.";
     global.uncomplete[2] = "Квест 3: Найти обелиск пламени.";
     
+    if (ds_map_find_value(global.options, "save_code") == "0S")
+    {
+        if (item_check_value("Halsvord") &gt; 200) ds_map_replace(global.options, "save_code", "1S1");
+        else ds_map_replace(global.options, "save_code", "1S0"); //Save the room and state of cardgame's final
+        save_options();
+    }
+        
     if (instance_exists(obj_mainhero))
     {
         global.character[8] = global.character[0]; //Setup current value of HP
@@ -177,7 +184,7 @@ if (instance_exists(obj_mainhero))
 {
     if (obj_mainhero.x &gt; 900 and global.tutorial[0] == 0) global.tutorial[0]++;
     if (obj_mainhero.x &gt; 1680 and global.tutorial[1] == 0) global.tutorial[1]++;
-    if (obj_mainhero.x &gt; 2274 and global.tutorial[2] == 0) global.tutorial[2]++;
+    if (obj_mainhero.x &gt; 2250 and global.tutorial[2] == 0) global.tutorial[2]++;
 }
 
 for (i = 0; i &lt; 3; i++)

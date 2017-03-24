@@ -33,23 +33,26 @@ global.options = ds_map_create();
 if (file_exists("Options.franbow"))
 {
     file = file_text_open_read("Options.franbow");
-
-    for (i = 0; i &lt; 4; i++)
+    
+    for (i = 0; i &lt; 5; i++)
     {
       if (file_text_eof(file)) //if next line doesn't exist
       {
-            file_with_options_correct = 0;
-            break;
+        file_with_options_correct = 0;
+        break;
       }
-
+      
       var option_str = file_text_read_string(file);
       var temp_position = string_pos(" = ", option_str);
 
-      if (temp_position != 0) //if line has incorrect code
+      if (temp_position != 0) //if line has correct code
       {
-         var temp_value = real(string_char_at(option_str, temp_position + 3));
-         switch (i)
-         {
+        var temp_value = real(string_copy(option_str, temp_position + 3, string_length(option_str)));
+        
+        if (i == 3) temp_value = string_copy(option_str, temp_position + 3, string_length(option_str));
+        
+        switch (i)
+        {
             case 0: if (temp_value == 0 or temp_value == 1) //if value is correct number
                     {
                         var fullscreen = real(temp_value);
@@ -72,9 +75,12 @@ if (file_exists("Options.franbow"))
                         ds_map_add(global.options, "history_mode", history_mode);
                     }
                     else file_with_options_correct = 0;
-            break; 
-
-            case 3: if (temp_value == 0 or temp_value == 1) //if value is correct number
+            break;
+            
+            case 3: ds_map_add(global.options, "save_code", temp_value);
+            break;
+            
+            case 4: if (temp_value == 0 or temp_value == 1) //if value is correct number
                     {
                         var survival_mode = real(temp_value);
                         ds_map_add(global.options, "survival_mode", survival_mode);
@@ -173,21 +179,10 @@ else
     ds_map_add(global.options, "fullscreen", 0);
     ds_map_add(global.options, "volume", 5);
     ds_map_add(global.options, "history_mode", 1);
+    ds_map_add(global.options, "save_code", "0S");
     ds_map_add(global.options, "survival_mode", 0);
-
-    var file;
-    file = file_text_open_write("Options.franbow");
-    file_text_write_string(file, "fullscreen = " + string(ds_map_find_value(global.options, "fullscreen")));
-    file_text_writeln(file);
-    file_text_write_string(file, "volume = " + string(ds_map_find_value(global.options, "volume")));
-    file_text_writeln(file);
-    file_text_write_string(file, "history_mode = " + string(ds_map_find_value(global.options, "history_mode")));
-    file_text_writeln(file);
-    file_text_write_string(file, "survival_mode = " + string(ds_map_find_value(global.options, "survival_mode")));
-    file_text_writeln(file);
-    file_text_writeln(file);
-    file_text_write_string(file, "Please, don't change this file by hands! Thx :)");
-    file_text_close(file);
+    
+    save_options();
 }
 </string>
           </argument>

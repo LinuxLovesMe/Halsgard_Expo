@@ -51,7 +51,10 @@ old_state = "idle";
 jumped = false;
 border_const = 200;
 onGround = false;
-allow_walk = true;
+allow_shoot = false;
+
+old_x = x;
+agressive = false;
 
 cooldown_amount = 0;
 weapon_cooldown = false;
@@ -203,18 +206,90 @@ if (inst != noone)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///State = Idle
+            <string>///State = Shoot
 
-if (state != "pause")
+if (state == "shoot")
 {
-    if (!onGround)
+    image_speed = 0.8;
+    sprite_index = spr_mainhero_shoot;
+    
+    if (image_index &gt; 18)
     {
-        if (state != "jump")
-        {
-            state = "falling"; //Falling when platform has disapeared
-        }
+        state = "idle";
     }
     
+    if (allow_shoot)
+    {
+        allow_shoot = false;
+        
+        if (image_xscale &gt; 0)
+        {
+            switch (weapon)
+            {
+                case weapons.weapon_fire:
+                    runicBullet = instance_create(x + 230, y - 256, obj_bullet_fire);
+                    cooldown_amount = 40;
+                break;
+                
+                case weapons.weapon_ice:
+                    runicBullet = instance_create(x + 230, y - 256, obj_bullet_ice);
+                    cooldown_amount = 28;
+                break;
+            }
+            runicBullet.direction = 0;
+        }
+        else
+        {
+            switch (weapon)
+            {
+                case weapons.weapon_fire:
+                    runicBullet = instance_create(x - 230, y - 256, obj_bullet_fire);
+                    cooldown_amount = 40;
+                break;
+                
+                case weapons.weapon_ice:
+                    runicBullet = instance_create(x - 230, y - 256, obj_bullet_ice);
+                    cooldown_amount = 28;
+                break;
+            }
+            runicBullet.direction = 180;
+        }
+        
+        if ((maxenergy - 1) == 0) weapon = weapons.weapon_none;
+        
+        maxenergy --;
+        runicBullet.speed = 20;
+        runicBullet.xCreate = x;
+        runicBullet.yCreate = y;
+    
+        weapon_cooldown = true;
+        if (alarm[1] == -1) alarm[1] = cooldown_amount;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Idle
+
+if (state != "pause" and state != "shoot")
+{
     if (keyboard_check(ord("A")) xor keyboard_check(vk_left))
     {
         image_speed = 0.5;
@@ -229,18 +304,36 @@ if (state != "pause")
         x += move_speed;
         image_xscale = 1;
     }
+    else if (mouse_check_button_released(mb_left))
+    {
+        if (onGround and weapon != weapons.weapon_none and !weapon_cooldown)
+        {
+            state = "shoot";
+            allow_shoot = true;
+        }
+    }
+    else if (!onGround and x == old_x)
+    {
+        sprite_index = spr_mainhero_jump;
+        image_speed = 0.64;
+        if (image_index &gt; 24) image_index = 24;
+    }
     else sprite_index = spr_mainhero_idle;
-    
+        
     if (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up))
     {
         if (onGround)
         {
             state = "jump";
+            old_x = x; //Remember x-coordinate for jump animation
             jumped = true;
         }
     }
 }
-else sprite_index = spr_mainhero_idle;
+else if (state != "shoot")
+{
+    sprite_index = spr_mainhero_idle;
+}
 </string>
           </argument>
         </arguments>
@@ -263,22 +356,14 @@ else sprite_index = spr_mainhero_idle;
             <kind>1</kind>
             <string>///State = Falling
 
-if (onGround and state == "falling")
-{    
-    state = "idle";
-}
-
-if (state != "pause")
+if (!onGround)
 {
-    if (!onGround and state == "falling")
+    if (vert_speed &lt; 18)
     {
-        if (vert_speed &lt; 18)
-        {
-            vert_speed += grav; //Gravity falling
-        }
-        
-        y += vert_speed;
+        vert_speed += grav; //Gravity falling
     }
+    
+    y += vert_speed;
 }
 </string>
           </argument>
@@ -428,73 +513,6 @@ if (room_get_name(room) == "dark_forest_3" and state != "pause")
     if (x - border_const &lt;= 0) room_goto (dark_forest_2);
     
     if (x + border_const &gt; room_width) x -= move_speed + 1;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="56">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Weapons' behaviour
-
-if (state == "idle" and weapon != weapons.weapon_none and !weapon_cooldown)
-{
-    if (image_xscale &gt; 0)
-    {
-        switch (weapon)
-        {
-            case weapons.weapon_fire:
-                runicBullet = instance_create(x + 230, y - 256, obj_bullet_fire);
-                cooldown_amount = 40;
-            break;
-            case weapons.weapon_ice:
-                runicBullet = instance_create(x + 230, y - 256, obj_bullet_ice);
-                cooldown_amount = 28;
-            break;
-        }
-        runicBullet.direction = 0;
-    }
-    else
-    {
-        switch (weapon)
-        {
-            case weapons.weapon_fire:
-                runicBullet = instance_create(x - 230, y - 256, obj_bullet_fire);
-                cooldown_amount = 40;
-            break;
-            case weapons.weapon_ice:
-                runicBullet = instance_create(x - 230, y - 256, obj_bullet_ice);
-                cooldown_amount = 28;
-            break;
-        }
-        runicBullet.direction = 180;
-    }
-    
-    if ((maxenergy - 1) == 0) weapon = weapons.weapon_none;
-        
-    maxenergy --;
-    runicBullet.speed = 20;
-    runicBullet.xCreate = x;
-    runicBullet.yCreate = y;
-    
-    weapon_cooldown = true;
-    if (alarm[1] == -1) alarm[1] = cooldown_amount;
 }
 </string>
           </argument>

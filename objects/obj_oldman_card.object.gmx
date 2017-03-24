@@ -99,6 +99,7 @@ else if (card_round_winner == 0 or card_round_winner == 1)
 }
 
 d3d_transform_set_identity();
+d3d_set_culling(false);
 </string>
           </argument>
         </arguments>

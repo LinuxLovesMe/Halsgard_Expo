@@ -2,7 +2,24 @@ switch (curr_pos)
 {
     case 0:
     {
-        room_goto(dark_forest_1);
+        if (ds_map_find_value(global.options, "save_code") == "0S")
+        {
+            room_goto(ragnarok_intro);
+        }
+        
+        if (ds_map_find_value(global.options, "save_code") == "1S0")
+        {
+            global.tutorial[0] = 0; global.tutorial[1] = 0;
+            global.tutorial[2] = 0; global.tutorial[3] = 0;
+            item_set_value("Halsvord", 40); room_goto(dark_forest_1);
+        }
+        
+        if (ds_map_find_value(global.options, "save_code") == "1S1")
+        {
+            global.tutorial[0] = 0; global.tutorial[1] = 0;
+            global.tutorial[2] = 0; global.tutorial[3] = 0;
+            item_set_value("Halsvord", 240); room_goto(dark_forest_1);
+        }
         break;
     }
         
