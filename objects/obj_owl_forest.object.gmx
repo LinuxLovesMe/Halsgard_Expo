@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_interacted</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,12 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x_origin = x;
+            <string>event_inherited();
+
+x_origin = x;
 y_origin = y;
 number = 0;
 stop_animation = false;
 
 case_number = choose(1, 2, 3, 4);
+near = false;
+text = "Ты мигаешь, филин мой! Я не знаю, что с тобой... Высоко же ты над нами, как поднос под небесами!";
 </string>
           </argument>
         </arguments>
@@ -77,7 +81,9 @@ stop_animation = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = x_origin + floor(view_xview[0] * 0.2);
+            <string>event_inherited();
+
+x = x_origin + floor(view_xview[0] * 0.2);
 y = y_origin + floor(view_yview[0] * 0.2);
 
 image_speed = 0.25;

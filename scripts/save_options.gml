@@ -1,3 +1,5 @@
+///save_options()
+
 var file; file = file_text_open_write("Options.franbow");
 file_text_write_string(file, "fullscreen = " + string(ds_map_find_value(global.options, "fullscreen")));
 file_text_writeln(file);

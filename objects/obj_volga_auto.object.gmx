@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-40</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_interacted</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,7 +30,9 @@
 x_origin = x;
 y_origin = y;
 
-text = "И откуда только в этом мире на пустом месте проявляются новые сущности?";
+near = false;
+
+text = "На корпусе виднеется сильно потертая надпись: Волга. Что же она значит?";
 </string>
           </argument>
         </arguments>
@@ -55,8 +57,14 @@ text = "И откуда только в этом мире на пустом ме
             <kind>1</kind>
             <string>///Parallax settings
 
+event_inherited();
+
 x = x_origin + floor(view_xview[0] * 0.12);
 y = y_origin;
+key_sprite_x = x - 10;
+key_sprite_y = y - sprite_height - 20;
+
+if (global.unspidered_1) image_index = 1; else image_index = 0;
 </string>
           </argument>
         </arguments>

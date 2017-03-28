@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-40</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_interacted</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,7 +30,9 @@
 x_origin = x;
 y_origin = y;
 
-text = "И откуда только в этом мире на пустом месте проявляются новые сущности?";
+near = false;
+
+text = "Диковинное сооружение, похожее на саркофаг для бедных. Внутри кто-то настойчиво копошится.";
 </string>
           </argument>
         </arguments>
@@ -55,8 +57,12 @@ text = "И откуда только в этом мире на пустом ме
             <kind>1</kind>
             <string>///Parallax settings
 
+event_inherited();
+
 x = x_origin + floor(view_xview[0] * 0.2);
 y = y_origin;
+key_sprite_x = x - 48;
+key_sprite_y = y - sprite_height - 20;
 </string>
           </argument>
         </arguments>

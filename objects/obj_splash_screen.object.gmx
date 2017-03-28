@@ -161,6 +161,52 @@ if (fullscreen) window_set_fullscreen(true); else set_window_size();
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Create inventory slots and item's descriptions
+
+global.items_list = ds_map_create(); //Global map-array for item descriptions
+
+global.halsvord = ds_list_create();
+ds_list_add(global.halsvord, 0, 0, "Хальсворды");
+
+global.medical_rune = ds_list_create();
+ds_list_add(global.medical_rune, 1, 0, "Зелье исцеления");
+
+global.chain_chain = ds_list_create();
+ds_list_add(global.chain_chain, 2, 0, "Артефакт 'Цепная реакция'");
+
+global.theatre_mask = ds_list_create();
+ds_list_add(global.theatre_mask, 3, 0, "Театральная маска");
+
+ds_map_add(global.items_list, "Halsvord", global.halsvord);
+ds_map_add(global.items_list, "Medical_Rune", global.medical_rune);
+ds_map_add(global.items_list, "Chain_Chain", global.chain_chain);
+ds_map_add(global.items_list, "Theatre_Mask", global.theatre_mask);
+
+//Create global array with Hero choices -&gt; go to script
+
+randomize();
+enum paused { pause, non_pause }
+global_to_default();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Create new "file with options", if first check was wrong
 
 if (file_with_options_correct)
@@ -184,102 +230,6 @@ else
     
     save_options();
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Create global array with Hero choices
-
-global.planescape_file = "";
-global.planescape_parent = 0;
-global.full_show = false;
-global.chaos_choice = 0;
-global.previous_room = "main_menu";
-
-randomize();
-enum paused { pause, non_pause } global.pause = paused.non_pause; //Pause events
-
-for (i = 0; i &lt; 6; i++) //Generate arrays for Quests
-{
-    global.complete[i] = "";
-    global.uncomplete[i] = "";
-}
-
-for (j = 0; j &lt; 4; j++) global.tutorial[i] = 0; //Generate array for Tutorials
-
-//Aid's skills and stats arrays init
-
-global.character[0] = 0; //Физическое здоровье
-global.character[1] = 0; //Сила Вигго
-global.character[2] = 0; //Целительная энергия
-global.character[3] = 0; //Зов Хильд
-global.character[4] = 0; //Начитанность (мудрость)
-global.character[5] = 0; //Дар Браги
-global.character[6] = 0; //Предсказание Скульд
-global.character[7] = 0; //Физическая активность
-global.character[8] = 0; //Current HP status
-global.character[9] = 0; //Current AP status
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Create inventory slots and item's descriptions
-
-global.items_list = ds_map_create(); //Global map-array for item descriptions
-
-global.halsvord = ds_list_create();
-ds_list_add(global.halsvord, 0, 0, "Хальсворды");
-
-global.medical_rune = ds_list_create();
-ds_list_add(global.medical_rune, 1, 0, "Зелье исцеления");
-
-global.chain_chain = ds_list_create();
-ds_list_add(global.chain_chain, 2, 0, "Артефакт 'Цепная реакция'");
-
-global.theatre_mask = ds_list_create();
-ds_list_add(global.theatre_mask, 3, 0, "Театральная маска");
-
-ds_map_add(global.items_list, "Halsvord", global.halsvord);
-ds_map_add(global.items_list, "Medical_Rune", global.medical_rune);
-ds_map_add(global.items_list, "Chain_Chain", global.chain_chain);
-ds_map_add(global.items_list, "Theatre_Mask", global.theatre_mask);
-
-for (n = 0; n &lt; 10; n++) global.inventory[n] = ""; //Inventory is Viggo Valentine
-
-global.inventory[0] = "Halsvord";
-global.inventory[1] = "Medical_Rune";
 </string>
           </argument>
         </arguments>

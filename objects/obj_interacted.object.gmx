@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-500</depth>
+  <depth>-80</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,13 +27,11 @@
             <kind>1</kind>
             <string>///Basic object initializations
 
-near = false;
 destroy = false;
 text = "";
 text_printed = false;
 
 show_text = true;
-show_old = true;
 object_state = "action_0";
 </string>
           </argument>
@@ -57,44 +55,11 @@ object_state = "action_0";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Read text message while holding RMB
-
-if (mouse_check_button(mb_right) and position_meeting(mouse_x, mouse_y, obj_interacted) and global.pause == paused.non_pause)
-{
-    global.greatInfo = text;
-}
-else
-{
-    if (global.greatInfo == text) global.greatInfo = "";
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///If hero went enough far from object
 
-if (near)
+with (other)
 {
-    if (!point_in_rectangle(x, y, obj_mainhero.x - 100, obj_mainhero.y - obj_mainhero.sprite_height, obj_mainhero.x + 100, obj_mainhero.y + 50))
-    {
-        near = false;
-    }
+    if (abs(x - obj_mainhero.x) &gt;= 100 or abs(y - obj_mainhero.y) &gt;= 100) near = false;
 }
 </string>
           </argument>
@@ -151,17 +116,70 @@ if (keyboard_check_released(vk_escape))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Show info when hero is near the object
+            <string>///Show E-key when hero is near the object
 
 with (other)
 {
     if (!near)
     {
-        if (point_in_rectangle(x, y, obj_mainhero.x - 100, obj_mainhero.y - obj_mainhero.sprite_height, obj_mainhero.x + 100, obj_mainhero.y + 50))
-        {
-            near = true;
-        }
+        if (abs(x - obj_mainhero.x) &lt; 100 and abs(y - obj_mainhero.y) &lt; 100) near = true;
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.greatInfo == text)
+{
+    global.greatInfo = "";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.pause == paused.non_pause)
+{
+    global.greatInfo = text;
+}
+else
+{
+    if (global.greatInfo == text) global.greatInfo = "";
 }
 </string>
           </argument>

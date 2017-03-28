@@ -30,7 +30,9 @@
 x_origin = x;
 y_origin = y;
 
-text = "Больше всего это похоже на самодельные детские качели.";
+near = false;
+
+text = "Детское колесо-качель, светящаяся руна, а в кустах воет вервольф. Что-то здесь не чисто.";
 </string>
           </argument>
         </arguments>
@@ -59,7 +61,7 @@ event_inherited();
 
 if (keyboard_check_released(ord("E")) and near == true)
 {
-    global.planescape_file = "Lovushka.txt";
+    global.planescape_file = "dark_forest/Lovushka.txt";
     global.planescape_parent = obj_lovushka;
     global.full_show = true;
     global.pause = paused.pause;
@@ -89,8 +91,8 @@ if (keyboard_check_released(ord("E")) and near == true)
 
 x = x_origin + floor(view_xview[0] * 0.2);
 y = y_origin;
-key_sprite_x = x + 48;
-key_sprite_y = y - 150;
+key_sprite_x = x + 42;
+key_sprite_y = y - 480;
 </string>
           </argument>
         </arguments>
@@ -134,7 +136,8 @@ if (object_state == "action_4")
     global.full_show = false;
     with (obj_planescape) instance_destroy();
     instance_destroy();
-    instance_create(0, 0, obj_final_control);
+    global.final_kind = 1; //number of the final comics
+    room_goto(room_la_finish);
 }
 </string>
           </argument>

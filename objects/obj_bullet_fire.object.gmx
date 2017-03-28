@@ -65,8 +65,6 @@ part_type_alpha2(spark, 0.8, 0.4);
             <kind>1</kind>
             <string>///Add new particles
 
-event_inherited();
-
 image_speed = 0.4;
 
 if (obj_mainhero.image_xscale &gt; 0)
@@ -79,6 +77,8 @@ else
 }
 
 image_angle = direction;
+
+if (y &gt; room_height / 2) y -= 4;
 </string>
           </argument>
         </arguments>

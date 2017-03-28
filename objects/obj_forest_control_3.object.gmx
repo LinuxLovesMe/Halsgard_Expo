@@ -133,6 +133,13 @@ background_y[5]=floor(view_yview[0]*0.01);
 
 event_inherited();
 
+if (!instance_exists(obj_rune_fire) and global.complete[2] == "")
+{
+    global.complete[2] = global.uncomplete[2];
+    global.uncomplete[2] = "";
+    instance_create(0, 0, obj_new_quest);
+}
+
 if (cutscene_start)
 {
     global.pause = paused.pause;

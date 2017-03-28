@@ -31,7 +31,7 @@ y = room_height / 2;
 xx = x - sprite_width / 2; //start x-point of dialogue sprite
 yy = y - sprite_height / 2; //start y-point of dialogue sprite
 
-file = file_text_open_read("Dialogue_1.txt");
+file = file_text_open_read("start_dialogue/Dialogue_1.txt");
 info = 0;
 
 while(!file_text_eof(file))
@@ -234,6 +234,8 @@ for (k = 0; k &lt; array_length_1d(text); k++)
 if (replica)
 {
     draw_text_ext_transformed_colour(xx + 32, yy + 36, text[0], separator_r, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+    
+    draw_sprite(spr_port_hero, 1, x, y); draw_sprite(spr_port_oldman, 0, x, y);
 }
 else
 {
@@ -251,6 +253,8 @@ else
         }
         offset += 2 * separator_a + separator_a * floor(string_width(info[pointer, k]) / string_w); 
     }
+    
+    draw_sprite(spr_port_hero, 0, x, y); draw_sprite(spr_port_oldman, 1, x, y);
 }
 </string>
           </argument>

@@ -184,7 +184,7 @@ if (instance_exists(obj_mainhero))
 {
     if (obj_mainhero.x &gt; 900 and global.tutorial[0] == 0) global.tutorial[0]++;
     if (obj_mainhero.x &gt; 1680 and global.tutorial[1] == 0) global.tutorial[1]++;
-    if (obj_mainhero.x &gt; 2250 and global.tutorial[2] == 0) global.tutorial[2]++;
+    if (obj_mainhero.x &gt; 2246 and global.tutorial[2] == 0) global.tutorial[2]++;
 }
 
 for (i = 0; i &lt; 3; i++)

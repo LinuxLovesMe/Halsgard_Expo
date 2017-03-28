@@ -38,7 +38,7 @@ old_angle = 0;
 separator = 30;
 theme_info = ds_list_create();
 
-file = file_text_open_read("Themes_1.txt");
+file = file_text_open_read("dark_forest_dev/Themes_1.txt");
 
 while (!file_text_eof(file))
 {
@@ -127,6 +127,7 @@ global.pause = paused.non_pause;
 global.complete[1] = global.uncomplete[1];
 global.uncomplete[1] = "";
 global.uncomplete[3] = "Квест 4: Организовать засаду возле гаража.";
+instance_create(0, 0, obj_new_quest);
 instance_destroy();
 </string>
           </argument>
@@ -289,7 +290,7 @@ if (point_in_circle(mouse_x, mouse_y, center_x, center_y, sprite_get_width(spr_m
     {
         if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
         {
-            filename = "Dialogue_2_" + string(i + 1) + ".txt";
+            filename = "dark_forest_dev/Dialogue_2_" + string(i + 1) + ".txt";
             
             //Working with themes' number iterators
             

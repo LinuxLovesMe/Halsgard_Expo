@@ -29,6 +29,8 @@
 
 x_origin = x;
 y_origin = y;
+
+text = "Стела с огненным знаком, отмечает границы владений буйных муспелов.";
 </string>
           </argument>
         </arguments>
@@ -79,11 +81,67 @@ y = y_origin;
             <kind>1</kind>
             <string>if (keyboard_check_released(ord("E")))
 {
-    obj_mainhero.maxenergy = 10;
+    obj_mainhero.maxenergy = 10 * (1 + global.character[3] * 0.1); //Interact with Call of Hield state
     obj_mainhero.weapon = weapons.weapon_fire;
     remove = true;
     scr_destruction();
     instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.greatInfo == text)
+{
+    global.greatInfo = "";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.pause == paused.non_pause)
+{
+    global.greatInfo = text;
+}
+else
+{
+    if (global.greatInfo == text) global.greatInfo = "";
 }
 </string>
           </argument>

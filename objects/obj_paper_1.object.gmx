@@ -107,8 +107,6 @@ if (page_2) image_index = 1;
 }
 else
 {
-    obj_ragn_control.frosty_background = 0;
-    obj_ragn_control.normal_background = 1;
     instance_create(0, 0, obj_cardgame_control);
     audio_play_sound(snd_cardgame, 1, true);
     instance_destroy();
@@ -135,7 +133,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>draw_sprite(spr_card_frosty, 0, 0, 0);
+
+draw_self();
 
 draw_set_font(Underdog_20);
 draw_set_colour(c_black);
@@ -182,8 +182,6 @@ if (page_2)
 }
 else
 {
-    obj_ragn_control.frosty_background = 0;
-    obj_ragn_control.normal_background = 1;
     instance_create(0, 0, obj_cardgame_control);
     audio_play_sound(snd_cardgame, 1, true);
     instance_destroy();
