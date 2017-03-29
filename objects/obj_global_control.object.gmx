@@ -96,22 +96,27 @@ else
 
 if (global.pause == paused.non_pause)
 {
-    if (instance_exists(obj_mainhero))
+    if (instance_exists(obj_mainhero) and obj_mainhero.state != "death")
     {
-        if (obj_mainhero.state == "pause") obj_mainhero.state = obj_mainhero.old_state;
+        if (obj_mainhero.state == "pause")
+        {
+            obj_mainhero.state = obj_mainhero.old_state;
+        }
     }
 }
 
 if (global.pause == paused.pause)
 {
-    if (instance_exists(obj_mainhero))
+    if (instance_exists(obj_mainhero) and obj_mainhero.state != "death")
     {
-        if (obj_mainhero.state != "pause") obj_mainhero.old_state = obj_mainhero.state;
+        if (obj_mainhero.state != "pause")
+        {
+            obj_mainhero.old_state = obj_mainhero.state;
+        }
         obj_mainhero.state = "pause";
     }
         
-    global.greatInfo = "";
-    global.promptText = "";
+    global.greatInfo = ""; global.promptText = "";
 }
 </string>
           </argument>

@@ -126,7 +126,7 @@ for (var i = 0; i &lt; 8; i++)
 global.pause = paused.non_pause;
 global.complete[1] = global.uncomplete[1];
 global.uncomplete[1] = "";
-global.uncomplete[3] = "Квест 4: Организовать засаду возле гаража.";
+global.uncomplete[3] = global.quest[4];
 instance_create(0, 0, obj_new_quest);
 instance_destroy();
 </string>

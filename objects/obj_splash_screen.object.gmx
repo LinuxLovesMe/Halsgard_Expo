@@ -187,6 +187,16 @@ ds_map_add(global.items_list, "Theatre_Mask", global.theatre_mask);
 randomize();
 enum paused { pause, non_pause }
 global_to_default();
+
+//Create text descriptions to the game's quests and tasks
+
+global.quest[0] = "Квест 6: Отдать театральную маску Советнику.";
+global.quest[1] = "Квест 1: Разведать обстановку.";
+global.quest[2] = "Квест 2: Побеседовать с Советником.";
+global.quest[3] = "Квест 3: Найти обелиск пламени.";
+global.quest[4] = "Квест 4: Организовать засаду возле гаража.";
+global.quest[5] = "Квест 5: Заполучить ценный артефакт.";
+global.quest[6] = "Квест 6: Доложить Советнику о провале задания.";
 </string>
           </argument>
         </arguments>

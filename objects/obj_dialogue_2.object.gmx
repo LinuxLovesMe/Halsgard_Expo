@@ -239,7 +239,7 @@ if (replica)
 {
     draw_text_ext_transformed_colour(xx + 32, yy + 36, text[0], separator_r, string_w, 1, 1, 0, c_white, c_white, c_white, c_white, 1);
     
-    draw_sprite(spr_port_hero, 1, x, y); draw_sprite(spr_port_oldman, 0, x, y);
+    draw_sprite(spr_face_hero, 1, x - sprite_width / 2 - 250, y); draw_sprite(spr_face_oldman, 0, x + sprite_width / 2 + 250, y);
 }
 else
 {
@@ -258,7 +258,7 @@ else
         offset += 2 * separator_a + separator_a * floor(string_width(info[pointer, k]) / string_w); 
     }
     
-    draw_sprite(spr_port_hero, 0, x, y); draw_sprite(spr_port_oldman, 1, x, y);
+    draw_sprite(spr_face_hero, 0, x - sprite_width / 2 - 250, y); draw_sprite(spr_face_oldman, 1, x + sprite_width / 2 + 250, y);
 }
 </string>
           </argument>

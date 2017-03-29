@@ -4,9 +4,11 @@ global.planescape_file = "";
 global.final_kind = 0;
 global.planescape_parent = 0;
 global.full_show = false;
-global.chaos_choice = 0;
+global.kill_the_arab = false;
 global.previous_room = "main_menu";
+global.garage_scene = 0;
 global.unchained_1 = false;
+global.aggressive = false;
 global.unspidered_1 = false;
 
 global.pause = paused.non_pause; //Pause events

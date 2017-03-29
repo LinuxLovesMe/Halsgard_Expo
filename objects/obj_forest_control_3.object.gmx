@@ -29,7 +29,7 @@
 
 instance_create(0, 0, obj_autumn_fall);
 
-anarchy_text[0] = "Нашел ту маску, о которой говорил Агни?";
+anarchy_text[0] = "Нашел ту маску, о которой говорил Агни? (ЛКМ - далее)";
 anarchy_text[1] = "Эм... Да, я кое-что прихватил с собой. Кхе... Давай глянем!";
 anarchy_text[2] = "Черт с ней. Потом посмотрим. Надо торопиться.";
 anarchy_text[3] = "Кстати, моя супруга вечером готовит ужин - знаешь, прямо как мне нравится. Заглянешь?";
@@ -40,13 +40,16 @@ anarchy_text[4] = "Отчего же нет? Заметано! А теперь �
 cutscene_start = 0;
 j_count = 0;
 anarchy_man_1 = 0;
+cut_text = "";
 anarchy_man_2 = 0;
 
-instance_create(200, 980, obj_mainhero);
+instance_create(208, 980, obj_mainhero);
 instance_create(1846, 112, obj_owl_forest);
 instance_create(840, 954, obj_volga_auto);
 instance_create(1800, 940, obj_rune_fire);
 instance_create(2430, 940, obj_garage_new);
+
+global.character[8] = 5;
 </string>
           </argument>
         </arguments>
@@ -69,11 +72,16 @@ instance_create(2430, 940, obj_garage_new);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cutscene_start = 1;
-anarchy_man_1 = instance_create(1200, 950, obj_anarchy_man);
+            <string>///Create two anarchy_men for cut_scene
+
+cutscene_start = 1;
+anarchy_man_1 = instance_create(2300 - 24, 950, obj_anarchy_man);
 anarchy_man_1.image_xscale = -1;
-anarchy_man_2 = instance_create(1500, 950, obj_anarchy_man);
+anarchy_man_2 = instance_create(2600 - 24, 950, obj_anarchy_man);
 anarchy_man_2.pause = true;
+
+view_visible[1] = true;
+view_visible[0] = false;
 </string>
           </argument>
         </arguments>
@@ -143,8 +151,28 @@ if (!instance_exists(obj_rune_fire) and global.complete[2] == "")
 if (cutscene_start)
 {
     global.pause = paused.pause;
-    global.greatInfo = anarchy_text[j_count];
+    cut_text = anarchy_text[j_count];
 }
+
+if (instance_exists(anarchy_man_1) and instance_exists(anarchy_man_2))
+{
+    if (((anarchy_man_1.state != "death" and anarchy_man_1.cur_health &lt; 3) or (anarchy_man_2.state != "death"
+        and anarchy_man_2.cur_health &lt; 3)) and obj_mainhero.state != "death") global.aggressive = true;
+    
+    if (anarchy_man_1.state == "death" and anarchy_man_2.state == "death") global.aggressive = false;
+    if (anarchy_man_1.state == "death" or anarchy_man_2.state == "death") global.kill_the_arab = true;
+}
+else if (instance_exists(anarchy_man_1))
+{
+    if (anarchy_man_1.state == "death") global.aggressive = false;
+    if (anarchy_man_1.state == "death") global.kill_the_arab = true;
+}
+else if (instance_exists(anarchy_man_1))
+{
+    if (anarchy_man_1.state == "death") global.aggressive = false;
+    if (anarchy_man_1.state == "death") global.kill_the_arab = true;
+}
+else global.aggressive = false;
 </string>
           </argument>
         </arguments>
@@ -181,6 +209,7 @@ if (cutscene_start)
         anarchy_man_1.pause = true;
         anarchy_man_2.pause = false;
     }
+    
     j_count++;
 }
 
@@ -189,13 +218,16 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
     cutscene_start = 0;
     anarchy_man_1.pause = false;
     anarchy_man_2.pause = false;
-    global.greatInfo = "";
-    
+    cut_text = "";
+    global.garage_scene = 1;
     j_count = 13;
     anarchy_man_1.image_xscale = 1;
     anarchy_man_1.state = "walk";
     anarchy_man_2.state = "walk";
     global.pause = paused.non_pause;
+    
+    view_visible[0] = true;
+    view_visible[1] = false;
 }
 </string>
           </argument>
@@ -220,6 +252,67 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
           <argument>
             <kind>1</kind>
             <string>global.previous_room = "dark_forest_3";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text_colour(view_xview[1] + 12, view_yview[1] + view_hview[1] - 36, cut_text, c_white, c_white, c_white, c_white, 1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="82">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Restart battle after player has died
+
+if (obj_mainhero.already_dead)
+{
+    global.character[8] = global.character[0];
+    global.garage_scene = 0;
+    global.unspidered_1 = false;
+    global.aggressive = false;
+    global.kill_the_arab = false;
+    global.complete[2] = "";
+    global.complete[3] = "";
+    global.uncomplete[4] = "";
+    global.uncomplete[2] = global.quest[2];
+    global.uncomplete[3] = global.quest[3];
+    room_restart();
+}
 </string>
           </argument>
         </arguments>

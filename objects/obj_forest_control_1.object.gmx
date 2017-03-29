@@ -38,11 +38,11 @@ else instance_create(240, 980, obj_mainhero);
 
 if (global.tutorial[0] == 0) // Only in the first time
 {
-    instance_create(2080, 140, obj_masquerade);
     instance_create(0, 0, obj_fade_effect);
-    global.uncomplete[0] = "Квест 1: Разведать обстановку.";
-    global.uncomplete[1] = "Квест 2: Побеседовать с Советником.";
-    global.uncomplete[2] = "Квест 3: Найти обелиск пламени.";
+    global.uncomplete[0] = global.quest[1];
+    global.uncomplete[1] = global.quest[2];
+    global.uncomplete[2] = global.quest[3];
+    instance_create(2080, 140, obj_masquerade);
     
     if (ds_map_find_value(global.options, "save_code") == "0S")
     {
@@ -57,10 +57,7 @@ if (global.tutorial[0] == 0) // Only in the first time
         global.character[9] = global.character[7]; //Setup current value of AP
     }
 }
-else
-{
-    instance_create(1880, 980, obj_sandbox);
-}
+else instance_create(1880, 980, obj_sandbox);
 
 text = "";
 tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";

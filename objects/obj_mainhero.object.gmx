@@ -41,19 +41,13 @@ enum weapons
 
 weapon = weapons.weapon_none;
 
-color_warning = c_orange;
-color_danger = make_color_hsv(0, 250, 180);
-
-lerp_value = 0;
-colour_to_find = shader_get_uniform(shader_lerp, "f_Colour1");
-
 old_state = "idle";
 jumped = false;
 border_const = 200;
 onGround = false;
 allow_shoot = false;
-
-agressive = false;
+punched = false;
+already_dead = false;
 
 cooldown_amount = 0;
 weapon_cooldown = false;
@@ -148,11 +142,9 @@ weapon_cooldown = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Lerp-effect while damaged
+            <string>///Turn back hero to white colour
 
-lerp_value = 1;
-//maxhealth --;
-state = "falling";
+image_blend = c_white;
 </string>
           </argument>
         </arguments>
@@ -287,7 +279,7 @@ if (state == "shoot")
             <kind>1</kind>
             <string>///State = Idle
 
-if (state != "pause" and state != "shoot")
+if ((state == "idle" or state == "jump" or state == "falling") and !punched)
 {
     if (keyboard_check(ord("A")) xor keyboard_check(vk_left))
     {
@@ -321,10 +313,8 @@ if (state != "pause" and state != "shoot")
         }
     }
 }
-else if (state != "shoot")
-{
-    sprite_index = spr_mainhero_idle;
-}
+
+if (state == "pause") sprite_index = spr_mainhero_idle;
 </string>
           </argument>
         </arguments>
@@ -419,50 +409,51 @@ if (state == "jump")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Aid has damaged
+            <string>///State = Punched
 
-if (state == "half_damaged")
+if (punched)
 {
-    if (alarm[0] == -1) 
+    sprite_index = spr_mainhero_punched;
+    image_speed = 0.8;
+    
+    if (image_index &gt; 19) punched = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Death
+
+if (global.character[8] &lt;= 0) state = "death";
+
+if (state == "death")
+{
+    sprite_index = spr_mainhero_death;
+    image_speed = 0.5;
+    
+    if (image_index &gt; 30)
     {
-        alarm[0] = 5; //Lerp-effect shader
+        already_dead = true;
+        image_index = 30;
+        global.greatInfo = "Нажмите клавишу [R], чтобы воскреснуть и попытать удачи еще раз.";
     }
 }
-
-if (state == "full_damaged")
-{
-    if (alarm[0] == -1)
-    {
-        alarm[0] = 5; //Lerp-effect shader
-    }
-    image_speed = 0.4;
-    sprite_index = spr_hero_damage;    
-}
-
-/*if (maxhealth &gt; 3)
-{
-    image_blend = c_white;
-}
-else
-{
-    if (maxhealth &gt; 1)
-    {
-        image_blend = color_warning;
-    }
-    else
-    {
-        image_blend = color_danger;
-    }
-}*/
-
-/*if (keyboard_check_released(ord("H"))) //Healing main_hero manually
-{
-    if (medical &gt; 1)
-    {
-        medical --;
-        maxhealth = 4;
-    }
-}*/
 </string>
           </argument>
         </arguments>
@@ -504,6 +495,42 @@ if (room_get_name(room) == "dark_forest_3" and state != "pause")
     if (x - border_const &lt;= 0) room_goto (dark_forest_2);
     
     if (x + border_const &gt; room_width) x -= move_speed + 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="49">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (item_check_value("Medical_Rune") &gt; 0)
+{
+    global.character[8] += global.character[0] * 0.1 * global.character[2];
+    
+    if (global.character[8] &gt; global.character[0])
+    {
+        global.character[8] = global.character[0];
+    }
+    
+    item_set_value("Medical_Rune", item_check_value("Medical_Rune") - 1);
+    
+    image_blend = c_teal;
+    alarm[0] = 3;
 }
 </string>
           </argument>

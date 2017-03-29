@@ -121,7 +121,7 @@ if (!replica)
 {
     for (k = 1; k &lt; array_length_2d(info, pointer); k++)
     {
-        if ((point_in_rectangle(mouse_x, mouse_y, xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1),
+        if ((point_in_rectangle(mouse_x, mouse_y, xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 30) * (k - 1),
                                 xx + 30 + (string_w - string_width(text_d[k])) / 2 + string_width(text_d[k]), yy + 30 + separator_a * k)))
         {
             if (mouse_check_button_released(mb_left))
