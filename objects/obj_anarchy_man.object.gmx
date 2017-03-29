@@ -122,7 +122,7 @@ if (x &lt; -100) instance_destroy();
 if (state == "idle")
 {
     sprite_index = spr_anarchy_idle;
-    image_speed = 0.42;
+    image_speed = 0.5;
 }
 
 if (pause)

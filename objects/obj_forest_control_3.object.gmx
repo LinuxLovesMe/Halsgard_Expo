@@ -49,7 +49,7 @@ instance_create(840, 954, obj_volga_auto);
 instance_create(1800, 940, obj_rune_fire);
 instance_create(2430, 940, obj_garage_new);
 
-global.character[8] = 5;
+global.character[8] = 8;
 </string>
           </argument>
         </arguments>
@@ -80,8 +80,8 @@ anarchy_man_1.image_xscale = -1;
 anarchy_man_2 = instance_create(2600 - 24, 950, obj_anarchy_man);
 anarchy_man_2.pause = true;
 
-view_visible[1] = true;
 view_visible[0] = false;
+view_visible[1] = true;
 </string>
           </argument>
         </arguments>
@@ -167,12 +167,18 @@ else if (instance_exists(anarchy_man_1))
     if (anarchy_man_1.state == "death") global.aggressive = false;
     if (anarchy_man_1.state == "death") global.kill_the_arab = true;
 }
-else if (instance_exists(anarchy_man_1))
+else if (instance_exists(anarchy_man_2))
 {
-    if (anarchy_man_1.state == "death") global.aggressive = false;
-    if (anarchy_man_1.state == "death") global.kill_the_arab = true;
+    if (anarchy_man_2.state == "death") global.aggressive = false;
+    if (anarchy_man_2.state == "death") global.kill_the_arab = true;
 }
 else global.aggressive = false;
+
+if (global.kill_the_arab)
+{
+    var body = instance_nearest(obj_mainhero.x, obj_mainhero.y, obj_anarchy_man);
+    if (!instance_exists(obj_free_body)) instance_create(1148, 742, obj_free_body);
+}
 </string>
           </argument>
         </arguments>

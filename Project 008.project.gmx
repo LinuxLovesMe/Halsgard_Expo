@@ -452,6 +452,7 @@
         <object>objects\obj_volga_auto</object>
         <object>objects\obj_bullet_fire</object>
         <object>objects\obj_bullet_ice</object>
+        <object>objects\obj_free_body</object>
         <object>objects\obj_garage_new</object>
       </objects>
       <object>objects\obj_forest_control_1</object>

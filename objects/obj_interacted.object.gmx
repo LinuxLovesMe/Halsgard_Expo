@@ -59,6 +59,8 @@ object_state = "action_0";
 
 with (other)
 {
+    if (obj_mainhero.state == "death" or global.aggressive) near = false;
+    
     if (abs(x - obj_mainhero.x) &gt;= 100 or abs(y - obj_mainhero.y) &gt;= 100) near = false;
 }
 </string>
@@ -120,7 +122,7 @@ if (keyboard_check_released(vk_escape))
 
 with (other)
 {
-    if (!near)
+    if (!near and obj_mainhero.state != "death" and !global.aggressive)
     {
         if (abs(x - obj_mainhero.x) &lt; 100 and abs(y - obj_mainhero.y) &lt; 100) near = true;
     }
@@ -130,7 +132,7 @@ with (other)
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="8">
+    <event eventtype="6" enumb="57">
       <action>
         <libid>1</libid>
         <id>603</id>
