@@ -4,7 +4,7 @@ global.planescape_file = "";
 global.final_kind = 0;
 global.planescape_parent = 0;
 global.full_show = false;
-global.kill_the_arab = false;
+global.kill_the_arab = 0;
 global.previous_room = "main_menu";
 global.garage_scene = 0;
 global.unchained_1 = false;
@@ -19,7 +19,7 @@ for (i = 0; i < 6; i++) //Generate arrays for Quests
     global.uncomplete[i] = "";
 }
 
-for (j = 0; j < 4; j++) global.tutorial[i] = 0; //Generate array for Tutorials
+for (j = 0; j < 4; j++) global.tutorial[j] = 0; //Generate array for Tutorials
 
 //Aid's skills and stats arrays init
 
@@ -38,3 +38,5 @@ for (n = 0; n < 10; n++) global.inventory[n] = ""; //Inventory is Viggo Valentin
 
 global.inventory[0] = "Halsvord";
 global.inventory[1] = "Medical_Rune";
+
+return "done";

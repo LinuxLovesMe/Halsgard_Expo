@@ -87,14 +87,38 @@ if (ds_map_find_value(global.options, "history_mode"))
 else
 {
     if (global.character[0] == 0) global.character[0] = 2;
-    if (global.character[1] == 0) global.character[0] = 1;
-    if (global.character[2] == 0) global.character[0] = 2;
-    if (global.character[3] == 0) global.character[0] = 1;
-    if (global.character[4] == 0) global.character[0] = 8;
-    if (global.character[5] == 0) global.character[0] = 1;
-    if (global.character[6] == 0) global.character[0] = 1;
-    if (global.character[7] == 0) global.character[0] = 2;
+    if (global.character[1] == 0) global.character[1] = 1;
+    if (global.character[2] == 0) global.character[2] = 2;
+    if (global.character[3] == 0) global.character[3] = 2;
+    if (global.character[4] == 0) global.character[4] = 4;
+    if (global.character[5] == 0) global.character[5] = 1;
+    if (global.character[6] == 0) global.character[6] = 1;
+    if (global.character[7] == 0) global.character[7] = 2;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_destroy();
+room_goto(main_menu);
 </string>
           </argument>
         </arguments>
@@ -451,7 +475,15 @@ if (state == "death")
     {
         already_dead = true;
         image_index = 30;
-        global.greatInfo = "Нажмите клавишу [R], чтобы воскреснуть и попытать удачи еще раз.";
+        
+        if (ds_map_find_value(global.options, "history_mode"))
+        {
+            global.greatInfo = "Нажмите клавишу [R], чтобы воскреснуть и попытать удачи еще раз.";
+        }
+        else
+        {
+            if (alarm[3] == -1) alarm[3] = room_speed * 2;
+        }
     }
 }
 </string>
@@ -531,6 +563,37 @@ if (room_get_name(room) == "dark_forest_3" and state != "pause")
     
     image_blend = c_teal;
     alarm[0] = 3;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (state != "death" and global.aggressive)
+{
+    if (item_check_value("Halsvord") &gt; 50)
+    {
+        if (image_xscale &gt; 0) x = irandom_range(x, room_width - 208);
+        else x = irandom_range(208, x);
+        item_set_value("Halsvord", item_check_value("Halsvord") - 50);
+    }
 }
 </string>
           </argument>

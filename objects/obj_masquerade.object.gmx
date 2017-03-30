@@ -61,6 +61,8 @@ event_inherited();
 
 x = x_origin + floor(view_xview[0] * 0.2);
 y = y_origin;
+key_sprite_x = -10;
+key_sprite_y = -10;
 </string>
           </argument>
         </arguments>

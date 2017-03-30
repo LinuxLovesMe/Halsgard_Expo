@@ -92,7 +92,7 @@ y = y_origin;
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="8">
+    <event eventtype="6" enumb="57">
       <action>
         <libid>1</libid>
         <id>603</id>

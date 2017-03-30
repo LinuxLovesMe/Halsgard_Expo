@@ -42,6 +42,7 @@ j_count = 0;
 anarchy_man_1 = 0;
 cut_text = "";
 anarchy_man_2 = 0;
+taken_over = false;
 
 instance_create(208, 980, obj_mainhero);
 instance_create(1846, 112, obj_owl_forest);
@@ -49,7 +50,16 @@ instance_create(840, 954, obj_volga_auto);
 instance_create(1800, 940, obj_rune_fire);
 instance_create(2430, 940, obj_garage_new);
 
-global.character[8] = 8;
+if (global.garage_scene == 1 and global.kill_the_arab == 1) var rand = choose(1, 2);
+else rand = 0;
+
+if (rand == 1)
+{
+    global.aggressive = true;
+    anarchy_man_1 = instance_create(1800, 950, obj_anarchy_man);
+}
+
+if (rand == 2) taken_over = true;
 </string>
           </argument>
         </arguments>
@@ -141,7 +151,7 @@ background_y[5]=floor(view_yview[0]*0.01);
 
 event_inherited();
 
-if (!instance_exists(obj_rune_fire) and global.complete[2] == "")
+if (!instance_exists(obj_rune_fire) and global.uncomplete[2] == global.quest[3])
 {
     global.complete[2] = global.uncomplete[2];
     global.uncomplete[2] = "";
@@ -159,25 +169,31 @@ if (instance_exists(anarchy_man_1) and instance_exists(anarchy_man_2))
     if (((anarchy_man_1.state != "death" and anarchy_man_1.cur_health &lt; 3) or (anarchy_man_2.state != "death"
         and anarchy_man_2.cur_health &lt; 3)) and obj_mainhero.state != "death") global.aggressive = true;
     
-    if (anarchy_man_1.state == "death" and anarchy_man_2.state == "death") global.aggressive = false;
-    if (anarchy_man_1.state == "death" or anarchy_man_2.state == "death") global.kill_the_arab = true;
+    if (anarchy_man_1.state == "death" and anarchy_man_2.state == "death")
+    {
+        global.aggressive = false; global.kill_the_arab = 2;
+    }
 }
 else if (instance_exists(anarchy_man_1))
 {
-    if (anarchy_man_1.state == "death") global.aggressive = false;
-    if (anarchy_man_1.state == "death") global.kill_the_arab = true;
+    if (anarchy_man_1.state == "death")
+    {
+        global.aggressive = false;
+        if (global.kill_the_arab == 0) global.kill_the_arab = 1; else global.kill_the_arab = 2;
+    }
 }
 else if (instance_exists(anarchy_man_2))
 {
-    if (anarchy_man_2.state == "death") global.aggressive = false;
-    if (anarchy_man_2.state == "death") global.kill_the_arab = true;
+    if (anarchy_man_2.state == "death")
+    {
+        global.aggressive = false; global.kill_the_arab = 1;
+    }
 }
 else global.aggressive = false;
 
-if (global.kill_the_arab)
+if (global.kill_the_arab &gt; 0)
 {
-    var body = instance_nearest(obj_mainhero.x, obj_mainhero.y, obj_anarchy_man);
-    if (!instance_exists(obj_free_body)) instance_create(1148, 742, obj_free_body);
+    if (!instance_exists(obj_free_body)) instance_create(1180, 888, obj_free_body);
 }
 </string>
           </argument>
@@ -215,7 +231,6 @@ if (cutscene_start)
         anarchy_man_1.pause = true;
         anarchy_man_2.pause = false;
     }
-    
     j_count++;
 }
 
@@ -234,6 +249,11 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
     
     view_visible[0] = true;
     view_visible[1] = false;
+    
+    instance_create(0, 0, obj_new_quest);
+    global.complete[3] = global.uncomplete[3];
+    global.uncomplete[3] = "";
+    global.uncomplete[4] = global.quest[5];
 }
 </string>
           </argument>
@@ -311,7 +331,7 @@ if (obj_mainhero.already_dead)
     global.garage_scene = 0;
     global.unspidered_1 = false;
     global.aggressive = false;
-    global.kill_the_arab = false;
+    global.kill_the_arab = 0;
     global.complete[2] = "";
     global.complete[3] = "";
     global.uncomplete[4] = "";

@@ -32,6 +32,36 @@ instance_create(0, 0, obj_autumn_fall);
 if (global.previous_room == "dark_forest_3")
 {
     instance_create(room_width - 208, 980, obj_mainhero);
+    
+    if (global.garage_scene == 1 and global.kill_the_arab = 0) //If hero left the scene and don't kill anybody
+    {
+        for (i = 0; i &lt; 5; i++)
+        {
+            global.complete[i] = "";
+            global.uncomplete[i] = "";
+        }
+        instance_create(0, 0, obj_new_quest);
+        global.uncomplete[0] = global.quest[6];
+    }
+    
+    if (global.garage_scene == 1 and global.kill_the_arab &gt; 0) //If hero left the scene and kill 1-2 anarchists
+    {
+        if (global.complete[4] == global.quest[5])
+        {
+            for (i = 0; i &lt; 5; i++)
+            {
+                global.complete[i] = "";
+                global.uncomplete[i] = "";
+            }
+            instance_create(0, 0, obj_new_quest);
+            global.uncomplete[0] = global.quest[0];
+        }
+        else
+        {
+            global.aggressive = false;
+            global.greatInfo = "Пришла пора забрать нужный мне артефакт у застывшего изваянья анархистам!";
+        }
+    }
 }
 else
 {
@@ -42,9 +72,9 @@ else
 text = "";
 tutorial_text[3] = "Найдите Советника и нажмите [E] рядом с ним, чтобы начать разговор (ЛКМ - далее).";
 
-instance_create(934, 942, obj_gorky_20);
-instance_create(2012, 960, obj_oldman);
 instance_create(2368, 980, obj_lovushka);
+instance_create(934, 942, obj_gorky_20);
+if (global.garage_scene != 1) instance_create(2012, 960, obj_oldman);
 </string>
           </argument>
         </arguments>

@@ -94,8 +94,8 @@ if (global.pause == paused.non_pause)
 
 x = x_origin + floor(view_xview[0] * 0.12);
 y = y_origin;
-key_sprite_x = x - 324;
-key_sprite_y = y - sprite_height + 104;
+key_sprite_x = x - 12;
+key_sprite_y = y - sprite_height - 12;
 
 if (global.unspidered_1) image_index = 1; else image_index = 0;
 </string>
