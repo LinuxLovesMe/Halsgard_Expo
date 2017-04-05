@@ -124,9 +124,7 @@ for (var i = 0; i &lt; 8; i++)
             <string>///Destroy dialogue after Esc or AP has ended
 
 global.pause = paused.non_pause;
-global.complete[1] = global.uncomplete[1];
-global.uncomplete[1] = "";
-global.uncomplete[3] = global.quest[4];
+quest_complete(2); quest_add(4);
 instance_create(0, 0, obj_new_quest);
 instance_destroy();
 </string>

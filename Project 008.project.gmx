@@ -350,15 +350,28 @@
       <script>scripts\gfx_blur.gml</script>
       <script>scripts\draw_old_movie.gml</script>
     </scripts>
+    <scripts name="quest_scripts">
+      <script>scripts\quest_ucheck.gml</script>
+      <script>scripts\quest_add.gml</script>
+      <script>scripts\quest_ccheck.gml</script>
+      <script>scripts\quest_clear.gml</script>
+      <script>scripts\quest_complete.gml</script>
+    </scripts>
+    <scripts name="inventory_scripts">
+      <script>scripts\item_set_value.gml</script>
+      <script>scripts\item_check_value.gml</script>
+      <script>scripts\inventory_add.gml</script>
+      <script>scripts\inventory_remove.gml</script>
+    </scripts>
     <script>scripts\scr_destruction.gml</script>
     <script>scripts\scr_menu.gml</script>
     <script>scripts\draw_text_outline.gml</script>
     <script>scripts\save_options.gml</script>
     <script>scripts\global_to_default.gml</script>
+    <script>scripts\states_load.gml</script>
+    <script>scripts\states_save.gml</script>
     <script>scripts\debug_message.gml</script>
     <script>scripts\set_window_size.gml</script>
-    <script>scripts\item_set_value.gml</script>
-    <script>scripts\item_check_value.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_lerp.shader</shader>

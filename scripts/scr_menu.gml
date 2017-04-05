@@ -2,24 +2,17 @@ switch (curr_pos)
 {
     case 0: //Continue
     {
-        if (ds_map_find_value(global.options, "save_code") == "0S")
+        if (ds_map_find_value(global.options, "save_code") == "0level")
         {
             room_goto(ragnarok_intro);
         }
         
-        if (ds_map_find_value(global.options, "save_code") == "1S0")
+        if (ds_map_find_value(global.options, "save_code") == "1level")
         {
             if (global_to_default() == "done")
             {
-                item_set_value("Halsvord", 40); room_goto(dark_forest_1);
-            }
-        }
-        
-        if (ds_map_find_value(global.options, "save_code") == "1S1")
-        {
-            if (global_to_default() == "done")
-            {
-                item_set_value("Halsvord", 240); room_goto(dark_forest_1);
+                states_load(0);
+                room_goto(dark_forest_1);
             }
         }
         break;
@@ -27,7 +20,7 @@ switch (curr_pos)
         
     case 1: //New Game
     {
-        ds_map_replace(global.options, "save_code", "0S"); //Re-write savegames if player has started new game
+        ds_map_replace(global.options, "save_code", "0level"); //Re-write savegames if player has started new game
         save_options();
         if (global_to_default() == "done") room_goto(ragnarok_intro);
         break;
@@ -41,6 +34,7 @@ switch (curr_pos)
     
     case 3: //Quit to Desktop
     {
-        game_end(); break;
+        game_end();
+        break;
     }
 }

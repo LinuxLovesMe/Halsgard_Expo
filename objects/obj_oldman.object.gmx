@@ -329,7 +329,7 @@ if (state == "watch")
 
 if (keyboard_check_released(ord("E")) and abs(obj_mainhero.x - x) &lt; 180)
 {
-    if (global.uncomplete[1] != "")
+    if (quest_ucheck(2))
     {
         instance_create(0, 0, obj_main_1); //Create dialogue controller
         global.pause = paused.pause;

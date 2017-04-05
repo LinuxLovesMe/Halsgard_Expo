@@ -177,7 +177,7 @@ draw_set_font(Underdog_C);
 draw_set_colour(c_white);
 
 draw_text_ext(60, 150, descr_text, 80, 1034);
-draw_text(642, 740, "Александр Пушкин - " + chr(34) + "Пиковая дама" + chr(34));
+draw_text(628, 740, "Александр Пушкин - " + chr(34) + "Пиковая дама" + chr(34));
 </string>
           </argument>
         </arguments>

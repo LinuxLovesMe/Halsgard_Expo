@@ -35,26 +35,16 @@ if (global.previous_room == "dark_forest_3")
     
     if (global.garage_scene == 1 and global.kill_the_arab = 0) //If hero left the scene and don't kill anybody
     {
-        for (i = 0; i &lt; 5; i++)
-        {
-            global.complete[i] = "";
-            global.uncomplete[i] = "";
-        }
+        quest_clear(); quest_add(6);
         instance_create(0, 0, obj_new_quest);
-        global.uncomplete[0] = global.quest[6];
     }
     
     if (global.garage_scene == 1 and global.kill_the_arab &gt; 0) //If hero left the scene and kill 1-2 anarchists
     {
-        if (global.complete[4] == global.quest[5])
+        if (quest_ccheck(5))
         {
-            for (i = 0; i &lt; 5; i++)
-            {
-                global.complete[i] = "";
-                global.uncomplete[i] = "";
-            }
+            quest_clear(); quest_add(0);
             instance_create(0, 0, obj_new_quest);
-            global.uncomplete[0] = global.quest[0];
         }
         else
         {

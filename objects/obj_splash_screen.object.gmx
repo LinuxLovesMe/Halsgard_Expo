@@ -47,7 +47,7 @@ if (file_exists("Options.franbow"))
 
       if (temp_position != 0) //if line has correct code
       {
-        var temp_value = real(string_copy(option_str, temp_position + 3, string_length(option_str)));
+        var temp_value = string_digits(string_copy(option_str, temp_position + 3, string_length(option_str)));
         
         if (i == 3) temp_value = string_copy(option_str, temp_position + 3, string_length(option_str));
         
@@ -235,9 +235,8 @@ else
     ds_map_add(global.options, "fullscreen", 0);
     ds_map_add(global.options, "volume", 5);
     ds_map_add(global.options, "history_mode", 1);
-    ds_map_add(global.options, "save_code", "0S");
+    ds_map_add(global.options, "save_code", "0level");
     ds_map_add(global.options, "survival_mode", 0);
-    
     save_options();
 }
 </string>

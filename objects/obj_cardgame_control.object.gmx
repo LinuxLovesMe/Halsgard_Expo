@@ -673,7 +673,7 @@ if (rounds == cards_number)
     {
         if (total_score &gt; 0) draw_text((room_width - string_width("Победа Эйда")) / 2 + 52, 654, "Победа Эйда");
         else if(total_score &lt; 0) draw_text((room_width - string_width("Победа Советника")) / 2 + 56, 654, "Победа Советника");
-        else if(total_score == 0) draw_text((room_width - string_width("Победителя нет")) / 2 + 56, 654, "Победителя нет");
+        else if(total_score == 0) draw_text((room_width - string_width("Победителя нет")) / 2 + 54, 654, "Победителя нет");
     }
 }
 

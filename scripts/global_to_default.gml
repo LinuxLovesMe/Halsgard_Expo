@@ -13,11 +13,7 @@ global.unspidered_1 = false;
 
 global.pause = paused.non_pause; //Pause events
 
-for (i = 0; i < 6; i++) //Generate arrays for Quests
-{
-    global.complete[i] = "";
-    global.uncomplete[i] = "";
-}
+quest_clear(); //Generate arrays for Quests
 
 for (j = 0; j < 4; j++) global.tutorial[j] = 0; //Generate array for Tutorials
 
@@ -34,7 +30,7 @@ global.character[7] = 0; //Физическая активность
 global.character[8] = 0; //Current HP status
 global.character[9] = 0; //Current AP status
 
-for (n = 0; n < 10; n++) global.inventory[n] = ""; //Inventory is Viggo Valentine
+for (n = 0; n < 9; n++) global.inventory[n] = ""; //Inventory is Viggo Valentine
 
 global.inventory[0] = "Halsvord";
 global.inventory[1] = "Medical_Rune";

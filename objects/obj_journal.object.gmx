@@ -61,7 +61,7 @@ y = view_yview[0] + 24;
     draw_set_font(Underdog_20);
     draw_set_colour(c_white);
     
-    for (i = 0; i &lt; 6; i++)
+    for (i = 0; i &lt; 5; i++)
     {
         if (global.complete[i] != "")
         {
@@ -69,7 +69,10 @@ y = view_yview[0] + 24;
             draw_line_width(x + 40, y + (60 * (i + 1)) + 18, x + 40 + string_width(global.complete[i]), y + (60 * (i + 1)) + 18, 3);
         }
         
-        if (global.uncomplete[i] != "") draw_text(x + 40, y + (60 * (i + 1)), global.uncomplete[i]);
+        if (global.uncomplete[i] != "")
+        {
+            draw_text(x + 40, y + (60 * (i + 1)), global.uncomplete[i]);
+        }
     }
 }
 </string>
