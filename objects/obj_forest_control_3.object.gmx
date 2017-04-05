@@ -56,7 +56,7 @@ else rand = 0;
 if (rand == 1)
 {
     global.aggressive = true;
-    anarchy_man_1 = instance_create(1800, 950, obj_anarchy_man);
+    anarchy_man_1 = instance_create(1800, 954, obj_anarchy_man);
 }
 
 if (rand == 2) taken_over = true;
@@ -85,9 +85,9 @@ if (rand == 2) taken_over = true;
             <string>///Create two anarchy_men for cut_scene
 
 cutscene_start = 1;
-anarchy_man_1 = instance_create(2300 - 24, 950, obj_anarchy_man);
+anarchy_man_1 = instance_create(2300 - 24, 954, obj_anarchy_man);
 anarchy_man_1.image_xscale = -1;
-anarchy_man_2 = instance_create(2600 - 24, 950, obj_anarchy_man);
+anarchy_man_2 = instance_create(2600 - 24, 954, obj_anarchy_man);
 anarchy_man_2.pause = true;
 
 view_visible[0] = false;

@@ -37,6 +37,8 @@ old_state = "walk";
 if (ds_map_find_value(global.options, "history_mode")) cur_health = 5; else cur_health = 6;
 attack_speed = 80;
 say_string = "Парень, займись своим делом, не приставай!";
+
+pain_colour = make_colour_rgb(255, 52, 38);
 </string>
           </argument>
         </arguments>
@@ -370,7 +372,7 @@ if (state == "approach")
 {
     move_speed += 0.4; //Increase speed with each fireball injuring!
     state = "approach";
-    image_blend = c_orange;
+    image_blend = pain_colour;
     alarm[1] = 2;
     with (other) instance_destroy();
 }

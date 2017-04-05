@@ -59,7 +59,7 @@ if (global.previous_room == "dark_forest_3")
         else
         {
             global.aggressive = false;
-            global.greatInfo = "Пришла пора забрать нужный мне артефакт у застывшего изваянья анархистам!";
+            global.greatInfo = "Пришла пора забрать нужный мне артефакт у новоиспеченного памятника анархистам!";
         }
     }
 }

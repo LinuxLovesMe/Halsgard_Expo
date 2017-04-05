@@ -85,6 +85,8 @@ stop_animation = false;
 
 x = x_origin + floor(view_xview[0] * 0.2);
 y = y_origin + floor(view_yview[0] * 0.2);
+key_sprite_x = x - 10;
+key_sprite_y = y - sprite_height - 20;
 
 image_speed = 0.25;
 
