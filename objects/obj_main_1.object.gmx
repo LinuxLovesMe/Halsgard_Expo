@@ -362,13 +362,11 @@ for (var i = 0; i &lt; 8; i++)
     
     if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3 and i &lt; ds_list_size(theme_info)) //If scenario-number is under the triangle
     {
-        if (i == 2) draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_red, c_red, c_white, c_white, 1);
-        
-        else draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_teal, c_teal, c_white, c_white, 1);
+        draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_red, c_red, c_white, c_white, 1);
     }
     else
     {
-        draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, c_white, c_white, 1);    
+        draw_text_ext_transformed_colour(coords[i, 0], coords[i, 1], string(i + 1), 1, 100, 1, 1, coords[i, 2], c_white, c_white, c_white, c_white, 1);
     }
         
     //Write message about dialog in center if circle is under triangle
@@ -393,7 +391,7 @@ draw_text_outline(view_xview[0] + 20, view_yview[0] + 14, "Собеседник:
 
 if (global.character[9] &gt;= 0)
 {
-    draw_text_outline(view_xview[0] + view_wview[0] - 302, view_yview[0] + view_hview[0] - 60, "Осталось ОД: " + string(global.character[9]), 1, c_black, 16);
+    draw_text_outline(view_xview[0] + view_wview[0] - 300, view_yview[0] + view_hview[0] - 60, "Осталось AP: " + string(global.character[9]), 1, c_black, 16);
 }
 
 draw_text_outline(view_xview[0] + 20, view_yview[0] + view_hview[0] - 60, need_case, 1, c_black, 16);

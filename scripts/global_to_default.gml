@@ -13,6 +13,10 @@ global.unspidered_1 = false;
 
 global.pause = paused.non_pause; //Pause events
 
+global.noise_effect = 0;
+global.Color2 = make_colour_rgb(150, 210, 242); //Colour for active answer
+global.myColor = make_colour_rgb(120, 168, 194); //Colour for inactive answer
+
 quest_clear(); //Generate arrays for Quests
 
 for (j = 0; j < 4; j++) global.tutorial[j] = 0; //Generate array for Tutorials

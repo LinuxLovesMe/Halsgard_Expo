@@ -213,11 +213,8 @@ if (!replica)
           <argument>
             <kind>1</kind>
             <string>draw_sprite(spr_frosty_back, 0, view_xview[0], view_yview[0]);
-
 draw_self();
-myColor = make_colour_rgb(120, 168, 194);
 draw_set_font(Underdog_20);
-Color2 = make_colour_rgb(150, 210, 242);
 
 text = 0; text[0] = info[pointer, 0];
 
@@ -249,11 +246,11 @@ else
     {
         if (active_answer &gt; 0 and active_answer == k)
         {
-            draw_text_ext_transformed_colour(xx + 32, yy + offset, text[k], separator_a, string_w, 1, 1, 0, Color2, Color2, Color2, Color2, 1);
+            draw_text_ext_transformed_colour(xx + 32, yy + offset, text[k], separator_a, string_w, 1, 1, 0, global.Color2, global.Color2, global.Color2, global.Color2, 1);
         }
         else
         {
-            draw_text_ext_transformed_colour(xx + 32, yy + offset, text[k], separator_a, string_w, 1, 1, 0, myColor, myColor, myColor, myColor, 1);
+            draw_text_ext_transformed_colour(xx + 32, yy + offset, text[k], separator_a, string_w, 1, 1, 0, global.myColor, global.myColor, global.myColor, global.myColor, 1);
         }
         offset += 2 * separator_a + separator_a * floor(string_width(info[pointer, k]) / string_w); 
     }

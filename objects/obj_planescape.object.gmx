@@ -238,9 +238,7 @@ if (global.full_show)
             <string>if (global.full_show)
 {
     draw_sprite(spr_interactive, 0, draw_x, draw_y);
-    myColor = make_colour_rgb(120, 168, 194);
     draw_set_font(Underdog_20);
-    Color2 = make_colour_rgb(150, 210, 242);
     
     text_d[0] = info[pointer, 0];
 
@@ -268,11 +266,11 @@ if (global.full_show)
         {
             if (active_answer &gt; 0 and active_answer == k)
             {
-                draw_text_ext_transformed_colour(xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1), text_d[k], separator_a, string_w, 1, 1, 0, Color2, Color2, Color2, Color2, 1);
+                draw_text_ext_transformed_colour(xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1), text_d[k], separator_a, string_w, 1, 1, 0, global.Color2, global.Color2, global.Color2, global.Color2, 1);
             }
             else
             {
-                draw_text_ext_transformed_colour(xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1), text_d[k], separator_a, string_w, 1, 1, 0, myColor, myColor, myColor, myColor, 1);
+                draw_text_ext_transformed_colour(xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1), text_d[k], separator_a, string_w, 1, 1, 0, global.myColor, global.myColor, global.myColor, global.myColor, 1);
             }
         }
     }

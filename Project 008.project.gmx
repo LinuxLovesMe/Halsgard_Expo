@@ -274,14 +274,16 @@
         <sprite>sprites\spr_division_line</sprite>
       </sprites>
       <sprite>sprites\spr_sandbox_10</sprite>
-      <sprite>sprites\spr_viggo_valentine</sprite>
-      <sprite>sprites\spr_frosty_back</sprite>
       <sprite>sprites\spr_gazette_1</sprite>
+      <sprite>sprites\spr_frosty_back</sprite>
+      <sprite>sprites\spr_viggo_valentine</sprite>
       <sprite>sprites\spr_new_quest</sprite>
       <sprite>sprites\spr_key_E</sprite>
-      <sprite>sprites\spr_key_WASD</sprite>
-      <sprite>sprites\spr_needles</sprite>
+      <sprite>sprites\spr_noise_0</sprite>
       <sprite>sprites\spr_ornamentus</sprite>
+      <sprite>sprites\spr_needles</sprite>
+      <sprite>sprites\spr_noise_effect</sprite>
+      <sprite>sprites\spr_key_W</sprite>
       <sprite>sprites\spr_quest_journal</sprite>
     </sprites>
     <sprites name="dark_forest_2">
@@ -436,6 +438,7 @@
         <object>objects\obj_ground</object>
         <object>objects\obj_autumn_fall</object>
         <object>objects\obj_mainhero</object>
+        <object>objects\obj_noise_effects</object>
         <object>objects\obj_journal</object>
         <object>objects\obj_masquerade</object>
         <object>objects\obj_sandbox</object>

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-500</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,16 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; room_width; i += 32)
+            <string>if (global.noise_effect &gt; 0)
 {
-    instance_create(i, room_height - 32, obj_ground);
+    an = 3;
+    bn = 9;
 }
-
-instance_create(0, 0, obj_journal);
-instance_create(0, 0, obj_key_E);
-instance_create(0, 0, obj_noise_effects);
-instance_create(0, 0, obj_cursor);
-instance_create(160, 336, obj_textcontrol);
+else
+{
+    an = 0;
+    bn = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -57,137 +57,72 @@ instance_create(160, 336, obj_textcontrol);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Tab-menu with Quests and Brains
-
-if (keyboard_check(vk_tab))
+            <string>if (instance_exists(obj_global_pause) or instance_exists(obj_hero_status) or instance_exists(obj_survival_guide) or (!bn))
 {
-    if (global.pause != paused.pause)
+    global.noise_effect = 0;
+}
+else
+{
+    if (global.pause == paused.pause)
     {
-        obj_journal.active = true;
+        global.noise_effect = 1;
+        sprite_index = spr_noise_0;
     }
     else
     {
-        obj_journal.active = false;
+        global.noise_effect = 2;
+        sprite_index = spr_noise_effect;
     }
+}
+image_speed = 0.2; image_alpha = 0.2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.noise_effect &gt; 0)
+{
+    draw_set_blend_mode_ext(an, bn);
+    
+    for (p = 0; p &lt;= 1800; p += sprite_width)
+    {
+        for (v = 0; v &lt;= 1000; v += sprite_height)
+        {
+            x = view_xview[view_current] + p;
+            y = view_yview[view_current] + v;
+            draw_self();
+        }
+    }
+    
+    draw_set_blend_mode(bm_normal);
 }
 else
 {
-    obj_journal.active = false;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Change colour settings if noise-effect is on
-
-if (global.noise_effect &gt; 0)
-{
-    global.myColour = make_colour_rgb(150, 210, 242);
-    global.Colour2 = make_colour_rgb(112, 220, 255);
-}
-else
-{
-    global.myColour = make_colour_rgb(120, 168, 194);
-    global.Colour2 = make_colour_rgb(150, 210, 242);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Game pause control
-
-if (global.pause == paused.non_pause)
-{
-    if (instance_exists(obj_mainhero) and obj_mainhero.state != "death")
-    {
-        if (obj_mainhero.state == "pause")
-        {
-            obj_mainhero.state = obj_mainhero.old_state;
-        }
-    }
-}
-
-if (global.pause == paused.pause)
-{
-    if (instance_exists(obj_mainhero) and obj_mainhero.state != "death")
-    {
-        if (obj_mainhero.state != "pause")
-        {
-            obj_mainhero.old_state = obj_mainhero.state;
-        }
-        obj_mainhero.state = "pause";
-    }
-        
-    global.greatInfo = ""; global.promptText = "";
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Show global pause window with inventory
-
-if (!instance_exists(obj_global_pause) and global.pause == paused.non_pause)
-{
-    if (keyboard_check_released(vk_escape))
-    {
-        global.pause = paused.pause;
-        instance_create(0, 0, obj_global_pause);
-    }
+    draw_sprite(spr_clear, 0, x, y);
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="77">
+    <event eventtype="10" enumb="119">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -204,15 +139,13 @@ if (!instance_exists(obj_global_pause) and global.pause == paused.non_pause)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw blur shader on tutorial pause event
-
-for (i = 0; i &lt; 4; i++)
+            <string>if (!bn)
 {
-    if (global.tutorial[i] &gt; 1 and global.tutorial[i] != 13 and global.pause == paused.pause)
-    {
-        gfx_blur(application_surface, 5, 30, 0);
-        break;
-    }
+    an = 3; bn = 9;
+}
+else
+{
+    an = 0; bn = 0;
 }
 </string>
           </argument>
