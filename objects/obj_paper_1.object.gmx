@@ -133,7 +133,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(spr_card_frosty, 0, 0, 0);
+            <string>draw_sprite(spr_card_frosty, 1, 0, 0);
 
 draw_self();
 

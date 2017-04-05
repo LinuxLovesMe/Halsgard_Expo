@@ -635,12 +635,12 @@ if (rounds &gt; 0 and rounds &lt; 6)
 {
     for (i = 0; i &lt; rounds - 1; i++)
     {
-        if (winner[i] != 3) draw_sprite(spr_card_stone, winner[i], room_width - 82, 54 + 110 * i);
+        if (winner[i] != 3) draw_sprite(spr_card_stone, winner[i], room_width - 60, 58 + 108 * i);
     }
     
     if (winner[rounds - 1] != 3 and alarm[5] == -1) 
     {
-        draw_sprite(spr_card_stone, winner[rounds - 1], room_width - 82, 54 + 110 * (rounds - 1));
+        draw_sprite(spr_card_stone, winner[rounds - 1], room_width - 60, 58 + 108 * (rounds - 1));
     }
 }
 </string>
