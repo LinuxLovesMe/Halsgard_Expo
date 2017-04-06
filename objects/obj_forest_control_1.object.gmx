@@ -59,6 +59,8 @@ if (global.tutorial[0] == 0) // Only in the first time
 }
 else instance_create(1880, 980, obj_sandbox);
 
+global.previous_room = "dark_forest_1";
+
 text = "";
 tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";
 tutorial_text[2] = "Уверен, эта штука за мной следит! Надо бы проверить ее при помощи ПКМ (ЛКМ - далее).";
@@ -227,29 +229,6 @@ for (i = 0; i &lt; 3; i++)
         global.tutorial[i] = 13;
     }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.previous_room = "dark_forest_1";
 </string>
           </argument>
         </arguments>

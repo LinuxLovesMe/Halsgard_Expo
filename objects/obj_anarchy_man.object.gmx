@@ -31,10 +31,20 @@ x_origin = x;
 y_origin = y;
 
 pause = false; //pause animation if we need
-move_speed = 2.4;
+extra_coef = 1.4;
+move_speed = 3.8;
 
 old_state = "walk";
-if (ds_map_find_value(global.options, "history_mode")) cur_health = 5; else cur_health = 6;
+
+if (ds_map_find_value(global.options, "history_mode"))
+{
+    cur_health = 5; //Health amount on history-mode
+}
+else
+{
+    cur_health = 6; //Health amount on survival-mode
+}
+
 attack_speed = 80;
 say_string = "Парень, займись своим делом, не приставай!";
 
@@ -285,18 +295,22 @@ if (state == "attack" or state == "pre_attack")
             <kind>1</kind>
             <string>///State = Death
 
-if (cur_health &lt;= 0) state = "death";
+if (cur_health == 0)
+{
+    state = "death";
+    image_index = 0; cur_health = -2;
+}
 
 if (state == "death")
 {
     sprite_index = spr_anarchy_death;
     image_speed = 0.2;
     
-    if (image_index &gt; 24 and cur_health == 0)
+    if (image_index &gt; 24 and cur_health == -2)
     {
         image_index = 24;
         x_origin = x;
-        cur_health -= 1;
+        cur_health = -3;
         x_view = view_xview[0];
     }
     else if (image_index &gt; 24) image_index = 24;
@@ -335,17 +349,18 @@ if (state == "approach")
         
     if (x &gt; obj_mainhero.x)
     {
-        x -= move_speed * 1.8;
-        image_xscale = 1;
+        x -= move_speed + extra_coef; image_xscale = 1;
     }
     else
     {
-        x += move_speed * 2.1;
-        image_xscale = -1;
+        x += move_speed + extra_coef; image_xscale = -1;
     }
     
-    if (abs(x - obj_mainhero.x) &lt; 200) state = "pre_attack";
+    if (abs(x - obj_mainhero.x) &lt; 180) state = "pre_attack";
 }
+
+if (abs(x - obj_mainhero.x) &lt; 600) extra_coef = 0.4;
+else extra_coef = 1.4;
 </string>
           </argument>
         </arguments>
@@ -370,9 +385,9 @@ if (state == "approach")
             <kind>1</kind>
             <string>if (state != "death")
 {
-    move_speed += 0.4; //Increase speed with each fireball injuring!
     state = "approach";
     image_blend = pain_colour;
+    
     alarm[1] = 2;
     with (other) instance_destroy();
 }
@@ -400,8 +415,12 @@ if (state == "approach")
             <kind>1</kind>
             <string>///Speech on E-key interactive
 
+if (state == "walk")
+{
+    global.greatInfo = say_string;
+}
+
 alarm[0] = room_speed * 2;
-if (state == "walk") global.greatInfo = say_string;
 </string>
           </argument>
         </arguments>

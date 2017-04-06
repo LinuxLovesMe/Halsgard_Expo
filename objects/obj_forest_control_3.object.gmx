@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 
+global.previous_room = "dark_forest_3";
+
 instance_create(0, 0, obj_autumn_fall);
 
 anarchy_text[0] = "Нашел ту маску, о которой говорил Агни? (ЛКМ - далее)";
@@ -271,29 +273,6 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.previous_room = "dark_forest_3";
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
@@ -312,40 +291,6 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
           <argument>
             <kind>1</kind>
             <string>draw_text_colour(view_xview[1] + 12, view_yview[1] + view_hview[1] - 36, cut_text, c_white, c_white, c_white, c_white, 1);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="82">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Restart battle after player has died
-
-if (obj_mainhero.already_dead)
-{
-    global.character[8] = global.character[0];
-    
-    global.aggressive = false;
-    global.garage_scene = 0;    
-    global.kill_the_arab = 0;
-    global.unspidered_1 = false;
-    states_load(1); room_restart();
-}
 </string>
           </argument>
         </arguments>

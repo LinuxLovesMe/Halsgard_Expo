@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="17" name="datafiles">
-    <datafiles number="17" name="start_dialogue">
+  <datafiles number="24" name="datafiles">
+    <datafiles number="24" name="start_dialogue">
       <datafile>
         <name>Dialogue_0.txt</name>
         <exists>-1</exists>
@@ -40,7 +40,7 @@
         <filename>Dialogue_1.txt</filename>
       </datafile>
     </datafiles>
-    <datafiles number="17" name="dark_forest">
+    <datafiles number="24" name="dark_forest">
       <datafile>
         <name>Lovushka.txt</name>
         <exists>-1</exists>
@@ -59,9 +59,77 @@
         <filename>Lovushka.txt</filename>
       </datafile>
       <datafile>
+        <name>Garage.txt</name>
+        <exists>-1</exists>
+        <size>1227</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Garage.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Garage_M.txt</name>
+        <exists>-1</exists>
+        <size>1399</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Garage_M.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Gorka_10.txt</name>
+        <exists>-1</exists>
+        <size>2820</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Gorka_10.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Volga_Auto.txt</name>
+        <exists>-1</exists>
+        <size>1789</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Volga_Auto.txt</filename>
+      </datafile>
+      <datafile>
         <name>Sandbox.txt</name>
         <exists>-1</exists>
-        <size>275</size>
+        <size>1710</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -76,9 +144,9 @@
         <filename>Sandbox.txt</filename>
       </datafile>
       <datafile>
-        <name>Volga_Auto.txt</name>
+        <name>Statue_A.txt</name>
         <exists>-1</exists>
-        <size>135</size>
+        <size>2504</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -90,10 +158,27 @@
             <CopyToMask>9223372036854775807</CopyToMask>
           </Config>
         </ConfigOptions>
-        <filename>Volga_Auto.txt</filename>
+        <filename>Statue_A.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Volga_Auto_M.txt</name>
+        <exists>-1</exists>
+        <size>2133</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Volga_Auto_M.txt</filename>
       </datafile>
     </datafiles>
-    <datafiles number="17" name="dark_forest_dev">
+    <datafiles number="24" name="dark_forest_dev">
       <datafile>
         <name>Themes_1.txt</name>
         <exists>-1</exists>
@@ -371,8 +456,10 @@
     <script>scripts\save_options.gml</script>
     <script>scripts\global_to_default.gml</script>
     <script>scripts\states_load.gml</script>
+    <script>scripts\scr_desc_width.gml</script>
     <script>scripts\states_save.gml</script>
     <script>scripts\debug_message.gml</script>
+    <script>scripts\restart_level.gml</script>
     <script>scripts\set_window_size.gml</script>
   </scripts>
   <shaders name="shaders">

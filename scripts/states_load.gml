@@ -9,8 +9,8 @@ if (!file_text_eof(file))
     
     for (i = 0; i < 2; i++) //Basic inventory items count = 2
     {
-        if (i == 0) item_set_value("Halsvord", string_digits(string_copy(next_string, temp_position, string_pos("_", next_string))));
-        if (i == 1) item_set_value("Medical_Rune", string_digits(string_copy(next_string, temp_position, string_pos("_", next_string))));
+        if (i == 0) item_set_value("Halsvord", real(string_digits(string_copy(next_string, temp_position, string_pos("_", next_string)))));
+        if (i == 1) item_set_value("Medical_Rune", real(string_digits(string_copy(next_string, temp_position, string_pos("_", next_string)))));
         
         temp_position = string_pos("_", next_string);
     }
@@ -25,15 +25,15 @@ if (!file_text_eof(file))
         next_string = file_text_read_string(file);
     }
     
-    global.character[9] = string_digits(next_string); //Set current value of hero's AP
+    global.character[9] = real(string_digits(next_string)); //Set current value of hero's AP
     
     file_text_readln(file);
     next_string = file_text_read_string(file);
     
     while (string_pos("QS", next_string) or string_pos("QC", next_string))
     {
-        quest_add(string_digits(next_string));
-        if (string_pos("QC", next_string)) quest_complete(string_digits(next_string));
+        quest_add(real(string_digits(next_string)));
+        if (string_pos("QC", next_string)) quest_complete(real(string_digits(next_string)));
         
         if (!file_text_eof(file)) file_text_readln(file); else break;
         if (!file_text_eof(file)) next_string = file_text_read_string(file); else break;

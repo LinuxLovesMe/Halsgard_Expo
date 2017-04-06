@@ -47,7 +47,7 @@ if (file_exists("Options.franbow"))
 
       if (temp_position != 0) //if line has correct code
       {
-        var temp_value = string_digits(string_copy(option_str, temp_position + 3, string_length(option_str)));
+        var temp_value = real(string_copy(option_str, temp_position + 3, string_length(option_str)));
         
         if (i == 3) temp_value = string_copy(option_str, temp_position + 3, string_length(option_str));
         
@@ -172,7 +172,7 @@ global.medical_rune = ds_list_create();
 ds_list_add(global.medical_rune, 1, 0, "Зелье исцеления");
 
 global.chain_chain = ds_list_create();
-ds_list_add(global.chain_chain, 2, 0, "Артефакт 'Цепная реакция'");
+ds_list_add(global.chain_chain, 2, 0, "Артефакт " + chr(34) + "Цепная реакция" + chr(34) + " (физическое здоровье +2)");
 
 global.theatre_mask = ds_list_create();
 ds_list_add(global.theatre_mask, 3, 0, "Театральная маска");

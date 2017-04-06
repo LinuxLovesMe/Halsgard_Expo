@@ -11,8 +11,7 @@ switch (curr_pos)
         {
             if (global_to_default() == "done")
             {
-                states_load(0);
-                room_goto(dark_forest_1);
+                states_load(0); room_goto(dark_forest_1);
             }
         }
         break;
@@ -34,7 +33,6 @@ switch (curr_pos)
     
     case 3: //Quit to Desktop
     {
-        game_end();
-        break;
+        game_end(); break;
     }
 }

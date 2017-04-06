@@ -485,6 +485,13 @@ if (state == "death")
             if (alarm[3] == -1) alarm[3] = room_speed * 2;
         }
     }
+    
+    if (instance_exists(obj_planescape))
+    {
+        global.pause = paused.non_pause;
+        global.full_show = false;
+        with (obj_planescape) instance_destroy();
+    }
 }
 </string>
           </argument>
@@ -586,14 +593,19 @@ if (room_get_name(room) == "dark_forest_3" and state != "pause")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state != "death" and global.aggressive)
+            <string>if ((state != "death") and global.aggressive and (item_check_value("Halsvord") &gt;= 50))
 {
-    if (item_check_value("Halsvord") &gt; 50)
+    if (image_xscale &gt; 0)
     {
-        if (image_xscale &gt; 0) x = irandom_range(x, room_width - 208);
-        else x = irandom_range(208, x);
-        item_set_value("Halsvord", item_check_value("Halsvord") - 50);
+        if ((room_width - 208 - x) &gt; 600) x = x + 600;
+        else x = irandom_range(x, room_width - 208);
     }
+    else
+    {
+        if ((x - 208) &gt; 600) x = x - 600; else x = irandom_range(208, x);
+    }
+    
+    item_set_value("Halsvord", item_check_value("Halsvord") - 50);
 }
 </string>
           </argument>

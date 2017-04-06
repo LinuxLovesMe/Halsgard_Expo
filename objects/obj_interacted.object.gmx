@@ -31,6 +31,8 @@ destroy = false;
 text = "";
 text_printed = false;
 
+key_sprite_x = 0;
+key_sprite_y = 0;
 show_text = true;
 object_state = "action_0";
 </string>

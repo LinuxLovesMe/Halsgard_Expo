@@ -146,7 +146,7 @@ switch (action)
 
 for (j = 0; j &lt; 9; j++)
 {
-    if (point_in_circle(mouse_x, mouse_y, xx[j], yy[j], 20) and global.inventory[j] != "")
+    if (point_in_circle(mouse_x, mouse_y, xx[j], yy[j], 34) and global.inventory[j] != "")
     {
         show_description = true;
         number = j; break;
@@ -225,13 +225,19 @@ if (show_description)
     
     if (number == 0)
     {
-        draw_sprite_ext(spr_item_description, 0, xx[number] + 58, yy[number] + 64, string_width(description_string) / 320 + 0.068, 1, 0, c_white, 1);
-        draw_text_colour(xx[number] + 68, yy[number] + 68, description_string, c_white, c_white, c_white, c_white, 1);
+        draw_sprite_ext(spr_item_description, 0, xx[number] + 54, yy[number] + 64, string_width(description_string) / 320 + 0.068, 1, 0, c_white, 1);
+        draw_text_colour(xx[number] + 65, yy[number] + 68, description_string, c_white, c_white, c_white, c_white, 1);
+    }
+    else if (string_width(description_string) &gt; 500)
+    {
+        var coef = floor(string_width(description_string) / 500) + 1;
+        draw_sprite_ext(spr_item_description, 0, xt[number] - (4 * coef), yt[number] - (4 * coef), scr_desc_width(description_string), 1.1 * coef, 0, c_white, 1);
+        draw_text_ext_colour(xt[number] + (4 * coef), yt[number], description_string, 36, 500, c_white, c_white, c_white, c_white, 1);
     }
     else
     {
-        draw_sprite_ext(spr_item_description, 0, xt[number] - 2, yt[number] - 2, string_width(description_string) / 320 + 0.068, 1, 0, c_white, 1);
-        draw_text_colour(xt[number] + 8, yt[number] + 2, description_string, c_white, c_white, c_white, c_white, 1);
+        draw_sprite_ext(spr_item_description, 0, xt[number] - 4, yt[number] - 4, string_width(description_string) / 320 + 0.068, 1, 0, c_white, 1);
+        draw_text_colour(xt[number] + 5, yt[number], description_string, c_white, c_white, c_white, c_white, 1);
     }
 }
 </string>
