@@ -126,7 +126,11 @@ if (object_state == "action_2")
         obj_planescape.replica = 1;
         obj_planescape.pointer = obj_planescape.pointer_t - 1;
     }
-    else object_state = "action_0";
+    else
+    {
+        object_state = "action_0";
+        obj_planescape.special_info = "Внимание! Ваш персонаж на сегодня устал (недостаточно АР).";
+    }
 }
 
 if (object_state == "action_3")
@@ -144,11 +148,14 @@ if (object_state == "action_3")
         }
         else
         {
-            obj_planescape.replica = 1;
-            obj_planescape.pointer = 4;
+            obj_planescape.replica = 1; obj_planescape.pointer = 4;
         }
     }
-    else object_state = "action_0";
+    else
+    {
+        object_state = "action_0";
+        obj_planescape.special_info = "Внимание! Ваш персонаж на сегодня устал (недостаточно АР).";
+    }
 }
 
 if (object_state == "action_4")
@@ -157,6 +164,14 @@ if (object_state == "action_4")
     global.character[8] -= 1;
     obj_planescape.replica = 1;
     obj_planescape.pointer = obj_planescape.pointer_t - 1;
+}
+
+if (object_state == "action_6")
+{
+    object_state = "action_0";
+    global.pause = paused.non_pause;
+    global.full_show = false;
+    with (obj_planescape) instance_destroy();
 }
 </string>
           </argument>

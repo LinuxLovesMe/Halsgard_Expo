@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="24" name="datafiles">
-    <datafiles number="24" name="start_dialogue">
+  <datafiles number="33" name="datafiles">
+    <datafiles number="33" name="start_dialogue">
       <datafile>
         <name>Dialogue_0.txt</name>
         <exists>-1</exists>
@@ -40,45 +40,11 @@
         <filename>Dialogue_1.txt</filename>
       </datafile>
     </datafiles>
-    <datafiles number="24" name="dark_forest">
-      <datafile>
-        <name>Lovushka.txt</name>
-        <exists>-1</exists>
-        <size>982</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Lovushka.txt</filename>
-      </datafile>
-      <datafile>
-        <name>Garage.txt</name>
-        <exists>-1</exists>
-        <size>1227</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Garage.txt</filename>
-      </datafile>
+    <datafiles number="33" name="dark_forest">
       <datafile>
         <name>Garage_M.txt</name>
         <exists>-1</exists>
-        <size>1399</size>
+        <size>1804</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -93,9 +59,26 @@
         <filename>Garage_M.txt</filename>
       </datafile>
       <datafile>
+        <name>Garage.txt</name>
+        <exists>-1</exists>
+        <size>1632</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Garage.txt</filename>
+      </datafile>
+      <datafile>
         <name>Gorka_10.txt</name>
         <exists>-1</exists>
-        <size>2820</size>
+        <size>4100</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -112,7 +95,7 @@
       <datafile>
         <name>Volga_Auto.txt</name>
         <exists>-1</exists>
-        <size>1789</size>
+        <size>2583</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -127,26 +110,9 @@
         <filename>Volga_Auto.txt</filename>
       </datafile>
       <datafile>
-        <name>Sandbox.txt</name>
-        <exists>-1</exists>
-        <size>1710</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Sandbox.txt</filename>
-      </datafile>
-      <datafile>
         <name>Statue_A.txt</name>
         <exists>-1</exists>
-        <size>2504</size>
+        <size>3133</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -161,9 +127,43 @@
         <filename>Statue_A.txt</filename>
       </datafile>
       <datafile>
+        <name>Lovushka.txt</name>
+        <exists>-1</exists>
+        <size>49090</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Lovushka.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Sandbox.txt</name>
+        <exists>-1</exists>
+        <size>2678</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Sandbox.txt</filename>
+      </datafile>
+      <datafile>
         <name>Volga_Auto_M.txt</name>
         <exists>-1</exists>
-        <size>2133</size>
+        <size>2927</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -178,7 +178,7 @@
         <filename>Volga_Auto_M.txt</filename>
       </datafile>
     </datafiles>
-    <datafiles number="24" name="dark_forest_dev">
+    <datafiles number="33" name="dark_forest_dev">
       <datafile>
         <name>Themes_1.txt</name>
         <exists>-1</exists>
@@ -448,7 +448,7 @@
       <script>scripts\item_set_value.gml</script>
       <script>scripts\item_check_value.gml</script>
       <script>scripts\inventory_add.gml</script>
-      <script>scripts\inventory_remove.gml</script>
+      <script>scripts\item_check_exists.gml</script>
     </scripts>
     <script>scripts\scr_destruction.gml</script>
     <script>scripts\scr_menu.gml</script>

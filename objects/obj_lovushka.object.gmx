@@ -117,9 +117,18 @@ key_sprite_y = y - 480;
 
 if (object_state == "action_2")
 {
-    object_state = "action_0";
-    obj_planescape.replica = 1;
-    obj_planescape.pointer = obj_planescape.pointer_t - 1;
+    if (global.character[9] &gt; 0)
+    {
+        object_state = "action_0";
+        global.character[9] -= 1;
+        obj_planescape.replica = 1;
+        obj_planescape.pointer = obj_planescape.pointer_t - 1;
+    }
+    else
+    {
+        object_state = "action_0";
+        obj_planescape.special_info = "Внимание! Ваш персонаж на сегодня устал (недостаточно АР).";
+    }
 }
 
 if (object_state == "action_3")
@@ -132,12 +141,20 @@ if (object_state == "action_3")
 
 if (object_state == "action_4")
 {
-    object_state = "action_0";
-    global.full_show = false;
-    with (obj_planescape) instance_destroy();
-    instance_destroy();
-    global.final_kind = 1; //number of the final comics
-    room_goto(room_la_finish);
+    if (global.character[9] &gt; 0)
+    {
+        object_state = "action_0";
+        global.full_show = false;
+        with (obj_planescape) instance_destroy();
+        instance_destroy();
+        global.final_kind = 1; //number of the final comics
+        room_goto(room_la_finish);
+    }
+    else
+    {
+        object_state = "action_0";
+        obj_planescape.special_info = "Внимание! Ваш персонаж на сегодня устал (недостаточно АР).";
+    }
 }
 </string>
           </argument>

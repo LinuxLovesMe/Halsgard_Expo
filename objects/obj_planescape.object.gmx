@@ -38,6 +38,8 @@ surf_mask = -1;
 surf_mask_width = view_wview[0];
 surf_mask_height = view_hview[0];
 
+special_info = "";
+
 draw_x = view_xview[0] + view_wview[0] / 2;
 draw_y = view_yview[0] + view_hview[0] / 2;
 
@@ -144,6 +146,10 @@ if (!replica)
     {
         global.planescape_parent.object_state = "action_" + string(pointer_t);
     }
+}
+else
+{
+    if (special_info != "") special_info = "";
 }
 </string>
           </argument>
@@ -273,6 +279,7 @@ if (global.full_show)
                 draw_text_ext_transformed_colour(xx + 30 + (string_w - string_width(text_d[k])) / 2, yy + 30 + (separator_a + 20) * (k - 1), text_d[k], separator_a, string_w, 1, 1, 0, global.myColor, global.myColor, global.myColor, global.myColor, 1);
             }
         }
+        draw_text_colour(xx + 30, yy + 38 + (separator_a + 20) * 4, special_info, c_white, c_white, c_white, c_white, 1);
     }
 }
 </string>

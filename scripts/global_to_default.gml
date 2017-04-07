@@ -6,10 +6,12 @@ global.planescape_parent = 0;
 global.full_show = false;
 global.kill_the_arab = 0;
 global.previous_room = "main_menu";
-global.garage_scene = 0;
-global.unchained_1 = false;
+global.garage_scene = false;
 global.aggressive = false;
+global.unchained_1 = false;
 global.unspidered_1 = false;
+global.pince_find = false;
+global.garage_secret = false;
 
 global.pause = paused.non_pause; //Pause events
 

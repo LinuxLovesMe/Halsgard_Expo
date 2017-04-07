@@ -55,6 +55,49 @@ text = "Диковинное сооружение, похожее на сарк�
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///If player has pressed "E" on keyboard
+
+event_inherited();
+
+if (global.pause == paused.non_pause)
+{
+    if (keyboard_check_released(ord("E")) and near == true)
+    {
+        if (quest_ucheck(4)and global.garage_secret)
+        {
+            global.planescape_file = "dark_forest/Garage_M.txt";
+        }
+        else
+        {
+            global.planescape_file = "dark_forest/Garage.txt";
+        }
+        
+        global.planescape_parent = obj_garage_new;
+        global.full_show = true;
+        global.pause = paused.pause;
+        instance_create(0, 0, obj_planescape);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Parallax settings
 
 event_inherited();
@@ -63,6 +106,83 @@ x = x_origin + floor(view_xview[0] * 0.2);
 y = y_origin;
 key_sprite_x = x - 48;
 key_sprite_y = y - sprite_height - 20;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State actions for interaction window
+
+if (object_state == "action_2")
+{
+    object_state = "action_0";
+    global.full_show = false;
+    with (obj_planescape) instance_destroy();
+    global.pause = paused.pause;
+    obj_forest_control_3.alarm[10] = 4;
+}
+
+if (object_state == "action_3")
+{
+    if (global.character[9] &gt; 0)
+    {
+        global.character[9] -= 1;
+        obj_planescape.replica = 1;
+        object_state = "action_0";
+        obj_planescape.pointer = obj_planescape.pointer_t - 1;
+    }
+    else
+    {
+        object_state = "action_0";
+        obj_planescape.special_info = "Внимание! Ваш персонаж на сегодня устал (недостаточно АР).";
+    }
+}
+
+if (object_state == "action_4")
+{
+    obj_planescape.replica = 1;
+    object_state = "action_0";
+    obj_planescape.pointer = obj_planescape.pointer_t - 1;
+}
+
+if (object_state == "action_5")
+{
+    if (global.character[9] &gt; 1)
+    {
+        global.character[9] -= 2;
+        obj_planescape.replica = 1;
+        object_state = "action_0";
+        obj_planescape.pointer = obj_planescape.pointer_t - 1;
+    }
+    else
+    {
+        object_state = "action_0";
+        obj_planescape.special_info = "Внимание! Ваш персонаж на сегодня устал (недостаточно АР).";
+    }
+}
+
+if (object_state == "action_6")
+{
+    object_state = "action_0";
+    global.pause = paused.non_pause;
+    global.full_show = false;
+    with (obj_planescape) instance_destroy();
+}
 </string>
           </argument>
         </arguments>

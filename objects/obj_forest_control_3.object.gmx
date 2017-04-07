@@ -46,6 +46,8 @@ cut_text = "";
 anarchy_man_2 = 0;
 taken_over = false;
 
+global.garage_secret = true; //???
+
 instance_create(208, 980, obj_mainhero);
 instance_create(1846, 112, obj_owl_forest);
 instance_create(840, 954, obj_volga_auto);
@@ -54,7 +56,7 @@ instance_create(2430, 940, obj_garage_new);
 
 states_save(1);
 
-if (global.garage_scene == 1 and global.kill_the_arab == 1) var rand = choose(1, 2);
+if (global.garage_scene and global.kill_the_arab == 1) var rand = choose(1, 2);
 else rand = 0;
 
 if (rand == 1)
@@ -93,8 +95,7 @@ anarchy_man_1.image_xscale = -1;
 anarchy_man_2 = instance_create(2600 - 24, 954, obj_anarchy_man);
 anarchy_man_2.pause = true;
 
-view_visible[0] = false;
-view_visible[1] = true;
+view_visible[0] = false; view_visible[1] = true;
 </string>
           </argument>
         </arguments>
@@ -160,6 +161,11 @@ if (!instance_exists(obj_rune_fire) and quest_ucheck(3))
     instance_create(0, 0, obj_new_quest);
 }
 
+if (global.garage_secret)
+{
+    anarchy_text[0] = "Эй, парень, не видел здесь еще одного нашего? Да его как будто Невой смыло!";
+}
+
 if (cutscene_start)
 {
     global.pause = paused.pause;
@@ -206,9 +212,19 @@ else if (instance_exists(anarchy_man_2))
 }
 else global.aggressive = false;
 
-if (global.kill_the_arab &gt; 0)
+if (global.kill_the_arab &gt; 0 and !taken_over)
 {
     if (!instance_exists(obj_free_body)) instance_create(1180, 888, obj_free_body);
+}
+else if (global.kill_the_arab &gt; 0 and taken_over)
+{
+    quest_complete(5); instance_create(0, 0, obj_new_quest);
+    global.greatInfo = "Отлично, Эйд! Упустил добычу прямо из-под носа. Так держать!";
+}
+
+if (item_check_exists("Theatre_Mask") and quest_ucheck(5) and global.pause == paused.non_pause)
+{
+    quest_complete(5); instance_create(0, 0, obj_new_quest);
 }
 </string>
           </argument>
@@ -246,7 +262,7 @@ if (cutscene_start)
         anarchy_man_1.pause = true;
         anarchy_man_2.pause = false;
     }
-    j_count++;
+    if (global.garage_secret) j_count += 5; else j_count++;
 }
 
 if (j_count == 5) //Last click in cutscene, start anarchy's animation
@@ -255,7 +271,7 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
     anarchy_man_1.pause = false;
     anarchy_man_2.pause = false;
     cut_text = "";
-    global.garage_scene = 1;
+    global.garage_scene = true;
     j_count = 13;
     anarchy_man_1.image_xscale = 1;
     anarchy_man_1.state = "walk";

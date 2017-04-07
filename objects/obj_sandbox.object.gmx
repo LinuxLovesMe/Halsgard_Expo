@@ -61,7 +61,7 @@ event_inherited();
 
 if (keyboard_check_released(ord("E")) and near == true)
 {
-    global.planescape_file = "Lovushka.txt";
+    global.planescape_file = "dark_forest/Sandbox.txt";
     global.planescape_parent = obj_sandbox;
     global.full_show = true;
     global.pause = paused.pause;
@@ -117,13 +117,36 @@ key_sprite_y = y - sprite_height - 8;
 
 if (object_state == "action_2")
 {
+    if (global.character[9] &gt; 0)
+    {
+        object_state = "action_0";
+        global.character[9] -= 1;
+        obj_planescape.replica = 1;
+        obj_planescape.pointer = obj_planescape.pointer_t - 1;
+    }
+    else
+    {
+        object_state = "action_0";
+        obj_planescape.special_info = "Внимание! Ваш персонаж на сегодня устал (недостаточно АР).";
+    }
+}
+
+if (object_state == "action_3")
+{
+    obj_planescape.replica = 1;
+    object_state = "action_0";
+    obj_planescape.pointer = obj_planescape.pointer_t - 1;
+}
+
+if (object_state == "action_4")
+{
     object_state = "action_0";
     global.full_show = false;
     instance_create(0, 0, obj_gazette_1);
     with (obj_planescape) instance_destroy();    
 }
 
-if (object_state == "action_3")
+if (object_state == "action_5")
 {
     object_state = "action_0";
     global.pause = paused.non_pause;

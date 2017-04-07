@@ -5,7 +5,7 @@ if (ds_map_find_value(global.options, "save_code") == "1level")
     if (room_get_name(room) == "dark_forest_3")
     {
         global.aggressive = false;
-        global.garage_scene = 0;
+        global.garage_scene = false;
         global.kill_the_arab = 0;
         global.unspidered_1 = false;
         states_load(1); room_restart();
