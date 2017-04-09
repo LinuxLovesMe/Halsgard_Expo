@@ -134,7 +134,7 @@ if (object_state == "action_2")
     global.full_show = false;
     with (obj_planescape) instance_destroy();
     global.pause = paused.pause;
-    obj_forest_control_3.alarm[10] = 4;
+    instance_create(0, 0, obj_tutorial_4);
 }
 
 if (object_state == "action_3")

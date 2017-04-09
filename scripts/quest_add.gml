@@ -17,3 +17,5 @@ if (done == false)
     quest_clear();
     global.uncomplete[0] = global.quest[argument0];
 }
+
+if (!instance_exists(obj_new_quest)) instance_create(0, 0, obj_new_quest);

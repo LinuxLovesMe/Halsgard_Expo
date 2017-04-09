@@ -538,6 +538,8 @@
         <object>objects\obj_gorky_20</object>
         <object>objects\obj_oldman</object>
         <object>objects\obj_lovushka</object>
+        <object>objects\obj_tutorial_3</object>
+        <object>objects\obj_tutorial_4</object>
         <object>objects\obj_dialogue_2</object>
         <object>objects\obj_main_1</object>
         <object>objects\obj_new_quest</object>

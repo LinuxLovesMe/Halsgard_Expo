@@ -186,6 +186,44 @@ if (!instance_exists(obj_global_pause) and global.pause == paused.non_pause)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Iventory items count control (Viggo's strength)
+
+if (global.character[1] &gt; 0)
+{
+    var max_halsvord = 250 * global.character[1];
+    
+    var max_count = global.character[1];
+    
+    if (item_check_value("Halsvord") &gt; max_halsvord)
+    {
+        item_set_value("Halsvord", max_halsvord);
+    }
+    
+    if (item_check_value("Medical_Rune") &gt; max_count)
+    {
+        item_set_value("Medical_Rune", max_count);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="77">
       <action>

@@ -154,11 +154,11 @@ with (other)
             <string>if (global.greatInfo == text)
 {
     global.greatInfo = "";
+    
     if (quest_ucheck(1))
     {
         global.character[9] += 1;
         quest_complete(1);
-        instance_create(0, 0, obj_new_quest);
     }
 }
 </string>

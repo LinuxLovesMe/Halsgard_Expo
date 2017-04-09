@@ -25,8 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = 0;
-y = 0;
+            <string>instance_create(0, 0, obj_cursor);
+
+x = 0; y = 0; max_sprite = 0;
+
+switch (global.final_kind)
+{
+    case 1: sprite = 0; break;
+    
+    case 2: sprite = 3; break;
+    
+    case 3: sprite = 4; break;
+    
+    default: sprite = 0; break;
+}
 </string>
           </argument>
         </arguments>
@@ -49,7 +61,7 @@ y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(dark_forest_1);
+            <string>room_goto(main_menu);
 </string>
           </argument>
         </arguments>
@@ -72,9 +84,49 @@ y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.final_kind == 1)
+            <string>switch (global.final_kind)
 {
+    case 1: max_sprite = 2; image_index = sprite;
+    break;
     
+    case 2: max_sprite = 3; image_index = sprite;
+    break;
+    
+    case 3: max_sprite = 5; image_index = sprite;
+    break;
+    
+    default: max_sprite = 0; image_index = sprite;
+    break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (sprite + 1 &lt;= max_sprite)
+{
+    sprite += 1; mouse_clear(mb_left);
+}
+else 
+{
+    if (alarm[0] == -1) alarm[0] = 4;
 }
 </string>
           </argument>

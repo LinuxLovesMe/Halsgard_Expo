@@ -205,7 +205,7 @@ for (n = 0; n &lt; 9; n++)
         {
             draw_text_colour(xt[n], yt[n], item_check_value(global.inventory[n]), c_black, c_black, c_black, c_black, 1);
         }
-        else
+        else if (n &lt; 2) //Increase this number up to 5 when inventory will be complete
         {
             draw_text_colour(xt[n], yt[n], item_check_value(global.inventory[n]), c_white, c_white, c_white, c_white, 1);
         }

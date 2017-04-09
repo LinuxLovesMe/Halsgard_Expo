@@ -46,8 +46,6 @@ cut_text = "";
 anarchy_man_2 = 0;
 taken_over = false;
 
-global.garage_secret = true; //???
-
 instance_create(208, 980, obj_mainhero);
 instance_create(1846, 112, obj_owl_forest);
 instance_create(840, 954, obj_volga_auto);
@@ -65,6 +63,36 @@ if (rand == 1)
     anarchy_man_1 = instance_create(1800, 954, obj_anarchy_man);
 }
 if (rand == 2) taken_over = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create two anarchy_men for cut_scene
+
+cutscene_start = 2;
+
+anarchy_man_1 = instance_create(2300 - 24, 954, obj_anarchy_man);
+anarchy_man_1.image_xscale = -1;
+anarchy_man_2 = instance_create(2600 - 24, 954, obj_anarchy_man);
+anarchy_man_2.pause = true;
 </string>
           </argument>
         </arguments>
@@ -155,21 +183,16 @@ background_y[5]=floor(view_yview[0]*0.01);
 
 event_inherited();
 
-if (!instance_exists(obj_rune_fire) and quest_ucheck(3))
-{
-    quest_complete(3);
-    instance_create(0, 0, obj_new_quest);
-}
+if (!instance_exists(obj_rune_fire) and quest_ucheck(3)) quest_complete(3);
 
-if (global.garage_secret)
+if (cutscene_start &gt; 1)
 {
     anarchy_text[0] = "Эй, парень, не видел здесь еще одного нашего? Да его как будто Невой смыло!";
 }
 
-if (cutscene_start)
+if (cutscene_start &gt; 0)
 {
-    global.pause = paused.pause;
-    cut_text = anarchy_text[j_count];
+    global.pause = paused.pause; cut_text = anarchy_text[j_count];
 }
 
 if (instance_exists(anarchy_man_1) and instance_exists(anarchy_man_2))
@@ -182,8 +205,7 @@ if (instance_exists(anarchy_man_1) and instance_exists(anarchy_man_2))
     
     if (anarchy_man_1.state == "death" and anarchy_man_2.state == "death")
     {
-        global.kill_the_arab = 2;
-        global.aggressive = false;
+        global.kill_the_arab = 2; global.aggressive = false;
     }
 }
 else if (instance_exists(anarchy_man_1))
@@ -192,22 +214,16 @@ else if (instance_exists(anarchy_man_1))
     {
         global.aggressive = false;
         
-        if (global.kill_the_arab == 0)
-        {
-            global.kill_the_arab = 1;
-        }
-        else
-        {
-            global.kill_the_arab = 2;
-        }
+        if (global.kill_the_arab == 0) global.kill_the_arab = 1;
+        
+        else global.kill_the_arab = 2;
     }
 }
 else if (instance_exists(anarchy_man_2))
 {
     if (anarchy_man_2.state == "death")
     {
-        global.kill_the_arab = 1;
-        global.aggressive = false;
+        global.kill_the_arab = 1; global.aggressive = false;
     }
 }
 else global.aggressive = false;
@@ -216,16 +232,13 @@ if (global.kill_the_arab &gt; 0 and !taken_over)
 {
     if (!instance_exists(obj_free_body)) instance_create(1180, 888, obj_free_body);
 }
+
 else if (global.kill_the_arab &gt; 0 and taken_over)
 {
-    quest_complete(5); instance_create(0, 0, obj_new_quest);
-    global.greatInfo = "Отлично, Эйд! Упустил добычу прямо из-под носа. Так держать!";
+    quest_complete(5); global.greatInfo = "Отлично, Эйд! Упустил добычу прямо из-под носа. Так держать!";
 }
 
-if (item_check_exists("Theatre_Mask") and quest_ucheck(5) and global.pause == paused.non_pause)
-{
-    quest_complete(5); instance_create(0, 0, obj_new_quest);
-}
+if (item_check_exists("Theatre_Mask") and quest_ucheck(5) and global.pause == paused.non_pause) quest_complete(5);
 </string>
           </argument>
         </arguments>
@@ -250,7 +263,7 @@ if (item_check_exists("Theatre_Mask") and quest_ucheck(5) and global.pause == pa
             <kind>1</kind>
             <string>///Cutscene management on LMB
 
-if (cutscene_start)
+if (cutscene_start &gt; 0)
 {
     if (anarchy_man_1.pause)
     {
@@ -262,7 +275,8 @@ if (cutscene_start)
         anarchy_man_1.pause = true;
         anarchy_man_2.pause = false;
     }
-    if (global.garage_secret) j_count += 5; else j_count++;
+    
+    if (cutscene_start &gt; 1) j_count += 5; else j_count++;
 }
 
 if (j_count == 5) //Last click in cutscene, start anarchy's animation
@@ -282,7 +296,6 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
     view_visible[1] = false;
     
     quest_complete(4); quest_add(5);
-    instance_create(0, 0, obj_new_quest);
 }
 </string>
           </argument>
@@ -306,7 +319,14 @@ if (j_count == 5) //Last click in cutscene, start anarchy's animation
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_colour(view_xview[1] + 12, view_yview[1] + view_hview[1] - 36, cut_text, c_white, c_white, c_white, c_white, 1);
+            <string>if (cutscene_start &gt; 0 and cutscene_start &lt; 2)
+{
+    draw_text_colour(view_xview[1] + 12, view_yview[1] + view_hview[1] - 36, cut_text, c_white, c_white, c_white, c_white, 1);
+}
+else if (cutscene_start &gt; 1)
+{
+    draw_text_colour(view_xview[0] + 12, view_yview[0] + view_hview[0] - 36, cut_text, c_white, c_white, c_white, c_white, 1);
+}
 </string>
           </argument>
         </arguments>

@@ -83,9 +83,7 @@ y = y_origin;
 {
     obj_mainhero.maxenergy = 10 * (1 + global.character[3] * 0.1); //Interact with Call of Hield state
     obj_mainhero.weapon = weapons.weapon_fire;
-    remove = true;
-    scr_destruction();
-    instance_destroy();
+    remove = true; scr_destruction(); instance_destroy();
 }
 </string>
           </argument>

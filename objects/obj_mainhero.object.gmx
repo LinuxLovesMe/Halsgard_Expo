@@ -71,29 +71,26 @@ weapon_cooldown = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Setup characteristics and skills from global settings
+            <string>///Setup basic character parametres from global
 
 if (ds_map_find_value(global.options, "history_mode"))
 {
-    if (global.character[0] == 0) global.character[0] = 4;
-    if (global.character[1] == 0) global.character[1] = 2;
-    if (global.character[2] == 0) global.character[2] = 4;
-    if (global.character[3] == 0) global.character[3] = 4;
-    if (global.character[4] == 0) global.character[4] = 4;
-    if (global.character[5] == 0) global.character[5] = 2;
-    if (global.character[6] == 0) global.character[6] = 2;
-    if (global.character[7] == 0) global.character[7] = 4;
+    global.character[0] = 4; global.character[1] = 2;
+    global.character[2] = 4; global.character[3] = 4;
+    global.character[4] = 4; global.character[5] = 2;
+    global.character[6] = 4;
 }
 else
 {
-    if (global.character[0] == 0) global.character[0] = 2;
-    if (global.character[1] == 0) global.character[1] = 1;
-    if (global.character[2] == 0) global.character[2] = 2;
-    if (global.character[3] == 0) global.character[3] = 2;
-    if (global.character[4] == 0) global.character[4] = 4;
-    if (global.character[5] == 0) global.character[5] = 1;
-    if (global.character[6] == 0) global.character[6] = 1;
-    if (global.character[7] == 0) global.character[7] = 2;
+    global.character[0] = 2; global.character[1] = 1;
+    global.character[2] = 2; global.character[3] = 2;
+    global.character[4] = 4; global.character[5] = 1;
+    global.character[6] = 2;
+}
+
+if (global.character[8] == 0 and state != "death")
+{
+    global.character[8] = global.character[0]; global.character[9] = global.character[6];
 }
 </string>
           </argument>
@@ -513,6 +510,65 @@ if (state == "death")
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Setup basic character parametres
+
+if (ds_map_find_value(global.options, "history_mode"))
+{
+    global.character[0] = 4; global.character[1] = 2;
+    global.character[2] = 4; global.character[3] = 4;
+    global.character[4] = 4; global.character[5] = 2;
+    global.character[6] = 4;
+}
+else
+{
+    global.character[0] = 2; global.character[1] = 1;
+    global.character[2] = 2; global.character[3] = 2;
+    global.character[4] = 4; global.character[5] = 1;
+    global.character[6] = 2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Artifacts and perks influence
+
+if (item_check_exists("Chain_Chain")) global.character[0] += 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Check collisions with room borders
 
 if (room_get_name(room) == "dark_forest_1" and state != "pause")
@@ -557,7 +613,7 @@ if (room_get_name(room) == "dark_forest_3" and state != "pause")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (item_check_value("Medical_Rune") &gt; 0)
+            <string>if (item_check_value("Medical_Rune") &gt; 0 and state != "death")
 {
     global.character[8] += global.character[0] * 0.1 * global.character[2];
     
@@ -565,11 +621,9 @@ if (room_get_name(room) == "dark_forest_3" and state != "pause")
     {
         global.character[8] = global.character[0];
     }
-    
     item_set_value("Medical_Rune", item_check_value("Medical_Rune") - 1);
     
-    image_blend = c_teal;
-    alarm[0] = 3;
+    image_blend = c_teal; alarm[0] = 3;
 }
 </string>
           </argument>

@@ -50,12 +50,7 @@ if (global.tutorial[0] == 0) // Only in the first time
         save_options();
     }
     
-    if (instance_exists(obj_mainhero))
-    {
-        global.character[8] = global.character[0]; //Setup current value of HP
-        global.character[9] = global.character[7]; //Setup current value of AP
-    }
-    states_save(0);
+    if (instance_exists(obj_mainhero) and global.character[8] &gt; 0) states_save(0);
 }
 else instance_create(1880, 980, obj_sandbox);
 
@@ -65,6 +60,36 @@ text = "";
 tutorial_text[0] = "Зажмите [Tab] для просмотра текущих целей и квестов. Журнал неактивен во время паузы (ЛКМ - далее).";
 tutorial_text[2] = "Уверен, эта штука за мной следит! Надо бы проверить ее при помощи ПКМ (ЛКМ - далее).";
 tutorial_text[1] = "В гиде по выживанию [Esc] всегда можно прочесть свежие игровые подсказки (ЛКМ - далее).";
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///One of the finals of demoversion
+
+if (quest_ucheck(0) or quest_ucheck(6))
+{
+    if (global.kill_the_arab &gt; 0 and quest_ucheck(0)) global.final_kind = 2;
+    if (global.kill_the_arab &lt; 1 and quest_ucheck(6)) global.final_kind = 2;
+    if (global.kill_the_arab &gt; 0 and quest_ucheck(6)) global.final_kind = 3;
+    
+    room_goto(room_la_finish);
+}
 </string>
           </argument>
         </arguments>

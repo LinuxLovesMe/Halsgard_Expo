@@ -124,8 +124,12 @@ for (var i = 0; i &lt; 8; i++)
             <string>///Destroy dialogue after Esc or AP has ended
 
 global.pause = paused.non_pause;
-quest_complete(2); quest_add(4);
-instance_create(0, 0, obj_new_quest);
+
+if (quest_ucheck(2))
+{
+    quest_complete(2); quest_add(4);
+}
+
 instance_destroy();
 </string>
           </argument>
@@ -292,6 +296,8 @@ if (point_in_circle(mouse_x, mouse_y, center_x, center_y, sprite_get_width(spr_m
             
             //Working with themes' number iterators
             
+            var temp_data = floor(150 * (1 - global.character[5] * 0.03));
+            
             if (i != 0 and i != 2 and i != 3 and i != 4) global.character[9] -= 1; //Change number of local level AP amount
             
             if (i != 3 and i != 4)
@@ -308,9 +314,9 @@ if (point_in_circle(mouse_x, mouse_y, center_x, center_y, sprite_get_width(spr_m
                     if (!instance_exists(obj_dialogue_2)) instance_create(0, 0, obj_dialogue_2);
                     instance_deactivate_object(obj_main_1);
                 }
-                else if (i == 4 and value &gt;= 150)
+                else if (i == 4 and value &gt;= temp_data)
                 {
-                    item_set_value("Halsvord", value - 150);
+                    item_set_value("Halsvord", value - temp_data);
                     global.garage_secret = true;
                     if (!instance_exists(obj_dialogue_2)) instance_create(0, 0, obj_dialogue_2);
                     instance_deactivate_object(obj_main_1);
@@ -379,11 +385,13 @@ for (var i = 0; i &lt; 8; i++)
     draw_set_colour(c_white);
     draw_set_font(Underdog_30);
     
+    var temp_data = floor(150 * (1 - global.character[5] * 0.03));
+    
     if (coords[i, 0] - 10 &lt; triangle_x3 and coords[i, 0] + 10 &gt; triangle_x3 and coords[i, 1] &gt; triangle_y3)
     {
-        if (i == 1 or i == 5) need_case = "Требуется как минимум 1 АР!";
-        else if (i == 3) need_case = "Требуется 50 хальсвордов!";
-        else if (i == 4) need_case = "Требуется 200 хальсвордов!"; else need_case = "";
+        if (i == 1 or i == 5) need_case = "Стоимость беседы - 1 АР";
+        else if (i == 3) need_case = "Требуется минимум 50 хальсвордов!";
+        else if (i == 4) need_case = "Стоимость подсказок - " + string(temp_data) + " хальсвордов"; else need_case = "";
         
         draw_text_outline(view_xview[0] + view_wview[0] - string_width("Тема: " + text) - 24, view_yview[0] + 14, "Тема: " + text, 1, c_black, 16);
     }

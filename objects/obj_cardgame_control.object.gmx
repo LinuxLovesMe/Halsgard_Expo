@@ -663,11 +663,13 @@ if (rounds &gt; 0 and rounds &lt; 6)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var t = 0;
+            <string>var win_self = make_colour_rgb(255, 245, 232);
+
+var t = 0;
 
 if (rounds == cards_number)
 {
-    draw_set_colour(c_white);
+    draw_set_colour(win_self);
     draw_set_font(Underdog_36);
     if (!obj_ragn_control.stop_game)
     {

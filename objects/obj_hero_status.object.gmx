@@ -37,12 +37,11 @@ ornamentus[2] = "Целительная энергия: ";
 ornamentus[3] = "Зов Хильд: ";
 ornamentus[4] = "Начитанность (мудрость): ";
 ornamentus[5] = "Дар Браги: ";
-ornamentus[6] = "Предсказание Скульд: ";
-ornamentus[7] = "Физическая активность: ";
+ornamentus[6] = "Физическая активность: ";
 
-ornamentus[8] = " (оставшиеся очки действия): ";
-ornamentus[9] = " (состояние здоровья): ";
-ornamentus[10] = " (запас магической энергии): ";
+ornamentus[7] = " (оставшиеся очки действия): ";
+ornamentus[8] = " (состояние здоровья): ";
+ornamentus[9] = " (запас магической энергии): ";
 
 description[0] = "Характеристика, отвечающая за максимальный запас здоровья героя. Чем выше показатель здоровья, тем дольше можно продержаться в этом недружелюбном мире.";
 description[1] = "Чем сильнее Вигго, тем больше ценностей можно унести в одной ячейке. Отражает максимальное количество предметов для каждой глазницы (для хальсвордов: x250).";
@@ -50,8 +49,7 @@ description[2] = "Влияние лечебной энергии на увечь
 description[3] = "Хильд - одна из величайших валькирий, ее имя в переводе означает " + chr(34) + "сражение" + chr(34) + ". Дарует бонусные показатели к запасу магической энергии и скорости охлаждения оружия.";
 description[4] = "Фундаментальные литературные познания Эйда позволяют ему управлять своим духом на расстоянии. Чем выше характеристика, тем дольше длится один такой сеанс.";
 description[5] = "Бог Браги - прославленный дипломат и оратор. Характеристика удешевляет подкуп персонажей, улучшает условия бартера, открывает новые реплики (если выше 10).";
-description[6] = "Перед Рагнароком Скульд предсказала Гертруду несметные богатства. Шанс (*5%) найти больше хальсвордов, ценных реликвий и артефактов при исследовании локаций.";
-description[7] = "Чем энергичнее и активнее чувствует себя герой, тем выше прибавка АР (очков действий) к базовому значению. Полезна для манчкинов и истинных искателей приключений.";
+description[6] = "Чем энергичнее и активнее чувствует себя герой, тем выше прибавка АР (очков действий) к базовому значению. Полезна для манчкинов и истинных искателей приключений.";
 
 description_text = "";
 global.pause = paused.pause;
@@ -77,9 +75,9 @@ global.pause = paused.pause;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; 8; i++)
+            <string>for (i = 0; i &lt; 7; i++)
 {
-    if (point_in_rectangle(mouse_x, mouse_y, xx + 20, yy + 114 + 60 * i, xx + 38 + string_width(ornamentus[i]), yy + 148 + 60 * i))
+    if (point_in_rectangle(mouse_x, mouse_y, xx + 20, yy + 124 + 64 * i, xx + 38 + string_width(ornamentus[i]), yy + 158 + 64 * i))
     {
         description_text = "Описание: " + description[i];
         break;
@@ -118,24 +116,24 @@ draw_self();
 draw_set_font(Underdog_30);
 draw_set_colour(c_white);
 
-draw_text(xx + 280, yy + 14, "Характеристики");
+draw_text(xx + 280, yy + 24, "Характеристики");
 draw_text(xx + 250, yy + 644, "Текущая статистика");
-draw_text(xx + 1154, yy + 14, "Статусы и умения");
+draw_text(xx + 1154, yy + 24, "Статусы и умения");
 
 draw_set_font(Underdog_20);
 
-for (i = 0; i &lt; 8; i++)
+for (i = 0; i &lt; 7; i++)
 {
-    draw_text(xx + 20, yy + 114 + 60 * i, ornamentus[i] + string(global.character[i]));
+    draw_text(xx + 20, yy + 124 + 64 * i, ornamentus[i] + string(global.character[i]));
 }
 
 draw_sprite(spr_heart_icon, 0, xx + 32, yy + 814);
 draw_sprite(spr_fire_icon, 0, xx + 32, yy + 870);
 draw_sprite(spr_action_icon, 0, xx + 34, yy + 754);
 
-draw_text(xx + 48, yy + 740 + 4, ornamentus[8] + string(global.character[9]) + "/" + string(global.character[7]));
-draw_text(xx + 48, yy + 800 + 4, ornamentus[9] + string(global.character[8]) + "/" + string(global.character[0]));
-draw_text(xx + 48, yy + 860 + 4, ornamentus[10] + string(obj_mainhero.maxenergy));
+draw_text(xx + 48, yy + 740 + 4, ornamentus[7] + string(global.character[9]) + "/" + string(global.character[6]));
+draw_text(xx + 48, yy + 800 + 4, ornamentus[8] + string(global.character[8]) + "/" + string(global.character[0]));
+draw_text(xx + 48, yy + 860 + 4, ornamentus[9] + string(obj_mainhero.maxenergy));
 
 draw_sprite(spr_division_line, 0, xx + 1020, yy + 668);
 draw_text_ext(xx + 892, yy + 740 + 4, description_text, 60, 810);

@@ -329,15 +329,15 @@ if (state == "watch")
 
 if (keyboard_check_released(ord("E")) and abs(obj_mainhero.x - x) &lt; 180)
 {
+    global.pause = paused.pause;
+    
     if (quest_ucheck(2))
     {
-        instance_create(0, 0, obj_main_1); //Create dialogue controller
-        global.pause = paused.pause;
+        instance_create(0, 0, obj_tutorial_3); //Create dialogue tutorial
     }
     else
     {
-        global.greatInfo = say_string;
-        if (alarm[2] == -1 and global.greatInfo == say_string) alarm[2] = room_speed * 4; //Clear greatInfo text
+        instance_create(0, 0, obj_main_1); //Create dialogue main controller
     }
 }
 </string>
