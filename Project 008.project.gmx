@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="33" name="datafiles">
-    <datafiles number="33" name="start_dialogue">
+  <datafiles number="39" name="datafiles">
+    <datafiles number="39" name="start_dialogue">
       <datafile>
         <name>Dialogue_0.txt</name>
         <exists>-1</exists>
@@ -40,7 +40,7 @@
         <filename>Dialogue_1.txt</filename>
       </datafile>
     </datafiles>
-    <datafiles number="33" name="dark_forest">
+    <datafiles number="39" name="dark_forest">
       <datafile>
         <name>Garage_M.txt</name>
         <exists>-1</exists>
@@ -178,11 +178,11 @@
         <filename>Volga_Auto_M.txt</filename>
       </datafile>
     </datafiles>
-    <datafiles number="33" name="dark_forest_dev">
+    <datafiles number="39" name="dark_forest_dev">
       <datafile>
         <name>Themes_1.txt</name>
         <exists>-1</exists>
-        <size>317</size>
+        <size>211</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -199,7 +199,7 @@
       <datafile>
         <name>Dialogue_2_1.txt</name>
         <exists>-1</exists>
-        <size>3484</size>
+        <size>3482</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -216,7 +216,7 @@
       <datafile>
         <name>Dialogue_2_2.txt</name>
         <exists>-1</exists>
-        <size>3694</size>
+        <size>3736</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -233,7 +233,7 @@
       <datafile>
         <name>Dialogue_2_3.txt</name>
         <exists>-1</exists>
-        <size>3438</size>
+        <size>2131</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -250,7 +250,7 @@
       <datafile>
         <name>Dialogue_2_4.txt</name>
         <exists>-1</exists>
-        <size>1584</size>
+        <size>3521</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -267,7 +267,7 @@
       <datafile>
         <name>Dialogue_2_5.txt</name>
         <exists>-1</exists>
-        <size>563</size>
+        <size>475</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>

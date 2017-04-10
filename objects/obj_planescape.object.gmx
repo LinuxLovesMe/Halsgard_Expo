@@ -74,7 +74,7 @@ while(!file_text_eof(file))
     str = file_text_readln(file);
     if (string_pos("#", str) != 0)
     {
-        sub_str = string_copy(str, 0, 5);
+        sub_str = string_copy(str, 1, 4);
         
         num = real(string_digits(sub_str));
         if (num != 0) 
@@ -128,7 +128,7 @@ if (!replica)
         {
             if (mouse_check_button_released(mb_left))
             {
-                var num_string = string_copy(info[pointer, k], 0, 5);
+                var num_string = string_copy(info[pointer, k], 1, 4);
                 pointer_t = real(string_digits(num_string));
                 break;
             }
@@ -255,7 +255,7 @@ if (global.full_show)
 
     for (k = 0; k &lt; array_length_1d(text_d); k++)
     {
-        sub_str = string_copy(text_d[k], 0, 5);
+        sub_str = string_copy(text_d[k], 1, 4);
         num = string_digits(sub_str);
         text_d[k] = string_replace_all(text_d[k], "#", "");
         text_d[k] = string_replace_all(text_d[k], "@", "");
