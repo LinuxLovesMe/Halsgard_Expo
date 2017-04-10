@@ -5,14 +5,13 @@ file = file_text_open_read("States_" + string(argument0) + ".franbow");
 if (!file_text_eof(file))
 {
     var next_string = file_text_read_string(file);
-    var temp_position = 0;
     
     for (i = 0; i < 2; i++) //Basic inventory items count = 2
     {
-        if (i == 0) item_set_value("Halsvord", real(string_copy(next_string, temp_position, string_pos("_", next_string))));
-        if (i == 1) item_set_value("Medical_Rune", real(string_copy(next_string, temp_position, string_pos("_", next_string))));
+        if (i == 0) item_set_value("Halsvord", real(string_copy(next_string, 1, string_pos("_", next_string))));
+        if (i == 1) item_set_value("Medical_Rune", real(string_copy(next_string, 1, string_pos("_", next_string))));
         
-        temp_position = string_pos("_", next_string);
+        next_string = string_copy(next_string, string_pos("_", next_string) + 1, string_length(next_string));
     }
     
     file_text_readln(file);
